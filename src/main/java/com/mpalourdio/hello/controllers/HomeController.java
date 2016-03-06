@@ -49,4 +49,17 @@ class HomeController {
         return "home/index";
     }
 
+    @RequestMapping("custorepo")
+    String customRepoAction(Model model) {
+        //use a custom method repository
+        List<Task> mediumTasks = taskRepository.cumstomFindByPriority("MEDIUM");
+        //print only those who have 'Implementation' as task_name
+        mediumTasks.
+                stream().
+                filter(s -> s.getTaskName().equals("Implementation")).
+                forEach(System.out::println);
+
+        return "home/index";
+    }
+
 }
