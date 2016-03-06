@@ -1,0 +1,6 @@
+property:
+  whatever: iamaconfigstring
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/taskmanager
+    username: root
