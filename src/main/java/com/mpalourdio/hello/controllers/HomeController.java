@@ -52,7 +52,7 @@ class HomeController {
     @RequestMapping("custorepo")
     String customRepoAction(Model model) {
         //use a custom method repository
-        List<Task> mediumTasks = taskRepository.cumstomFindByPriority("MEDIUM");
+        List<Task> mediumTasks = taskRepository.customFindByPriority("MEDIUM");
         //print only those who have 'Implementation' as task_name
         mediumTasks.
                 stream().
