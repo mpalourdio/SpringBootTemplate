@@ -10,10 +10,10 @@ public class UselessBean {
     private String testPro = "inclass";
 
     public String getTestPro() {
-        return testPro;
+        return this.testPro;
     }
 
-    public void setTestPro(String testPro) {
+    public void setTestPro(final String testPro) {
         this.testPro = testPro;
     }
 }

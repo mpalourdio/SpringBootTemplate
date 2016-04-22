@@ -8,11 +8,11 @@ import java.util.Arrays;
 
 @SpringBootApplication
 public class Application {
-    public static void main(String[] args) {
-        ApplicationContext ctx = SpringApplication.run(Application.class, args);
-        String[] beanNames = ctx.getBeanDefinitionNames();
+    public static void main(final String[] args) {
+        final ApplicationContext ctx = SpringApplication.run(Application.class, args);
+        final String[] beanNames = ctx.getBeanDefinitionNames();
         Arrays.sort(beanNames);
-        for (String beanName : beanNames) {
+        for (final String beanName : beanNames) {
             System.out.println(beanName);
         }
     }

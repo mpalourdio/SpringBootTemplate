@@ -32,57 +32,57 @@ public class Task {
     private int taskArchived = 0;
 
     public int getTaskId() {
-        return id;
+        return this.id;
     }
 
-    public void setTaskId(int taskId) {
+    public void setTaskId(final int taskId) {
         this.id = taskId;
     }
 
     public String getTaskName() {
-        return taskName;
+        return this.taskName;
     }
 
-    public void setTaskName(String taskName) {
+    public void setTaskName(final String taskName) {
         this.taskName = taskName;
     }
 
     public String getTaskDescription() {
-        return taskDescription;
+        return this.taskDescription;
     }
 
-    public void setTaskDescription(String taskDescription) {
+    public void setTaskDescription(final String taskDescription) {
         this.taskDescription = taskDescription;
     }
 
     public String getTaskPriority() {
-        return taskPriority;
+        return this.taskPriority;
     }
 
-    public void setTaskPriority(String taskPriority) {
+    public void setTaskPriority(final String taskPriority) {
         this.taskPriority = taskPriority;
     }
 
     public String getTaskStatus() {
-        return taskStatus;
+        return this.taskStatus;
     }
 
-    public void setTaskStatus(String taskStatus) {
+    public void setTaskStatus(final String taskStatus) {
         this.taskStatus = taskStatus;
     }
 
     public int isTaskArchived() {
-        return taskArchived;
+        return this.taskArchived;
     }
 
-    public void setTaskArchived(int taskArchived) {
+    public void setTaskArchived(final int taskArchived) {
         this.taskArchived = taskArchived;
     }
 
     @Override
     public String toString() {
-        return "Task [id=" + id + ", taskName=" + taskName
-                + ", taskDescription=" + taskDescription + ", taskPriority="
-                + taskPriority + ",taskStatus=" + taskStatus + "]";
+        return "Task [id=" + this.id + ", taskName=" + this.taskName
+                + ", taskDescription=" + this.taskDescription + ", taskPriority="
+                + this.taskPriority + ",taskStatus=" + this.taskStatus + "]";
     }
 }

@@ -14,15 +14,15 @@ import java.util.List;
 @Controller
 class HomeController {
 
-    private String myProperty;
-    private UselessBean uselessBean;
-    private TaskRepository taskRepository;
+    private final String myProperty;
+    private final UselessBean uselessBean;
+    private final TaskRepository taskRepository;
 
     @Autowired
     public HomeController(
-            TaskRepository taskRepository,
-            UselessBean uselessBean,
-            @Value("${property.whatever}") String myProperty
+            final TaskRepository taskRepository,
+            final UselessBean uselessBean,
+            @Value("${property.whatever}") final String myProperty
     ) {
         this.taskRepository = taskRepository;
         this.uselessBean = uselessBean;
@@ -30,29 +30,29 @@ class HomeController {
     }
 
     @RequestMapping("/")
-    String indexAction(Model model) {
-        List task = taskRepository.findByTaskStatus("ACTIVE");
-        Task activity = taskRepository.findOne(1);
-        model.addAttribute("iwantthisinmyview", uselessBean.getTestPro());
+    String indexAction(final Model model) {
+        final List task = this.taskRepository.findByTaskStatus("ACTIVE");
+        final Task activity = this.taskRepository.findOne(1);
+        model.addAttribute("iwantthisinmyview", this.uselessBean.getTestPro());
         model.addAttribute("iwantthisinmyviewfromhibernate", activity.getTaskName());
         return "home/index";
     }
 
     @RequestMapping("/other")
-    String otherAction(Model model) {
-        uselessBean.setTestPro("imsetinthecontrolleronthefly");
-        List task = taskRepository.findByTaskStatus("ACTIVE");
-        Task activity = taskRepository.findOne(1);
-        model.addAttribute("iwantthisinmyview", uselessBean.getTestPro());
+    String otherAction(final Model model) {
+        this.uselessBean.setTestPro("imsetinthecontrolleronthefly");
+        final List task = this.taskRepository.findByTaskStatus("ACTIVE");
+        final Task activity = this.taskRepository.findOne(1);
+        model.addAttribute("iwantthisinmyview", this.uselessBean.getTestPro());
         model.addAttribute("iwantthisinmyviewfromhibernate", activity.getTaskName());
-        model.addAttribute("iwantthisinmyviewfromproperties", myProperty);
+        model.addAttribute("iwantthisinmyviewfromproperties", this.myProperty);
         return "home/index";
     }
 
     @RequestMapping("custorepo")
-    String customRepoAction(Model model) {
+    String customRepoAction(final Model model) {
         //use a custom method repository
-        List<Task> mediumTasks = taskRepository.customFindByPriority("MEDIUM");
+        final List<Task> mediumTasks = this.taskRepository.customFindByPriority("MEDIUM");
         //print only those who have 'Implementation' as task_name
         mediumTasks.
                 stream().
