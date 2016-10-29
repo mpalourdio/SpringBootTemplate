@@ -3,7 +3,6 @@ package com.mpalourdio.hello.controllers;
 import com.mpalourdio.hello.model.Task;
 import com.mpalourdio.hello.model.TaskRepository;
 import com.mpalourdio.hello.service.UselessBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +17,6 @@ class HomeController {
     private final UselessBean uselessBean;
     private final TaskRepository taskRepository;
 
-    @Autowired
     public HomeController(
             final TaskRepository taskRepository,
             final UselessBean uselessBean,
