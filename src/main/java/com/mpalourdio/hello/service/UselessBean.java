@@ -2,15 +2,26 @@ package com.mpalourdio.hello.service;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.annotation.ScopedProxyMode;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class UselessBean {
+
     private String testPro = "inclass";
 
+    private final ABeanIWantToMock aBeanIWantToMock;
+
+    public UselessBean(final ABeanIWantToMock aBeanIWantToMock) {
+        this.aBeanIWantToMock = aBeanIWantToMock;
+    }
+
+    public Boolean iWantToMockThisMethod() {
+        return aBeanIWantToMock.iAlwaysReturnTrue();
+    }
+
     public String getTestPro() {
-        return this.testPro;
+        return testPro;
     }
 
     public void setTestPro(final String testPro) {
