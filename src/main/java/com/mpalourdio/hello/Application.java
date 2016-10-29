@@ -1,12 +1,17 @@
 package com.mpalourdio.hello;
 
+import app.config.WebSecurityConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Import;
 
 import java.util.Arrays;
 
 @SpringBootApplication
+@Import({
+        WebSecurityConfig.class,
+})
 public class Application {
 
     public static void main(final String[] args) {
