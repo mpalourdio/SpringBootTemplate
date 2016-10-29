@@ -5,10 +5,16 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
 
 import java.util.Arrays;
 
 @SpringBootApplication
+@PropertySource(value = {
+        "file:properties/global.properties",
+        "file:properties/local.properties"
+}, ignoreResourceNotFound = true
+)
 @Import({
         WebSecurityConfig.class,
 })
