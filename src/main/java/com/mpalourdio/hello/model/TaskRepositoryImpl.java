@@ -11,21 +11,16 @@ import java.util.List;
  */
 
 public class TaskRepositoryImpl implements CustomRepository<Task> {
+
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
     @SuppressWarnings("unchecked")
     public List<Task> customFindByPriority(final String priority) {
-        return this.
-                entityManager.
-                createQuery("select e from Task e where e.taskPriority = '" + priority + "'").
-                getResultList();
-    }
-
-    static <T> void fromArrayToCollection(final T[] a, final Collection<T> c) {
-        for (final T o : a) {
-            c.add(o); // compile-time error
-        }
+        return entityManager
+                .createQuery("select e from Task e where e.taskPriority = :taskPriority")
+                .setParameter("taskPriority", priority)
+                .getResultList();
     }
 }
