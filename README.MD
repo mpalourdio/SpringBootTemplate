@@ -1,1 +1,3 @@
-Spring Boot template app
+Spring Boot Template application.
+
+More a reminder for some dirty tricks than anything else...
