@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
@@ -29,16 +29,17 @@ class HomeController {
         this.myProperty = myProperty;
     }
 
-    @RequestMapping("/")
+    @GetMapping("/")
     String indexAction(final Model model) {
-        final List task = this.taskRepository.findByTaskStatus("ACTIVE");
-        final Task activity = this.taskRepository.findOne(1);
+        final List task = taskRepository.findByTaskStatus("ACTIVE");
+        final Task activity = taskRepository.findOne(1);
         model.addAttribute("iwantthisinmyview", this.uselessBean.getTestPro());
         model.addAttribute("iwantthisinmyviewfromhibernate", activity.getTaskName());
+
         return "home/index";
     }
 
-    @RequestMapping("/other")
+    @GetMapping("/other")
     String otherAction(final Model model) {
         this.uselessBean.setTestPro("imsetinthecontrolleronthefly");
         final List task = this.taskRepository.findByTaskStatus("ACTIVE");
@@ -46,10 +47,11 @@ class HomeController {
         model.addAttribute("iwantthisinmyview", this.uselessBean.getTestPro());
         model.addAttribute("iwantthisinmyviewfromhibernate", activity.getTaskName());
         model.addAttribute("iwantthisinmyviewfromproperties", this.myProperty);
+
         return "home/index";
     }
 
-    @RequestMapping("custorepo")
+    @GetMapping("/custorepo")
     String customRepoAction(final Model model) {
         //use a custom method repository
         final List<Task> mediumTasks = this.taskRepository.customFindByPriority("MEDIUM");
@@ -61,5 +63,4 @@ class HomeController {
 
         return "home/index";
     }
-
 }
