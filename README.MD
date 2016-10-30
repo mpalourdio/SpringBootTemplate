@@ -1,5 +1,21 @@
-Spring Boot Template application.
+[![Build Status](https://travis-ci.org/mpalourdio/SpringBootTemplate.svg?branch=master)](https://travis-ci.org/mpalourdio/SpringBootTemplate)
+
+Spring Boot 1.4.x Template application.
+=======================================
 
 More a reminder for some dirty tricks than anything else...
 
-[![Build Status](https://travis-ci.org/mpalourdio/SpringBootTemplate.svg?branch=master)](https://travis-ci.org/mpalourdio/SpringBootTemplate)
+Include examples for :
+- @SpringBootTest
+- @DataJpaTest
+- @AutoConfigureMockMvc
+- JUnit & Mockito
+- EventListener
+- Request Forwarding
+- DataSource auto-configuration
+- Thymeleaf
+- HttpSecurity Cache Control
+- Externalized configuration
+- TravisCi Build
+- ...
+
