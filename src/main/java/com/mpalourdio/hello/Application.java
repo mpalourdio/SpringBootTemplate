@@ -13,11 +13,8 @@ import java.util.Arrays;
 @PropertySource(value = {
         "file:properties/global.properties",
         "file:properties/local.properties"
-}, ignoreResourceNotFound = true
-)
-@Import({
-        WebSecurityConfig.class,
-})
+}, ignoreResourceNotFound = true)
+@Import({WebSecurityConfig.class})
 public class Application {
 
     public static void main(final String[] args) {
