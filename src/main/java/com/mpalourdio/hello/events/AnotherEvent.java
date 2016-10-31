@@ -11,9 +11,7 @@ package com.mpalourdio.hello.events;
 
 public class AnotherEvent {
 
-    private String message;
-
-    public String publishMetoo() {
+    public String publishMeToo() {
         return "Hey I'm there too!";
     }
 }

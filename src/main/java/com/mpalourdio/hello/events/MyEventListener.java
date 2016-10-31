@@ -27,6 +27,6 @@ public class MyEventListener {
 
     @EventListener
     public void publishAnotherEvent(final AnotherEvent myOtherEvent) {
-        myEvent.setMessage(myEvent.getMessage() + "\n" + myOtherEvent.publishMetoo());
+        myEvent.setMessage(myEvent.getMessage() + "\n" + myOtherEvent.publishMeToo());
     }
 }
