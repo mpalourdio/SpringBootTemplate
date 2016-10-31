@@ -17,5 +17,6 @@ Include examples for :
 - HttpSecurity Cache Control
 - Externalized configuration
 - TravisCi Build
+- Custom logging configuration
 - ...
 
