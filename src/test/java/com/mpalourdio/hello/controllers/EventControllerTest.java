@@ -34,7 +34,8 @@ public class EventControllerTest extends AbstractTestRunner {
 
     @Test
     public void testEventIsPublished() throws Exception {
-        mvc.perform(get("/event"))
-                .andExpect(content().string("\uD83D\uDE0A -> now I have been published"));
+        mvc.perform(get("/event")).andExpect(
+                content().string("\uD83D\uDE0A -> now I have been published\nHey I'm there too!")
+        );
     }
 }

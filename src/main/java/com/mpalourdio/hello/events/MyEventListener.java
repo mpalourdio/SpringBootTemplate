@@ -15,8 +15,18 @@ import org.springframework.stereotype.Component;
 @Component
 public class MyEventListener {
 
+    private MyEvent myEvent;
+
     @EventListener
-    public void publishMyEvent(final MyEvent myEvent) {
+    public AnotherEvent publishMyEvent(final MyEvent myEvent) {
+        this.myEvent = myEvent;
         myEvent.setMessage(myEvent.getMessage() + " -> now I have been published");
+
+        return new AnotherEvent();
+    }
+
+    @EventListener
+    public void publishAnotherEvent(final AnotherEvent myOtherEvent) {
+        myEvent.setMessage(myEvent.getMessage() + "\n" + myOtherEvent.publishMetoo());
     }
 }

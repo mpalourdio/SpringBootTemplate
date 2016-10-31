@@ -10,7 +10,7 @@ Include examples for :
 - @DataJpaTest
 - @AutoConfigureMockMvc
 - JUnit & Mockito
-- EventListener
+- EventListener : non void ``@EventListener`` method triggers automatically another event
 - Request Forwarding
 - DataSource auto-configuration
 - Thymeleaf
