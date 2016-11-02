@@ -20,7 +20,9 @@ public class Application {
     public static void main(final String[] args) {
         final ApplicationContext ctx = SpringApplication.run(Application.class, args);
         final String[] beanNames = ctx.getBeanDefinitionNames();
-        Arrays.sort(beanNames);
-        Arrays.stream(beanNames).forEach(System.out::println);
+
+        Arrays.stream(beanNames)
+                .sorted()
+                .forEach(System.out::println);
     }
 }
