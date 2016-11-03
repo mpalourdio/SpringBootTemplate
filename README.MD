@@ -18,5 +18,6 @@ Include examples for :
 - Externalized configuration
 - TravisCi Build
 - Custom logging configuration
+- Logout example
 - ...
 
