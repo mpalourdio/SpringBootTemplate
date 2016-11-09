@@ -9,12 +9,18 @@
 
 package com.mpalourdio.hello.events;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.event.EventListener;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Component;
 
 @Component
+@EnableAsync
 public class MyEventListener {
 
+    private Logger LOG = LoggerFactory.getLogger(getClass());
     private MyEvent myEvent;
 
     @EventListener
@@ -28,5 +34,12 @@ public class MyEventListener {
     @EventListener
     public void publishAnotherEvent(final AnotherEvent myOtherEvent) {
         myEvent.setMessage(myEvent.getMessage() + "\n" + myOtherEvent.publishMeToo());
+    }
+
+    @Async
+    @EventListener
+    public void publishMeAsynchronously(final AsyncEvent event) throws InterruptedException {
+        Thread.sleep(5000);
+        LOG.debug("I've been fired first in EventController#publishAction, but displayed last");
     }
 }

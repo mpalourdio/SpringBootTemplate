@@ -9,6 +9,7 @@
 
 package com.mpalourdio.hello.controllers;
 
+import com.mpalourdio.hello.events.AsyncEvent;
 import com.mpalourdio.hello.events.MyEvent;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.MediaType;
@@ -28,6 +29,9 @@ public class EventController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public String publishAction() {
+        final AsyncEvent asyncEvent = new AsyncEvent();
+        eventPublisher.publishEvent(asyncEvent);
+
         final MyEvent event = new MyEvent("\uD83D\uDE0A");
         eventPublisher.publishEvent(event);
 

@@ -11,6 +11,7 @@ Include examples for :
 - @AutoConfigureMockMvc
 - JUnit & Mockito
 - EventListener : non void ``@EventListener`` method triggers automatically another event
+- Async Event (Annotation Driven)
 - Request Forwarding
 - DataSource auto-configuration
 - Thymeleaf
