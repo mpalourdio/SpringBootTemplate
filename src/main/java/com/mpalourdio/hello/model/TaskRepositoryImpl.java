@@ -2,7 +2,6 @@ package com.mpalourdio.hello.model;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.Collection;
 import java.util.List;
 
 /**
