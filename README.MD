@@ -20,5 +20,6 @@ Include examples for :
 - TravisCi Build
 - Custom logging configuration
 - Logout example
+- GZip compression for some content-type
 - ...
 
