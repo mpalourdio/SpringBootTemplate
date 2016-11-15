@@ -31,7 +31,7 @@ class HomeController {
     String indexAction(final Model model) {
         final List task = taskRepository.findByTaskStatus("ACTIVE");
         final Task activity = taskRepository.findOne(1);
-        model.addAttribute("iwantthisinmyview", this.uselessBean.getTestPro());
+        model.addAttribute("iwantthisinmyview", uselessBean.getTestPro());
         model.addAttribute("iwantthisinmyviewfromhibernate", activity.getTaskName());
 
         return "home/index";
@@ -39,12 +39,12 @@ class HomeController {
 
     @GetMapping("/other")
     String otherAction(final Model model) {
-        this.uselessBean.setTestPro("imsetinthecontrolleronthefly");
-        final List task = this.taskRepository.findByTaskStatus("ACTIVE");
-        final Task activity = this.taskRepository.findOne(1);
-        model.addAttribute("iwantthisinmyview", this.uselessBean.getTestPro());
+        uselessBean.setTestPro("imsetinthecontrolleronthefly");
+        final List task = taskRepository.findByTaskStatus("ACTIVE");
+        final Task activity = taskRepository.findOne(1);
+        model.addAttribute("iwantthisinmyview", uselessBean.getTestPro());
         model.addAttribute("iwantthisinmyviewfromhibernate", activity.getTaskName());
-        model.addAttribute("iwantthisinmyviewfromproperties", this.myProperty);
+        model.addAttribute("iwantthisinmyviewfromproperties", myProperty);
 
         return "home/index";
     }
@@ -52,7 +52,7 @@ class HomeController {
     @GetMapping("/custorepo")
     String customRepoAction(final Model model) {
         //use a custom method repository
-        final List<Task> mediumTasks = this.taskRepository.customFindByPriority("MEDIUM");
+        final List<Task> mediumTasks = taskRepository.customFindByPriority("MEDIUM");
         //print only those who have 'Implementation' as task_name
         mediumTasks.
                 stream().

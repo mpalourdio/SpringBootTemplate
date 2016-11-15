@@ -12,6 +12,7 @@ public interface TaskRepository extends CrudRepository<Task, Integer>, CustomRep
 
     List<Task> findByTaskStatus(String taskStatus);
 
+    @Override
     List<Task> findAll();
 }
 

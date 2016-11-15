@@ -32,15 +32,15 @@ public class Task {
     private int taskArchived = 0;
 
     public int getTaskId() {
-        return this.id;
+        return id;
     }
 
     public void setTaskId(final int taskId) {
-        this.id = taskId;
+        id = taskId;
     }
 
     public String getTaskName() {
-        return this.taskName;
+        return taskName;
     }
 
     public void setTaskName(final String taskName) {
@@ -48,7 +48,7 @@ public class Task {
     }
 
     public String getTaskDescription() {
-        return this.taskDescription;
+        return taskDescription;
     }
 
     public void setTaskDescription(final String taskDescription) {
@@ -56,7 +56,7 @@ public class Task {
     }
 
     public String getTaskPriority() {
-        return this.taskPriority;
+        return taskPriority;
     }
 
     public void setTaskPriority(final String taskPriority) {
@@ -64,7 +64,7 @@ public class Task {
     }
 
     public String getTaskStatus() {
-        return this.taskStatus;
+        return taskStatus;
     }
 
     public void setTaskStatus(final String taskStatus) {
@@ -72,7 +72,7 @@ public class Task {
     }
 
     public int isTaskArchived() {
-        return this.taskArchived;
+        return taskArchived;
     }
 
     public void setTaskArchived(final int taskArchived) {
@@ -81,8 +81,8 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Task [id=" + this.id + ", taskName=" + this.taskName
-                + ", taskDescription=" + this.taskDescription + ", taskPriority="
-                + this.taskPriority + ",taskStatus=" + this.taskStatus + "]";
+        return "Task [id=" + id + ", taskName=" + taskName
+                + ", taskDescription=" + taskDescription + ", taskPriority="
+                + taskPriority + ",taskStatus=" + taskStatus + "]";
     }
 }

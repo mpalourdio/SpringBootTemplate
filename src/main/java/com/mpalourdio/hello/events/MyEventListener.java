@@ -20,7 +20,7 @@ import org.springframework.stereotype.Component;
 @EnableAsync
 public class MyEventListener {
 
-    private Logger LOG = LoggerFactory.getLogger(getClass());
+    private final Logger LOG = LoggerFactory.getLogger(getClass());
     private MyEvent myEvent;
 
     @EventListener
