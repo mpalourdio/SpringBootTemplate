@@ -1,11 +1,7 @@
 package com.mpalourdio.hello.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
-import javax.persistence.Column;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "task_list")
@@ -31,13 +27,8 @@ public class Task {
     @Column(name = "task_archived")
     private int taskArchived = 0;
 
-    public int getTaskId() {
-        return id;
-    }
-
-    public void setTaskId(final int taskId) {
-        id = taskId;
-    }
+    @OneToMany(mappedBy = "task", fetch = FetchType.LAZY)
+    private List<People> people;
 
     public String getTaskName() {
         return taskName;
@@ -77,6 +68,14 @@ public class Task {
 
     public void setTaskArchived(final int taskArchived) {
         this.taskArchived = taskArchived;
+    }
+
+    public List<People> getPeople() {
+        return people;
+    }
+
+    public void setPeople(final List<People> people) {
+        this.people = people;
     }
 
     @Override
