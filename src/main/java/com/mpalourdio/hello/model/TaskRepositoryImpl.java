@@ -15,10 +15,9 @@ public class TaskRepositoryImpl implements CustomRepository<Task> {
     private EntityManager entityManager;
 
     @Override
-    @SuppressWarnings("unchecked")
     public List<Task> customFindByPriority(final String priority) {
         return entityManager
-                .createQuery("select e from Task e where e.taskPriority = :taskPriority")
+                .createQuery("select e from Task e where e.taskPriority = :taskPriority", Task.class)
                 .setParameter("taskPriority", priority)
                 .getResultList();
     }
