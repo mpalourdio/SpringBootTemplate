@@ -11,7 +11,10 @@ package com.mpalourdio.hello.controllers;
 
 import com.mpalourdio.hello.model.People;
 import com.mpalourdio.hello.model.RepositoriesService;
+import com.mpalourdio.hello.model.Task;
 import com.mpalourdio.hello.model.TaskRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +23,8 @@ import java.util.List;
 
 @RestController
 public class PersistenceController {
+
+    private final Logger LOG = LoggerFactory.getLogger(getClass());
 
     private final TaskRepository taskRepository;
     private final RepositoriesService repositoriesService;
@@ -33,5 +38,26 @@ public class PersistenceController {
     public List<People> fetchLazyCollections() {
         //this will throw an exception because of lazy collection initialization
         return repositoriesService.getAllPeople();
+    }
+
+    @GetMapping(value = "/testinsert", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Task testInsert() {
+        final String aspecificstatusfordate = "ASPECIFICSTATUSFORDATE";
+
+        final Task task = new Task();
+        task.setTaskName("name");
+        task.setTaskDescription("desc");
+        task.setTaskStatus(aspecificstatusfordate);
+        task.setTaskPriority("LOW");
+
+        taskRepository.save(task);
+
+        final List<Task> allTasksByStatus = taskRepository.findByTaskStatus(aspecificstatusfordate);
+
+        allTasksByStatus.forEach(t -> {
+            LOG.debug(t.getStartDate().toString());
+        });
+
+        return task;
     }
 }

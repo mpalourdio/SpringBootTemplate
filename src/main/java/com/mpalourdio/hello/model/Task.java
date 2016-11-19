@@ -3,6 +3,7 @@ package com.mpalourdio.hello.model;
 import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -26,9 +27,13 @@ public class Task {
     @Column(name = "task_status", nullable = false)
     private String taskStatus;
 
-    @Column(name = "task_archived", nullable = false)
     @ColumnDefault("false")
+    @Column(name = "task_archived", nullable = false)
     private Boolean taskArchived = false;
+
+    @ColumnDefault("CURRENT_TIMESTAMP")
+    @Column(name = "start_date", nullable = false)
+    private LocalDateTime startDate = LocalDateTime.now();
 
     @OneToMany(mappedBy = "task", fetch = FetchType.LAZY)
     private List<People> people;
@@ -79,6 +84,15 @@ public class Task {
 
     public void setPeople(final List<People> people) {
         this.people = people;
+    }
+
+
+    public LocalDateTime getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(final LocalDateTime startDate) {
+        this.startDate = startDate;
     }
 
     @Override
