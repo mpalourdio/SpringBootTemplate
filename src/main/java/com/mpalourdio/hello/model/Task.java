@@ -1,6 +1,7 @@
 package com.mpalourdio.hello.model;
 
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.jpa.criteria.expression.function.CurrentTimestampFunction;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -31,7 +32,7 @@ public class Task {
     @Column(name = "task_archived", nullable = false)
     private Boolean taskArchived = false;
 
-    @ColumnDefault("CURRENT_TIMESTAMP")
+    @ColumnDefault(CurrentTimestampFunction.NAME)
     @Column(name = "start_date", nullable = false)
     private LocalDateTime startDate = LocalDateTime.now();
 
