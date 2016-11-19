@@ -54,9 +54,7 @@ public class PersistenceController {
 
         final List<Task> allTasksByStatus = taskRepository.findByTaskStatus(aspecificstatusfordate);
 
-        allTasksByStatus.forEach(t -> {
-            LOG.debug(t.getStartDate().toString());
-        });
+        allTasksByStatus.forEach(t -> LOG.debug(t.getStartDate().toString()));
 
         return task;
     }
