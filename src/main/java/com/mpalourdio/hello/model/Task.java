@@ -36,7 +36,7 @@ public class Task {
     @Column(name = "start_date", nullable = false)
     private LocalDateTime startDate = LocalDateTime.now();
 
-    @OneToMany(mappedBy = "task", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "task")
     private List<People> people;
 
     public String getTaskName() {
