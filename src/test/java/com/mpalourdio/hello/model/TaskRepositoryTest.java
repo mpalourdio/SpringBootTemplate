@@ -24,7 +24,7 @@ public class TaskRepositoryTest extends AbstractTestRunner {
     @Before
     public void setUp() {
         task = new Task();
-        task.setTaskArchived(1);
+        task.setTaskArchived(true);
         task.setTaskName("name");
         task.setTaskDescription("description");
         task.setTaskPriority("LOW");
