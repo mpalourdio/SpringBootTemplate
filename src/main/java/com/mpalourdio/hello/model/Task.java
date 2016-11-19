@@ -1,5 +1,7 @@
 package com.mpalourdio.hello.model;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -12,20 +14,21 @@ public class Task {
     @Column(name = "task_id")
     private int id;
 
-    @Column(name = "task_name")
+    @Column(name = "task_name", nullable = false)
     private String taskName;
 
-    @Column(name = "task_description")
+    @Column(name = "task_description", nullable = false)
     private String taskDescription;
 
-    @Column(name = "task_priority")
+    @Column(name = "task_priority", nullable = false)
     private String taskPriority;
 
-    @Column(name = "task_status")
+    @Column(name = "task_status", nullable = false)
     private String taskStatus;
 
-    @Column(name = "task_archived")
-    private int taskArchived = 0;
+    @Column(name = "task_archived", nullable = false)
+    @ColumnDefault("false")
+    private Boolean taskArchived = false;
 
     @OneToMany(mappedBy = "task", fetch = FetchType.LAZY)
     private List<People> people;
@@ -62,11 +65,11 @@ public class Task {
         this.taskStatus = taskStatus;
     }
 
-    public int isTaskArchived() {
+    public Boolean isTaskArchived() {
         return taskArchived;
     }
 
-    public void setTaskArchived(final int taskArchived) {
+    public void setTaskArchived(final Boolean taskArchived) {
         this.taskArchived = taskArchived;
     }
 

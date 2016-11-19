@@ -20,7 +20,7 @@ public class People {
     @Column(name = "people_id")
     private int id;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     @ManyToOne
