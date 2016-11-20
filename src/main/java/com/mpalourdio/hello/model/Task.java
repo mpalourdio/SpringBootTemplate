@@ -5,6 +5,7 @@ import org.hibernate.jpa.criteria.expression.function.CurrentTimestampFunction;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -37,7 +38,7 @@ public class Task {
     private LocalDateTime startDate = LocalDateTime.now();
 
     @OneToMany(mappedBy = "task")
-    private List<People> people;
+    private List<People> people = new ArrayList<>();
 
     public String getTaskName() {
         return taskName;
