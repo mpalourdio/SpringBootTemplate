@@ -12,6 +12,7 @@ public interface PeopleRepository extends CrudRepository<People, Integer> {
 
     List<People> findByName(String name);
 
+    @Override
     List<People> findAll();
 }
 
