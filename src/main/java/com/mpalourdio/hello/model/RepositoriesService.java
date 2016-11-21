@@ -13,21 +13,22 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Service
 public class RepositoriesService {
 
-    @PersistenceContext
-    private EntityManager entityManager;
-
+    private final EntityManager entityManager;
     private final PeopleRepository peopleRepository;
     private final TaskRepository taskRepository;
 
-    public RepositoriesService(final PeopleRepository peopleRepository, final TaskRepository taskRepository) {
+    public RepositoriesService(
+            final PeopleRepository peopleRepository,
+            final TaskRepository taskRepository,
+            final EntityManager entityManager) {
         this.peopleRepository = peopleRepository;
         this.taskRepository = taskRepository;
+        this.entityManager = entityManager;
     }
 
     @Transactional
@@ -38,5 +39,10 @@ public class RepositoriesService {
     @Transactional
     public List<Task> getAllTasks() {
         return taskRepository.findAll();
+    }
+
+    @Transactional
+    public People useEntityManager() {
+        return entityManager.getReference(People.class, 1);
     }
 }

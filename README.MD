@@ -22,5 +22,6 @@ Include examples for :
 - Logout example
 - GZip compression for some content-type
 - org.hibernate.java8 to handle LocalDate api in entities
+- Mock EntityManager (@PersistenceContext)
 - ...
 
