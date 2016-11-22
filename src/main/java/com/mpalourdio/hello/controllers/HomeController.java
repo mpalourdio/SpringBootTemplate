@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 
 @Controller
-class HomeController {
+public class HomeController {
 
     private final String myProperty;
     private final UselessBean uselessBean;
@@ -28,7 +28,7 @@ class HomeController {
     }
 
     @GetMapping("/")
-    String indexAction(final Model model) {
+    public String indexAction(final Model model) {
         final List task = taskRepository.findByTaskStatus("ACTIVE");
         final Task activity = taskRepository.findOne(1);
         model.addAttribute("iwantthisinmyview", uselessBean.getTestPro());
@@ -38,7 +38,7 @@ class HomeController {
     }
 
     @GetMapping("/other")
-    String otherAction(final Model model) {
+    public String otherAction(final Model model) {
         uselessBean.setTestPro("imsetinthecontrolleronthefly");
         final List task = taskRepository.findByTaskStatus("ACTIVE");
         final Task activity = taskRepository.findOne(1);
@@ -50,7 +50,7 @@ class HomeController {
     }
 
     @GetMapping("/custorepo")
-    String customRepoAction(final Model model) {
+    public String customRepoAction(final Model model) {
         //use a custom method repository
         final List<Task> mediumTasks = taskRepository.customFindByPriority("MEDIUM");
         //print only those who have 'Implementation' as task_name
