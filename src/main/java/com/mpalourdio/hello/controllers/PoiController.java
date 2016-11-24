@@ -25,6 +25,13 @@ import java.io.IOException;
 @Controller
 public class PoiController {
 
+    /**
+     * The point here is to avoid injecting HttpServletResponse
+     * because ResponseEntity has convenient methods to set
+     * the http response caracteristics.
+     *
+     */
+
     @GetMapping(value = "/download", produces = "application/vnd.ms-excel")
     public ResponseEntity<byte[]> donwloadExcel() throws IOException {
         final HSSFWorkbook workbook = new HSSFWorkbook();
