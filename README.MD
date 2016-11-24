@@ -23,5 +23,7 @@ Include examples for :
 - GZip compression for some content-type
 - org.hibernate.java8 to handle LocalDate api in entities
 - Mock EntityManager (@PersistenceContext)
+- File Download with HttpServletResponse and ResponseEntity
+- Excel Generation with Apache POI
 - ...
 
