@@ -43,7 +43,6 @@ public class PoiController {
 
         final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         workbook.write(outputStream);
-        outputStream.close();
         outputStream.flush();
 
         final byte[] responseBody = outputStream.toByteArray();
