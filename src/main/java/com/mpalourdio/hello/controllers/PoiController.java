@@ -19,26 +19,24 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 @Controller
 public class PoiController {
 
+    private static final String FILENAME = "excel_file.xls";
+
     /**
      * The point here is to avoid injecting HttpServletResponse
      * because ResponseEntity has convenient methods to set
      * the http response caracteristics.
-     *
      */
 
     @GetMapping(value = "/download", produces = "application/vnd.ms-excel")
     public ResponseEntity<byte[]> donwloadExcel() throws IOException {
-        final HSSFWorkbook workbook = new HSSFWorkbook();
-        final HSSFSheet worksheet = workbook.createSheet("POI Worksheet");
-        final HSSFRow row = worksheet.createRow(0);
-        final HSSFCell cell = row.createCell(0);
-        cell.setCellValue("cell value");
+        final HSSFWorkbook workbook = generateExcelFile();
 
         final HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setContentDispositionFormData("attachment", "excel_file.xls");
@@ -48,6 +46,30 @@ public class PoiController {
         outputStream.close();
         outputStream.flush();
 
-        return new ResponseEntity<>(outputStream.toByteArray(), responseHeaders, HttpStatus.OK);
+        final byte[] responseBody = outputStream.toByteArray();
+        responseHeaders.setContentLength(responseBody.length);// useful ?
+
+        return new ResponseEntity<>(responseBody, responseHeaders, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/download2")
+    public void donwloadExcelFile(final HttpServletResponse response) throws IOException {
+        final HSSFWorkbook workbook = generateExcelFile();
+
+        response.setHeader("Content-Disposition", "attachement; filename=\"" + FILENAME + "\"");
+
+        //"produces" in @GetMapping does not set the content-type with HttpServletResponse
+        response.setHeader("Content-Type", "application/vnd.ms-excel");
+        workbook.write(response.getOutputStream());
+    }
+
+    private HSSFWorkbook generateExcelFile() {
+        final HSSFWorkbook workbook = new HSSFWorkbook();
+        final HSSFSheet worksheet = workbook.createSheet("POI Worksheet");
+        final HSSFRow row = worksheet.createRow(0);
+        final HSSFCell cell = row.createCell(0);
+        cell.setCellValue("cell value");
+
+        return workbook;
     }
 }
