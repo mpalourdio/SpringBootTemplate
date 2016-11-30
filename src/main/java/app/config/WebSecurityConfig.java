@@ -37,8 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers(PROTECTED_ENDPOINT)
                 .hasRole(ADMIN_ROLE).and()
-                .httpBasic().and()
-                .securityContext();
+                .httpBasic();
     }
 
     @Override
