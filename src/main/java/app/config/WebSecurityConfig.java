@@ -1,6 +1,8 @@
 package app.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -13,6 +15,15 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    private static final String PROTECTED_ENDPOINT = "/basicauth";
+    private static final String ADMIN_ROLE = "ADMIN";
+
+    private final Environment env;
+
+    public WebSecurityConfig(final Environment env) {
+        this.env = env;
+    }
+
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
         http.headers().defaultsDisabled().cacheControl();
@@ -22,6 +33,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .invalidateHttpSession(true)
                 .logoutSuccessHandler(logoutHandler())
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+
+        http.authorizeRequests()
+                .antMatchers(PROTECTED_ENDPOINT)
+                .hasRole(ADMIN_ROLE).and()
+                .httpBasic().and()
+                .securityContext();
+    }
+
+    @Override
+    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+                .withUser(env.getProperty("admin.username"))
+                .password(env.getProperty("admin.password"))
+                .roles(ADMIN_ROLE);
     }
 
     private LogoutSuccessHandler logoutHandler() {

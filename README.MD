@@ -25,5 +25,6 @@ Include examples for :
 - Mock EntityManager (@PersistenceContext)
 - File Download with HttpServletResponse and ResponseEntity
 - Excel Generation with Apache POI
+- Basic auth protected endpoint (/basicauth)
 - ...
 
