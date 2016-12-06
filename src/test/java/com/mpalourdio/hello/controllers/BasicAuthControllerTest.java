@@ -49,4 +49,10 @@ public class BasicAuthControllerTest extends AbstractTestRunner {
                 .header("Authorization", basicDigestHeaderValue))
                 .andExpect(status().isUnauthorized());
     }
+
+    @Test
+    public void testNoCredentialsReturnUnauthorized() throws Exception {
+        mvc.perform(get("/basicauth"))
+                .andExpect(status().isUnauthorized());
+    }
 }
