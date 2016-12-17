@@ -35,7 +35,7 @@ public class RepositoriesServiceTest {
     private RepositoriesService repositoriesService;
 
     @Test
-    public void testEntityManageIsMocked() {
+    public void testEntityManagerIsMocked() {
         final int expectedId = 666;
 
         final People people = new People();
