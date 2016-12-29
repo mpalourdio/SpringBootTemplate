@@ -22,9 +22,11 @@ import java.util.Map;
 @RequestMapping("/forwarder")
 public class ForwarderController {
 
+    private static final String END_POINT = "forward:/forwarder/second";
+
     @GetMapping("/first")
     public String entryPoint() {
-        return "forward:/forwarder/second";
+        return END_POINT;
     }
 
     @GetMapping(value = "/second", produces = MediaType.APPLICATION_JSON_VALUE)
