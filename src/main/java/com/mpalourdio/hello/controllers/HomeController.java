@@ -13,6 +13,8 @@ import java.util.List;
 @Controller
 public class HomeController {
 
+    private static final String TASK_STATUS_ACTIVE = "ACTIVE";
+    private static final String TASK_PRIORITY_MEDIUM = "MEDIUM";
     private final String myProperty;
     private final UselessBean uselessBean;
     private final TaskRepository taskRepository;
@@ -29,7 +31,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String indexAction(final Model model) {
-        final List task = taskRepository.findByTaskStatus("ACTIVE");
+        final List task = taskRepository.findByTaskStatus(TASK_STATUS_ACTIVE);
         final Task activity = taskRepository.findOne(1);
         model.addAttribute("iwantthisinmyview", uselessBean.getTestPro());
         model.addAttribute("iwantthisinmyviewfromhibernate", activity.getTaskName());
@@ -40,7 +42,7 @@ public class HomeController {
     @GetMapping("/other")
     public String otherAction(final Model model) {
         uselessBean.setTestPro("imsetinthecontrolleronthefly");
-        final List task = taskRepository.findByTaskStatus("ACTIVE");
+        final List task = taskRepository.findByTaskStatus(TASK_STATUS_ACTIVE);
         final Task activity = taskRepository.findOne(1);
         model.addAttribute("iwantthisinmyview", uselessBean.getTestPro());
         model.addAttribute("iwantthisinmyviewfromhibernate", activity.getTaskName());
@@ -52,7 +54,7 @@ public class HomeController {
     @GetMapping("/custorepo")
     public String customRepoAction(final Model model) {
         //use a custom method repository
-        final List<Task> mediumTasks = taskRepository.customFindByPriority("MEDIUM");
+        final List<Task> mediumTasks = taskRepository.customFindByPriority(TASK_PRIORITY_MEDIUM);
         //print only those who have 'Implementation' as task_name
         mediumTasks.
                 stream().
