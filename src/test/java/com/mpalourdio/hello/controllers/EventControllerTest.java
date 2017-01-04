@@ -12,8 +12,7 @@ package com.mpalourdio.hello.controllers;
 import com.mpalourdio.hello.AbstractTestRunner;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestDatabaseAutoConfiguration;
+import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
@@ -24,9 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
 @AutoConfigureMockMvc
-@ImportAutoConfiguration(value = {
-        TestDatabaseAutoConfiguration.class,
-})
+@AutoConfigureTestDatabase
 public class EventControllerTest extends AbstractTestRunner {
 
     @Autowired
