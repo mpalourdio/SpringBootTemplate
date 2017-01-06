@@ -14,7 +14,7 @@
     </appender>
 
     <logger name="org.apache" level="WARN" />
-    <logger name="com.mpalourdio.hello" level="DEBUG" />
+    <logger name="com.mpalourdio.springboottemplate" level="DEBUG" />
 
     <root level="INFO">
         <appender-ref ref="CONSOLE" />
