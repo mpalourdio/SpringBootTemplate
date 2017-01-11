@@ -137,5 +137,37 @@ public class HttpVersionedApiTest extends AbstractTestRunner {
                 .header("Accept", HEADER_V1_HIGH_QUALITY + ", " + MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(content().string("v1-post-consumes-all"));
     }
+
+    @Test
+    public void testPostContenTypeOfResponseIfTheOneThatHasTheHigherPriorityInTheAcceptRequestHeader() throws Exception {
+        mvc.perform(post("/http/test")
+                .header("Content-Type", MediaType.ALL_VALUE)
+                .header("Accept", HEADER_V1_HIGH_QUALITY + ", " + MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(header().string("Content-Type", "application/vnd.api.v1+json;charset=UTF-8"));
+    }
+
+    @Test
+    public void testPostContenTypeOfResponseIfTheOneThatHasTheHigherPriorityInTheAcceptRequestHeaderAgain() throws Exception {
+        mvc.perform(post("/http/test")
+                .header("Content-Type", MediaType.ALL_VALUE)
+                .header("Accept", HEADER_V1_LOW_QUALITY + ", " + MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(header().string("Content-Type", MediaType.APPLICATION_JSON_UTF8_VALUE));
+    }
+
+    @Test
+    public void testGetContenTypeOfResponseIfTheOneThatHasTheHigherPriorityInTheAcceptRequestHeader() throws Exception {
+        mvc.perform(get("/http/test")
+                .header("Content-Type", MediaType.ALL_VALUE)
+                .header("Accept", HEADER_V1_HIGH_QUALITY + ", " + MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(header().string("Content-Type", "application/vnd.api.v1+json;charset=UTF-8"));
+    }
+
+    @Test
+    public void testGetContenTypeOfResponseIfTheOneThatHasTheHigherPriorityInTheAcceptRequestHeaderAgain() throws Exception {
+        mvc.perform(get("/http/test")
+                .header("Content-Type", MediaType.ALL_VALUE)
+                .header("Accept", HEADER_V1_LOW_QUALITY + ", " + MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(header().string("Content-Type", MediaType.APPLICATION_JSON_UTF8_VALUE));
+    }
 }
 
