@@ -105,7 +105,6 @@ public class HttpVersionedApiTest extends AbstractTestRunner {
                 .andExpect(header().string("Content-Type", MediaType.APPLICATION_JSON_UTF8_VALUE));
     }
 
-
     @Test
     public void testPostAndNoAcceptHeaderV2ReturnsV2ContentAsAcceptHeaderIsImplicitlyApplicationJson() throws Exception {
         mvc.perform(post("/http/test"))
