@@ -30,12 +30,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/http")
 public class HttpVersionedApiController {
 
-    @GetMapping(value = "/test", produces = "application/vnd.api.v1+json;q=0.9")
+    @GetMapping(value = "/test", produces = "application/vnd.api.v1+json")
     public String processV1() {
         return "v1";
     }
 
-    @GetMapping(value = "/test", produces = {MediaType.APPLICATION_JSON_VALUE, "application/vnd.api.v2+json;q=0.9"})
+    @GetMapping(value = "/test", produces = {MediaType.APPLICATION_JSON_VALUE, "application/vnd.api.v2+json"})
     public String processV2() {
         return "v2";
     }
@@ -45,7 +45,7 @@ public class HttpVersionedApiController {
         return "v1-post";
     }
 
-    @PostMapping(value = "/test", consumes = "application/vnd.api.v2+json", produces = {MediaType.APPLICATION_JSON_VALUE, "application/vnd.api.v2+json;q=0.9"})
+    @PostMapping(value = "/test", consumes = "application/vnd.api.v2+json", produces = {MediaType.APPLICATION_JSON_VALUE, "application/vnd.api.v2+json"})
     public String processV2Post() {
         return "v2-post";
     }
@@ -55,7 +55,7 @@ public class HttpVersionedApiController {
         return "v1-post-consumes-all";
     }
 
-    @PostMapping(value = "/test", consumes = MediaType.ALL_VALUE, produces = {MediaType.APPLICATION_JSON_VALUE, "application/vnd.api.v2+json;q=0.9"})
+    @PostMapping(value = "/test", consumes = MediaType.ALL_VALUE, produces = {MediaType.APPLICATION_JSON_VALUE, "application/vnd.api.v2+json"})
     public String processV2PostConsumeAll() {
         return "v2-post-consumes-all";
     }
