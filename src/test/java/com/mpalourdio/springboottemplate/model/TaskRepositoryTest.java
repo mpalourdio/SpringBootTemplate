@@ -20,6 +20,7 @@ public class TaskRepositoryTest extends AbstractTestRunner {
     private TaskRepository taskRepository;
 
     private Task task;
+    private People people;
 
     @Before
     public void setUp() {
@@ -29,6 +30,10 @@ public class TaskRepositoryTest extends AbstractTestRunner {
         task.setTaskDescription("description");
         task.setTaskPriority("LOW");
         task.setTaskStatus("ACTIVE");
+
+        people = new People();
+        people.setName("john");
+        people.setTask(task);
     }
 
     @Test
@@ -41,5 +46,15 @@ public class TaskRepositoryTest extends AbstractTestRunner {
     public void testAndPlayWithTheFakeentityManager() {
         final Task persistedTask = entityManager.persistFlushFind(task);
         Assert.assertEquals(persistedTask.getTaskDescription(), "description");
+    }
+
+    @Test
+    public void testResultsAreDummyObjects() {
+        entityManager.persistFlushFind(task);
+        entityManager.persistFlushFind(people);
+        final List<Dummy> dummyList = taskRepository.hydrateDummyObject();
+
+        Assert.assertEquals(1, dummyList.size());
+        Assert.assertEquals(true, (dummyList.get(0)) instanceof Dummy);
     }
 }

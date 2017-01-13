@@ -2,6 +2,7 @@ package com.mpalourdio.springboottemplate.model;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 /**
@@ -19,6 +20,13 @@ public class TaskRepositoryImpl implements CustomRepository<Task> {
         return entityManager
                 .createQuery("select e from Task e where e.taskPriority = :taskPriority", Task.class)
                 .setParameter("taskPriority", priority)
+                .getResultList();
+    }
+
+    @Override
+    public List<Dummy> hydrateDummyObject() {
+        return entityManager
+                .createQuery("select NEW com.mpalourdio.springboottemplate.model.Dummy(p.name, e.taskDescription) from Task e JOIN e.people p", Dummy.class)
                 .getResultList();
     }
 }

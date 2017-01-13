@@ -1,5 +1,6 @@
 package com.mpalourdio.springboottemplate.controllers;
 
+import com.mpalourdio.springboottemplate.model.Dummy;
 import com.mpalourdio.springboottemplate.model.Task;
 import com.mpalourdio.springboottemplate.model.TaskRepository;
 import com.mpalourdio.springboottemplate.service.UselessBean;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -62,5 +64,11 @@ public class HomeController {
                 forEach(System.out::println);
 
         return "home/index";
+    }
+
+    @GetMapping("/hydrate")
+    @ResponseBody
+    public List<Dummy> hydrate() {
+        return taskRepository.hydrateDummyObject();
     }
 }
