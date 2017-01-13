@@ -50,8 +50,8 @@ public class TaskRepositoryTest extends AbstractTestRunner {
 
     @Test
     public void testResultsAreDummyObjects() {
-        entityManager.persistFlushFind(task);
-        entityManager.persistFlushFind(people);
+        entityManager.persist(task);
+        entityManager.persist(people);
         final List<Dummy> dummyList = taskRepository.hydrateDummyObject();
 
         Assert.assertEquals(1, dummyList.size());
