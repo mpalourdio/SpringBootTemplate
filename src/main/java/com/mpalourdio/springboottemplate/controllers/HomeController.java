@@ -5,6 +5,7 @@ import com.mpalourdio.springboottemplate.model.Task;
 import com.mpalourdio.springboottemplate.model.TaskRepository;
 import com.mpalourdio.springboottemplate.service.UselessBean;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -66,7 +67,7 @@ public class HomeController {
         return "home/index";
     }
 
-    @GetMapping("/hydrate")
+    @GetMapping(value = "/hydrate", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
     public List<Dummy> hydrate() {
         return taskRepository.hydrateDummyObject();
