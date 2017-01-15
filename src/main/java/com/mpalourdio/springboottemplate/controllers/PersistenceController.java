@@ -9,10 +9,7 @@
 
 package com.mpalourdio.springboottemplate.controllers;
 
-import com.mpalourdio.springboottemplate.model.People;
-import com.mpalourdio.springboottemplate.model.RepositoriesService;
-import com.mpalourdio.springboottemplate.model.Task;
-import com.mpalourdio.springboottemplate.model.TaskRepository;
+import com.mpalourdio.springboottemplate.model.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
@@ -57,5 +54,10 @@ public class PersistenceController {
         allTasksByStatus.forEach(t -> LOG.debug(t.getStartDate().toString()));
 
         return task;
+    }
+
+    @GetMapping(value = "/hydrate", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public List<Dummy> hydrate() {
+        return taskRepository.hydrateDummyObject();
     }
 }
