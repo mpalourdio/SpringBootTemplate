@@ -67,7 +67,7 @@ public class HomeController {
         return "home/index";
     }
 
-    @GetMapping(value = "/hydrate", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value = "/hydrate", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
     public List<Dummy> hydrate() {
         return taskRepository.hydrateDummyObject();
