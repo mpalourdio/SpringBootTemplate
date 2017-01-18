@@ -9,7 +9,9 @@
 
 package com.mpalourdio.springboottemplate.controllers;
 
+import ch.qos.logback.classic.Level;
 import com.mpalourdio.springboottemplate.events.AsyncEvent;
+import com.mpalourdio.springboottemplate.events.AsyncLogger;
 import com.mpalourdio.springboottemplate.events.MyEvent;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.MediaType;
@@ -22,9 +24,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class EventController {
 
     private final ApplicationEventPublisher eventPublisher;
+    private final AsyncLogger LOG;
 
-    public EventController(final ApplicationEventPublisher eventPublisher) {
+    public EventController(final ApplicationEventPublisher eventPublisher, final AsyncLogger asyncLogger) {
         this.eventPublisher = eventPublisher;
+        LOG = asyncLogger;
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -36,5 +40,17 @@ public class EventController {
         eventPublisher.publishEvent(event);
 
         return event.getMessage();
+    }
+
+    @GetMapping(value = "/log", produces = MediaType.APPLICATION_JSON_VALUE)
+    public String LogAction() {
+        LOG.write(getClass(), Level.TRACE, "TRACE");
+        LOG.write(getClass(), Level.ERROR, "ERROR");
+        LOG.write(getClass(), Level.DEBUG, "DEBUG");
+        LOG.write(getClass(), Level.WARN, "WARN");
+        LOG.write(getClass(), Level.INFO, "INFO");
+        LOG.write(getClass(), Level.OFF, "OFF");
+
+        return "things logged (async)";
     }
 }

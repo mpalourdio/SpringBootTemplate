@@ -42,4 +42,11 @@ public class MyEventListener {
         Thread.sleep(5000);
         LOG.debug("I've been fired first in EventController#publishAction, but displayed last");
     }
+
+    @Async
+    @EventListener
+    public void loggerEventListener(final LogEvent event) throws InterruptedException {
+        Thread.sleep(5000);
+        event.triggerLogging();
+    }
 }
