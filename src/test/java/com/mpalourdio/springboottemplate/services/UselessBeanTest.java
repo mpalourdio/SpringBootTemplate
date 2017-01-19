@@ -28,7 +28,7 @@ public class UselessBeanTest {
     private UselessBean uselessBean;
 
     @Mock
-    private ABeanIWantToMock ABeanIWantToMock;
+    private ABeanIWantToMock aBeanIWantToMock;
 
     @Before
     public void setup() {
@@ -37,7 +37,7 @@ public class UselessBeanTest {
 
     @Test
     public void testMyMockReturnFalseInTest() {
-        Mockito.when(ABeanIWantToMock.iAlwaysReturnTrue()).thenReturn(false);
+        Mockito.when(aBeanIWantToMock.iAlwaysReturnTrue()).thenReturn(false);
         Assert.assertFalse(uselessBean.iWantToMockThisMethod());
     }
 }
