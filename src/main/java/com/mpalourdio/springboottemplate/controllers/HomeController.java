@@ -2,11 +2,13 @@ package com.mpalourdio.springboottemplate.controllers;
 
 import com.mpalourdio.springboottemplate.model.Task;
 import com.mpalourdio.springboottemplate.model.TaskRepository;
+import com.mpalourdio.springboottemplate.service.ServiceWithProperties;
 import com.mpalourdio.springboottemplate.service.UselessBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -15,6 +17,7 @@ public class HomeController {
 
     private static final String TASK_STATUS_ACTIVE = "ACTIVE";
     private static final String TASK_PRIORITY_MEDIUM = "MEDIUM";
+    private final ServiceWithProperties serviceWithProperties;
     private final String myProperty;
     private final UselessBean uselessBean;
     private final TaskRepository taskRepository;
@@ -22,10 +25,12 @@ public class HomeController {
     public HomeController(
             final TaskRepository taskRepository,
             final UselessBean uselessBean,
+            final ServiceWithProperties serviceWithProperties,
             @Value("${property.whatever}") final String myProperty
     ) {
         this.taskRepository = taskRepository;
         this.uselessBean = uselessBean;
+        this.serviceWithProperties = serviceWithProperties;
         this.myProperty = myProperty;
     }
 
@@ -62,5 +67,11 @@ public class HomeController {
                 forEach(System.out::println);
 
         return "home/index";
+    }
+
+    @GetMapping("/valueinconstructor")
+    @ResponseBody
+    public String valueinConstructor() {
+        return serviceWithProperties.getValueFromConfig();
     }
 }
