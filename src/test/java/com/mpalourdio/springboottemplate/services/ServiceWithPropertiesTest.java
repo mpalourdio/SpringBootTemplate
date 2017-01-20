@@ -9,15 +9,14 @@
 
 package com.mpalourdio.springboottemplate.services;
 
-import com.mpalourdio.springboottemplate.AbstractTestRunner;
 import com.mpalourdio.springboottemplate.service.ServiceWithProperties;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.junit.runners.JUnit4;
 
-@RunWith(SpringRunner.class)
-public class ServiceWithPropertiesTest extends AbstractTestRunner {
+@RunWith(JUnit4.class)
+public class ServiceWithPropertiesTest {
 
     @Test
     public void testClassPropertyIsRead() {
