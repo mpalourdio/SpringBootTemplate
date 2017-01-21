@@ -9,6 +9,7 @@
 
 package com.mpalourdio.springboottemplate.service;
 
+import com.mpalourdio.springboottemplate.exception.AnotherCustomException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -23,5 +24,9 @@ public class ServiceWithProperties {
 
     public String getValueFromConfig() {
         return valueFromConfig;
+    }
+
+    public void throwException() throws AnotherCustomException {
+        throw new AnotherCustomException("gosh");
     }
 }
