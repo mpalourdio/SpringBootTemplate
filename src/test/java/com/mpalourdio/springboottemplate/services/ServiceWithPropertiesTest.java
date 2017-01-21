@@ -9,6 +9,7 @@
 
 package com.mpalourdio.springboottemplate.services;
 
+import com.mpalourdio.springboottemplate.exception.AnotherCustomException;
 import com.mpalourdio.springboottemplate.service.ServiceWithProperties;
 import org.junit.Assert;
 import org.junit.Test;
@@ -22,5 +23,11 @@ public class ServiceWithPropertiesTest {
     public void testClassPropertyIsRead() {
         final ServiceWithProperties serviceWithProperties = new ServiceWithProperties("hey");
         Assert.assertEquals("hey", serviceWithProperties.getValueFromConfig());
+    }
+
+    @Test(expected = AnotherCustomException.class)
+    public void throwExceptionTest() throws AnotherCustomException {
+        final ServiceWithProperties serviceWithProperties = new ServiceWithProperties("hey");
+        serviceWithProperties.throwException();
     }
 }
