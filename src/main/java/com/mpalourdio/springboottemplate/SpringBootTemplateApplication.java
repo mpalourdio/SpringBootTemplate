@@ -15,10 +15,10 @@ import java.util.Arrays;
         "file:properties/local.properties"
 }, ignoreResourceNotFound = true)
 @Import({WebSecurityConfig.class})
-public class Application {
+public class SpringBootTemplateApplication {
 
     public static void main(final String[] args) {
-        final ApplicationContext ctx = SpringApplication.run(Application.class, args);
+        final ApplicationContext ctx = SpringApplication.run(SpringBootTemplateApplication.class, args);
         final String[] beanNames = ctx.getBeanDefinitionNames();
 
         Arrays.stream(beanNames)
