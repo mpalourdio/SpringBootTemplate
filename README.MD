@@ -27,5 +27,6 @@ Include examples for :
 - Excel Generation with Apache POI
 - Basic auth protected endpoint (/basicauth) and how to test this kind of (silly) protection
 - Async static Logger event driven
+- Spring Cloud configuration server integration
 - ...
 
