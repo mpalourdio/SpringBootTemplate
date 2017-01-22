@@ -1,3 +1,4 @@
 target
 properties/local.properties
 logs
+.idea/
