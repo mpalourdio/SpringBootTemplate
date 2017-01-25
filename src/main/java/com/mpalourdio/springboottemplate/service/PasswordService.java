@@ -10,6 +10,7 @@
 package com.mpalourdio.springboottemplate.service;
 
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.codec.Base64;
 
 public class PasswordService {
 
@@ -19,5 +20,13 @@ public class PasswordService {
 
     public Boolean isPasswordValid(final String plainTextPassword, final String hash) {
         return BCrypt.checkpw(plainTextPassword, hash);
+    }
+
+    public String encodeStringToBase64(final String toEncode) {
+        return new String(Base64.encode(toEncode.getBytes()));
+    }
+
+    public String decodeBase64String(final String base64EncodedString) {
+        return new String(Base64.decode(base64EncodedString.getBytes()));
     }
 }
