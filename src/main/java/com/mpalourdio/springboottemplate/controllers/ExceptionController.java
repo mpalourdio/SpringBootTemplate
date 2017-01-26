@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import java.io.IOException;
-
 @RestController
 @RequestMapping("/exception")
 public class ExceptionController {
@@ -24,8 +22,8 @@ public class ExceptionController {
         return "all is ok";
     }
 
-    @GetMapping(value = "/call")
-    public ResponseEntity callException() throws CustomException, IOException {
+
+    private ResponseEntity callException() {
         final RestTemplate restTemplate = new RestTemplate();
         final ResponseEntity<ResponseObject> exchange;
 
@@ -43,5 +41,10 @@ public class ExceptionController {
         }
 
         return exchange;
+    }
+
+    @GetMapping(value = "/call")
+    public <T> T getObject() {
+        return (T) callException().getBody();
     }
 }
