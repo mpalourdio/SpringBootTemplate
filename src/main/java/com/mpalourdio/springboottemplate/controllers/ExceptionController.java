@@ -58,7 +58,7 @@ public class ExceptionController {
 
         if (call.getStatusCode() != HttpStatus.OK) {
             final ResponseObject responseObject = (ResponseObject) call.getBody();
-            //do thing here
+            //do things here
         }
 
         return call;
