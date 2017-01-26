@@ -13,17 +13,26 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping("/exception")
 public class ExceptionController {
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value = "nok", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String throwException() throws CustomException {
         if (1 == 1) {
             throw new CustomException("bad");
         }
 
-        return "all is ok";
+        return "all is ok if here";
+    }
+
+    @GetMapping(value = "ok", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseObject ok() throws CustomException {
+
+        final ResponseObject responseObject = new ResponseObject();
+        responseObject.property = "toto";
+
+        return responseObject;
     }
 
 
-    private ResponseEntity callException() {
+    private ResponseEntity callException(final String param) {
         final RestTemplate restTemplate = new RestTemplate();
         final ResponseEntity<ResponseObject> exchange;
 
@@ -31,7 +40,7 @@ public class ExceptionController {
         final HttpEntity httpEntity = new HttpEntity<>(httpHeaders);
         try {
             exchange = restTemplate.exchange(
-                    "http://localhost:8080/exception",
+                    "http://localhost:8080/exception/" + param,
                     HttpMethod.GET,
                     httpEntity,
                     ResponseObject.class
@@ -43,8 +52,26 @@ public class ExceptionController {
         return exchange;
     }
 
-    @GetMapping(value = "/call")
-    public <T> T getObject() {
-        return (T) callException().getBody();
+    @GetMapping(value = "/callok")
+    public ResponseEntity getCallOk() {
+        final ResponseEntity call = callException("ok");
+
+        if (call.getStatusCode() != HttpStatus.OK) {
+            final ResponseObject responseObject = (ResponseObject) call.getBody();
+            //do thing here
+        }
+
+        return call;
+    }
+
+    @GetMapping(value = "/callnok")
+    public ResponseEntity getCallNok() {
+        final ResponseEntity call = callException("nok");
+
+        if (call.getStatusCode() == HttpStatus.OK) {
+            final ResponseObject responseObject = (ResponseObject) call.getBody();
+        }
+
+        return call;
     }
 }

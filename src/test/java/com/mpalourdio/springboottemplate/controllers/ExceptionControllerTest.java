@@ -29,7 +29,7 @@ public class ExceptionControllerTest extends AbstractTestRunner {
     @Test
     //expected exception won't work here because the exception is annotated wit @ResponseStatus
     public void testException() throws Exception {
-        mvc.perform(get("/exception"))
+        mvc.perform(get("/exception/nok"))
                 .andExpect(content().string(StringUtils.EMPTY))
                 .andExpect(status().isPayloadTooLarge());
     }
