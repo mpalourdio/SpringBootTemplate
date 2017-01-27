@@ -66,12 +66,6 @@ public class ExceptionController {
 
     @GetMapping(value = "/callnok")
     public ResponseEntity getCallNok() {
-        final ResponseEntity call = callException("nok");
-
-        if (call.getStatusCode() == HttpStatus.OK) {
-            final ResponseObject responseObject = (ResponseObject) call.getBody();
-        }
-
-        return call;
+        return callException("nok");
     }
 }
