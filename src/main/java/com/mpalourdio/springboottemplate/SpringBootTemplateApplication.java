@@ -3,6 +3,7 @@ package com.mpalourdio.springboottemplate;
 import app.config.WebSecurityConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
@@ -15,6 +16,7 @@ import java.util.Arrays;
         "file:properties/local.properties"
 }, ignoreResourceNotFound = true)
 @Import({WebSecurityConfig.class})
+@EnableDiscoveryClient
 public class SpringBootTemplateApplication {
 
     public static void main(final String[] args) {
