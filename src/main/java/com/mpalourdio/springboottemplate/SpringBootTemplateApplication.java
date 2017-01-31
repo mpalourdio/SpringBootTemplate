@@ -1,5 +1,6 @@
 package com.mpalourdio.springboottemplate;
 
+import app.config.BeanConfig;
 import app.config.WebSecurityConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,7 +16,7 @@ import java.util.Arrays;
         "file:properties/global.properties",
         "file:properties/local.properties"
 }, ignoreResourceNotFound = true)
-@Import({WebSecurityConfig.class})
+@Import({WebSecurityConfig.class, BeanConfig.class})
 @EnableDiscoveryClient
 public class SpringBootTemplateApplication {
 
