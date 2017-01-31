@@ -11,16 +11,7 @@ package com.mpalourdio.springboottemplate.generics;
 
 import com.mpalourdio.springboottemplate.model.Task;
 
-public class ParametrizedClass<T extends Task> implements ParametrizedClassInterface<T> {
+public interface ParametrizedClassInterface<T extends Task> {
 
-    private final T property;
-
-    public ParametrizedClass(final T property) {
-        this.property = property;
-    }
-
-    @Override
-    public T getProperty() {
-        return property;
-    }
+    T getProperty();
 }

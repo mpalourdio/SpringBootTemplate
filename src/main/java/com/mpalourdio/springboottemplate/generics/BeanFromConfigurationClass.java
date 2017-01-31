@@ -14,15 +14,17 @@ import com.mpalourdio.springboottemplate.model.Task;
 public class BeanFromConfigurationClass<T extends Task> implements GenericInterface<T> {
 
     private final Class<T> tClass;
+    private final T taskInstance;
 
-    public BeanFromConfigurationClass(final Class<T> tClass) {
+    public BeanFromConfigurationClass(final Class<T> tClass, final T taskInstance) {
         this.tClass = tClass;
+        this.taskInstance = taskInstance;
     }
 
     @Override
-    public T getParametrizedClass() {
-        final ParametrizedClass<T> parametrizedClass = new ParametrizedClass<>();
+    public T getInstance() {
+        final ParametrizedClass<T> taskParametrizedClass = new ParametrizedClass<>(taskInstance);
 
-        return parametrizedClass.getProperty();
+        return taskParametrizedClass.getProperty();
     }
 }

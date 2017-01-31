@@ -10,7 +10,9 @@ public class BeanConfig {
 
     @Bean
     public BeanFromConfigurationClass<Task> beanFromConfigurationClass() {
-        return new BeanFromConfigurationClass<>(Task.class);
+        final Task task = new Task();
+        task.setTaskName("fromBeanConfiguration");
+        return new BeanFromConfigurationClass<>(Task.class, task);
     }
 }
 

@@ -13,5 +13,5 @@ import com.mpalourdio.springboottemplate.model.Task;
 
 public interface GenericInterface<T extends Task> {
 
-    T getParametrizedClass();
+    T getInstance();
 }
