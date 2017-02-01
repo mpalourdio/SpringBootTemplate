@@ -10,6 +10,7 @@
 package com.mpalourdio.springboottemplate.generics;
 
 import app.config.BeanConfig;
+import app.config.PropertyPlaceholderConfig;
 import com.mpalourdio.springboottemplate.AbstractTestRunner;
 import com.mpalourdio.springboottemplate.model.Task;
 import org.junit.Assert;
@@ -17,7 +18,10 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Import;
 
-@Import(BeanConfig.class)
+@Import({
+        BeanConfig.class,
+        PropertyPlaceholderConfig.class
+})
 public class BeanFromConfigurationClassTest extends AbstractTestRunner {
 
     @Autowired
