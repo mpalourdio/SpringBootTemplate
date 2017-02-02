@@ -16,8 +16,11 @@ import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 @Configuration
 public class PropertyPlaceholderConfig {
 
+    /**
+     * @link http://www.java-allandsundry.com/2013/07/spring-bean-and-propertyplaceholderconf.html
+     */
     @Bean
-    public PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
+    public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         return new PropertySourcesPlaceholderConfigurer();
     }
 }
