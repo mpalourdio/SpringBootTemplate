@@ -9,12 +9,15 @@
 
 package com.mpalourdio.springboottemplate;
 
+import app.config.PropertyPlaceholderConfig;
 import org.junit.runner.RunWith;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @TestPropertySource(locations = "classpath:test.properties")
+@Import({PropertyPlaceholderConfig.class})
 public abstract class AbstractTestRunner {
 
 }
