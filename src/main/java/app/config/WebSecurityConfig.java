@@ -17,6 +17,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String PROTECTED_ENDPOINT = "/basicauth";
     private static final String ADMIN_ROLE = "ADMIN";
+    private static final String ACTUATOR_ROLE = "ACTUATOR";
 
     private final Environment env;
 
@@ -40,6 +41,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(PROTECTED_ENDPOINT)
                 .hasRole(ADMIN_ROLE).and()
                 .httpBasic();
+
+        http.authorizeRequests()
+                .antMatchers(PROTECTED_ENDPOINT, "/actuator")
+                .hasRole(ACTUATOR_ROLE).and()
+                .httpBasic();
     }
 
     @Override
@@ -47,7 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication()
                 .withUser(env.getProperty("admin.username"))
                 .password(env.getProperty("admin.password"))
-                .roles(ADMIN_ROLE);
+                .roles(ADMIN_ROLE, ACTUATOR_ROLE);
     }
 
     private LogoutSuccessHandler logoutHandler() {
