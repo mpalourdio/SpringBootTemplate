@@ -30,7 +30,7 @@ public class HomeControllerTest extends AbstractTestRunner {
     private MockMvc mvc;
 
     @Test
-    public void testValueInjectedIConstructor() throws Exception {
+    public void testValueInjectedInConstructor() throws Exception {
         mvc.perform(get("/valueinconstructor"))
                 .andExpect(content().string("admin"));
     }
