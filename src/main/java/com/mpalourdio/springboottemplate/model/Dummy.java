@@ -9,9 +9,12 @@
 
 package com.mpalourdio.springboottemplate.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Dummy {
 
     public String name;
+    @JsonIgnore
     public String desc;
 
     public Dummy(final String name, final String desc) {
