@@ -10,6 +10,8 @@
 package com.mpalourdio.springboottemplate;
 
 import app.config.PropertyPlaceholderConfig;
+import com.mpalourdio.springboottemplate.model.People;
+import com.mpalourdio.springboottemplate.model.Task;
 import org.junit.runner.RunWith;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.TestPropertySource;
@@ -20,4 +22,19 @@ import org.springframework.test.context.junit4.SpringRunner;
 @Import({PropertyPlaceholderConfig.class})
 public abstract class AbstractTestRunner {
 
+    protected Task task;
+    protected People people;
+
+    public void initializeData() {
+        task = new Task();
+        task.setTaskArchived(true);
+        task.setTaskName("name");
+        task.setTaskDescription("description");
+        task.setTaskPriority("LOW");
+        task.setTaskStatus("ACTIVE");
+
+        people = new People();
+        people.setName("john");
+        people.setTask(task);
+    }
 }

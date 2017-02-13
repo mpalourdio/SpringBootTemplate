@@ -28,21 +28,9 @@ public class TaskRepositoryTest extends AbstractTestRunner {
     @Autowired
     private TaskRepository taskRepository;
 
-    private Task task;
-    private People people;
-
     @Before
     public void setUp() {
-        task = new Task();
-        task.setTaskArchived(true);
-        task.setTaskName("name");
-        task.setTaskDescription("description");
-        task.setTaskPriority("LOW");
-        task.setTaskStatus("ACTIVE");
-
-        people = new People();
-        people.setName("john");
-        people.setTask(task);
+        initializeData();
     }
 
     @Test
