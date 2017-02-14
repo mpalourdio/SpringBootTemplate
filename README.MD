@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/mpalourdio/SpringBootTemplate.svg?branch=master)](https://travis-ci.org/mpalourdio/SpringBootTemplate)
 
-Spring Boot 1.4.x example application.
+Spring Boot 1.5.x example application.
 =======================================
 
 More a reminder for some dirty tricks than anything else...
