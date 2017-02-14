@@ -48,7 +48,7 @@ public class PersistenceControllerTest extends AbstractTestRunner {
 
     @Test
     @Transactional
-    public void testHydrationIgnoresJsonIgnoresProperty() throws Exception {
+    public void testHydrationWithJsonIgnoreProperty() throws Exception {
 
         entityManager.persist(task);
         entityManager.persist(people);
