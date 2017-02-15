@@ -14,10 +14,12 @@ import com.mpalourdio.springboottemplate.model.TaskRepository;
 import com.mpalourdio.springboottemplate.service.ServiceWithProperties;
 import com.mpalourdio.springboottemplate.service.UselessBean;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -82,5 +84,33 @@ public class HomeController {
     @ResponseBody
     public String valueinConstructor() {
         return serviceWithProperties.getValueFromConfig();
+    }
+
+    @GetMapping("patchwithrestemplate")
+    @ResponseBody
+    public JsonPlaceHolder testPatchWithRestTemplate() {
+        final RestTemplate restTemplateforGet = new RestTemplate();
+        final JsonPlaceHolder jsonPlaceHolder = restTemplateforGet.getForObject(
+                "https://jsonplaceholder.typicode.com/posts/1",
+                JsonPlaceHolder.class
+        );
+
+        jsonPlaceHolder.body = "new body";
+
+        final RestTemplate restTemplate = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
+        return restTemplate.patchForObject(
+                "https://jsonplaceholder.typicode.com/posts/1",
+                jsonPlaceHolder,
+                JsonPlaceHolder.class
+        );
+    }
+
+    //needs to be static for jackson as it's a quick and dirty inner class
+    static class JsonPlaceHolder {
+
+        public Integer id;
+        public String title;
+        public String body;
+        public Integer userId;
     }
 }

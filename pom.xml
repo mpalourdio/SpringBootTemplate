@@ -100,6 +100,14 @@
             <artifactId>poi</artifactId>
             <version>3.15</version>
         </dependency>
+
+        <!--needed to use PATCH with RestTemplace-->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.3</version>
+        </dependency>
+
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
