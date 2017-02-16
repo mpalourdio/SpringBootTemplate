@@ -46,4 +46,13 @@ public class HomeControllerTest extends AbstractTestRunner {
 
         Assert.assertTrue(jsonPlaceHolder.body.equals("new body"));
     }
+
+    @Test
+    public void testPatchWithRestTemplateBuilder() throws Exception {
+        final MvcResult mvcResult = mvc.perform(get("/patchwithrestemplatebuilder")).andReturn();
+        final Gson gson = new Gson();
+        final HomeController.JsonPlaceHolder jsonPlaceHolder = gson.fromJson(mvcResult.getResponse().getContentAsString(), HomeController.JsonPlaceHolder.class);
+
+        Assert.assertTrue(jsonPlaceHolder.body.equals("new body"));
+    }
 }

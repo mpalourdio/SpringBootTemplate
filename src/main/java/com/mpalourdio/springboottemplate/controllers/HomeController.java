@@ -14,6 +14,7 @@ import com.mpalourdio.springboottemplate.model.TaskRepository;
 import com.mpalourdio.springboottemplate.service.ServiceWithProperties;
 import com.mpalourdio.springboottemplate.service.UselessBean;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -97,7 +98,24 @@ public class HomeController {
 
         jsonPlaceHolder.body = "new body";
 
-        final RestTemplate restTemplate = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
+        final RestTemplate restTemplateForPatch = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
+        return restTemplateForPatch.patchForObject(
+                "https://jsonplaceholder.typicode.com/posts/1",
+                jsonPlaceHolder,
+                JsonPlaceHolder.class
+        );
+    }
+
+    @GetMapping("patchwithrestemplatebuilder")
+    @ResponseBody
+    public JsonPlaceHolder testPatchWithRestTemplateBuilder() {
+        final RestTemplate restTemplate = new RestTemplateBuilder().build();
+        final JsonPlaceHolder jsonPlaceHolder = restTemplate.getForObject(
+                "https://jsonplaceholder.typicode.com/posts/1",
+                JsonPlaceHolder.class
+        );
+
+        jsonPlaceHolder.body = "new body";
         return restTemplate.patchForObject(
                 "https://jsonplaceholder.typicode.com/posts/1",
                 jsonPlaceHolder,
