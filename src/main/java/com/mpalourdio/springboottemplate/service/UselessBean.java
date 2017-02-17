@@ -36,4 +36,8 @@ public class UselessBean {
     public void setTestPro(final String testPro) {
         this.testPro = testPro;
     }
+
+    public void testSerialization(final ToSerialize toSerialize) {
+        toSerialize.prop1 = "prop1updated";
+    }
 }

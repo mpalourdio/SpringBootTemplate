@@ -10,6 +10,8 @@
 package com.mpalourdio.springboottemplate;
 
 import app.config.PropertyPlaceholderConfig;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mpalourdio.springboottemplate.model.People;
 import com.mpalourdio.springboottemplate.model.Task;
 import org.junit.runner.RunWith;
@@ -36,5 +38,9 @@ public abstract class AbstractTestRunner {
         people = new People();
         people.setName("john");
         people.setTask(task);
+    }
+
+    public String serializeToJson(final Object object) throws JsonProcessingException {
+        return new ObjectMapper().writeValueAsString(object);
     }
 }
