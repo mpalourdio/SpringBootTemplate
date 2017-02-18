@@ -9,8 +9,13 @@
 
 package com.mpalourdio.springboottemplate.service;
 
-public class ToSerialize {
+public class ToSerialize implements Cloneable {
 
     public String prop1;
     public String prop2;
+
+    @Override
+    public ToSerialize clone() throws CloneNotSupportedException {
+        return (ToSerialize) super.clone();
+    }
 }

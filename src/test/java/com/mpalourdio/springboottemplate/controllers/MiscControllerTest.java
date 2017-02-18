@@ -36,8 +36,8 @@ public class MiscControllerTest extends AbstractTestRunner {
         final ToSerialize toSerialize = new ToSerialize();
         final String input = serializeToJson(toSerialize);
 
-        final ToSerialize output = toSerialize;
-        toSerialize.prop1 = "prop1updated";
+        final ToSerialize output = toSerialize.clone();
+        output.prop1 = "prop1updated";
 
         mockMvc.perform(post("/misc/serialization")
                 .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
