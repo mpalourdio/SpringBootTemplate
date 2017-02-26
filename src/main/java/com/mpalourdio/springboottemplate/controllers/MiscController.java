@@ -26,13 +26,11 @@ public class MiscController {
     private final String password;
     private final UselessBean uselessBean;
 
-
     public MiscController(
             @Value("${server.port}") final String serverPort,
             @Value("${admin.username}") final String username,
             @Value("${admin.password}") final String password,
             final UselessBean uselessBean
-
     ) {
         this.serverPort = serverPort;
         this.username = username;
