@@ -7,10 +7,8 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.mpalourdio.springboottemplate.services;
+package com.mpalourdio.springboottemplate.service;
 
-import com.mpalourdio.springboottemplate.service.ABeanIWantToMock;
-import com.mpalourdio.springboottemplate.service.UselessBean;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
