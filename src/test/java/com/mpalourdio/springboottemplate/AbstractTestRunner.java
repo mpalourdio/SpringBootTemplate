@@ -9,19 +9,16 @@
 
 package com.mpalourdio.springboottemplate;
 
-import app.config.PropertyPlaceholderConfig;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mpalourdio.springboottemplate.model.People;
 import com.mpalourdio.springboottemplate.model.Task;
 import org.junit.runner.RunWith;
-import org.springframework.context.annotation.Import;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @TestPropertySource(locations = "classpath:test.properties")
-@Import({PropertyPlaceholderConfig.class})
 public abstract class AbstractTestRunner {
 
     protected Task task;
