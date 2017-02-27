@@ -9,6 +9,7 @@
 
 package com.mpalourdio.springboottemplate.controllers;
 
+import com.mpalourdio.springboottemplate.properties.CredentialsProperties;
 import com.mpalourdio.springboottemplate.service.ToSerialize;
 import com.mpalourdio.springboottemplate.service.UselessBean;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,25 +23,23 @@ import org.springframework.web.client.RestTemplate;
 public class MiscController {
 
     private final String serverPort;
-    private final String username;
-    private final String password;
+    private final CredentialsProperties credentialsProperties;
     private final UselessBean uselessBean;
 
     public MiscController(
             @Value("${server.port}") final String serverPort,
-            @Value("${admin.username}") final String username,
-            @Value("${admin.password}") final String password,
+            final CredentialsProperties credentialsProperties,
             final UselessBean uselessBean
     ) {
         this.serverPort = serverPort;
-        this.username = username;
-        this.password = password;
+        this.credentialsProperties = credentialsProperties;
         this.uselessBean = uselessBean;
     }
 
     @GetMapping("/basicauth")
     public String restTemplateWithBasicAuth() {
-        final RestTemplate rt = new RestTemplateBuilder().basicAuthorization(username, password).build();
+        final RestTemplate rt = new RestTemplateBuilder()
+                .basicAuthorization(credentialsProperties.getUsername(), credentialsProperties.getPassword()).build();
         return rt.getForObject("http://localhost:" + serverPort + "/basicauth", String.class);
     }
 

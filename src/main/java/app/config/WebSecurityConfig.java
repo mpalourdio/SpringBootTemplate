@@ -9,8 +9,9 @@
 
 package app.config;
 
+import com.mpalourdio.springboottemplate.properties.CredentialsProperties;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -22,16 +23,17 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
+@EnableConfigurationProperties(CredentialsProperties.class)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String PROTECTED_ENDPOINT = "/basicauth";
     private static final String ADMIN_ROLE = "ADMIN";
     private static final String ACTUATOR_ROLE = "ACTUATOR";
 
-    private final Environment env;
+    private final CredentialsProperties credentialsProperties;
 
-    public WebSecurityConfig(final Environment env) {
-        this.env = env;
+    public WebSecurityConfig(final CredentialsProperties credentialsProperties) {
+        this.credentialsProperties = credentialsProperties;
     }
 
     @Override
@@ -60,8 +62,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser(env.getProperty("admin.username"))
-                .password(env.getProperty("admin.password"))
+                .withUser(credentialsProperties.getUsername())
+                .password(credentialsProperties.getPassword())
                 .roles(ADMIN_ROLE, ACTUATOR_ROLE);
     }
 
