@@ -9,34 +9,31 @@
 
 package com.mpalourdio.springboottemplate.controllers;
 
+import com.mpalourdio.springboottemplate.properties.MarvelProperties;
 import org.apache.commons.codec.digest.DigestUtils;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
 @RequestMapping("/marvel")
 public class MarvelController {
 
-    private final String marvelPublicKey;
-    private final String marvelPrivateKey;
+    private final MarvelProperties marvelProperties;
 
-    public MarvelController(
-            @Value("${marvel.public.key}") final String marvelPublicKey,
-            @Value("${marvel.private.key}") final String marvelPrivateKey
-    ) {
-        this.marvelPublicKey = marvelPublicKey;
-        this.marvelPrivateKey = marvelPrivateKey;
+    public MarvelController(final MarvelProperties marvelProperties) {
+        this.marvelProperties = marvelProperties;
     }
 
     @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> allCharacters() {
         final RestTemplate restTemplate = new RestTemplate();
         final String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
-        final String hash = DigestUtils.md5Hex(timestamp + marvelPrivateKey + marvelPublicKey);
-        final String uri = "http://gateway.marvel.com/v1/public/characters/1009220?apikey=" + marvelPublicKey + "&ts=" + timestamp + "&hash=" + hash;
+        final String hash = DigestUtils.md5Hex(timestamp + marvelProperties.getPrivatekey() + marvelProperties.getPublickey());
+        final String uri = "http://gateway.marvel.com/v1/public/characters/1009220?apikey=" + marvelProperties.getPublickey() + "&ts=" + timestamp + "&hash=" + hash;
 
         return restTemplate.getForEntity(uri, String.class);
     }

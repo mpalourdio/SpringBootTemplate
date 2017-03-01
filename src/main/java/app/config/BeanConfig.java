@@ -11,6 +11,7 @@ package app.config;
 
 import com.mpalourdio.springboottemplate.generics.BeanFromConfigurationClass;
 import com.mpalourdio.springboottemplate.model.Task;
+import com.mpalourdio.springboottemplate.properties.MarvelProperties;
 import com.mpalourdio.springboottemplate.properties.MyPropertyConfigHolder;
 import com.mpalourdio.springboottemplate.service.ServiceWithConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -18,7 +19,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@EnableConfigurationProperties(MyPropertyConfigHolder.class)
+@EnableConfigurationProperties({
+        MyPropertyConfigHolder.class,
+        MarvelProperties.class,
+})
 public class BeanConfig {
 
     @Bean
