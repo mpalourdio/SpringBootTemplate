@@ -41,7 +41,7 @@ public class MiscControllerTest extends AbstractTestRunner {
 
         mockMvc.perform(post("/misc/serialization")
                 .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
-                .content(input.getBytes()))
+                .content(input))
                 .andExpect(content().json(serializeToJson(output), true));
     }
 }
