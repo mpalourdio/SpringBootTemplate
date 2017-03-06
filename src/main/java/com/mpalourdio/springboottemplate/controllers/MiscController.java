@@ -9,12 +9,19 @@
 
 package com.mpalourdio.springboottemplate.controllers;
 
+import com.mpalourdio.springboottemplate.json.Account;
+import com.mpalourdio.springboottemplate.json.AccountDecorator;
+import com.mpalourdio.springboottemplate.json.AccountInterface;
+import com.mpalourdio.springboottemplate.json.Context;
 import com.mpalourdio.springboottemplate.properties.CredentialsProperties;
 import com.mpalourdio.springboottemplate.service.ToSerialize;
 import com.mpalourdio.springboottemplate.service.UselessBean;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -48,5 +55,40 @@ public class MiscController {
         uselessBean.testSerialization(toSerialize);
 
         return toSerialize;
+    }
+
+    @PostMapping(value = "/jsonunwrapped", produces = MediaType.APPLICATION_JSON_VALUE)
+    public AccountInterface jsonUnwrapped(@RequestBody final Account account) {
+
+        final AccountDecorator accountDecorator = new AccountDecorator(account);
+        final Context context = new Context();
+        context.ref = "ref";
+        accountDecorator.context = context;
+
+        return accountDecorator;
+    }
+
+    @PostMapping(value = "/jsonraw", produces = MediaType.APPLICATION_JSON_VALUE)
+    public AccountInterface jsonraw(@RequestBody final Account account) {
+
+        return account;
+    }
+
+    @GetMapping(value = "/jsonunwrappedget", produces = MediaType.APPLICATION_JSON_VALUE)
+    public AccountInterface jsonUnwrappedGet() {
+        final RestTemplate restTemplate = new RestTemplate();
+
+        final Account account = new Account();
+        account.firstName = "firstName";
+        account.lastName = "lastname";
+
+        final HttpEntity httpEntity = new HttpEntity<>(account);
+        final ResponseEntity<AccountDecorator> exchange = restTemplate.exchange(
+                "http://localhost:8080/misc/jsonunwrapped/",
+                HttpMethod.POST,
+                httpEntity,
+                AccountDecorator.class);
+
+        return exchange.getBody();
     }
 }

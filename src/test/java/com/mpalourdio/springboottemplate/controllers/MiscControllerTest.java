@@ -10,6 +10,9 @@
 package com.mpalourdio.springboottemplate.controllers;
 
 import com.mpalourdio.springboottemplate.AbstractTestRunner;
+import com.mpalourdio.springboottemplate.json.Account;
+import com.mpalourdio.springboottemplate.json.AccountDecorator;
+import com.mpalourdio.springboottemplate.json.Context;
 import com.mpalourdio.springboottemplate.service.ToSerialize;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +46,25 @@ public class MiscControllerTest extends AbstractTestRunner {
                 .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
                 .content(input))
                 .andExpect(content().json(serializeToJson(output), true));
+    }
+
+    @Test
+    public void testJsonUnwrappingInAClassDecorator() throws Exception {
+
+        final Account account = new Account();
+        account.lastName = "lastName";
+        account.firstName = "firstName";
+
+        final String input = serializeToJson(account);
+
+        final AccountDecorator accountDecorator = new AccountDecorator(account);
+        final Context context = new Context();
+        accountDecorator.context = context;
+        context.ref = "ref";
+
+        mockMvc.perform(post("/misc/jsonunwrapped")
+                .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+                .content(input))
+                .andExpect(content().json(serializeToJson(accountDecorator), true));
     }
 }
