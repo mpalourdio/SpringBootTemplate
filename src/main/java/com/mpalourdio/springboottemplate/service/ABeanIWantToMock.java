@@ -12,9 +12,8 @@ package com.mpalourdio.springboottemplate.service;
 import org.springframework.stereotype.Component;
 
 @Component
-final public class ABeanIWantToMock implements ABeanIWantToMockInterface {
+final public class ABeanIWantToMock {
 
-    @Override
     public Boolean iAlwaysReturnFalse() {
         return false;
     }
