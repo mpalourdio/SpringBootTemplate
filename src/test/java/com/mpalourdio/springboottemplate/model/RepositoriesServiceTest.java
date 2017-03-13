@@ -10,9 +10,9 @@
 package com.mpalourdio.springboottemplate.model;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
@@ -31,8 +31,14 @@ public class RepositoriesServiceTest {
     @Mock
     private TaskRepository taskRepository;
 
-    @InjectMocks
     private RepositoriesService repositoriesService;
+
+    @Before
+    public void setUp() {
+        repositoriesService = new RepositoriesService(
+                peopleRepository, taskRepository, entityManager
+        );
+    }
 
     @Test
     public void testEntityManagerIsMocked() {
