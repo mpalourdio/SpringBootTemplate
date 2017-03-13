@@ -17,7 +17,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
 public class UselessBeanTest {
@@ -35,7 +35,7 @@ public class UselessBeanTest {
 
     @Test
     public void testMyMockReturnFalseInTest() {
-        Mockito.when(aBeanIWantToMock.iAlwaysReturnTrue()).thenReturn(false);
+        Mockito.when(aBeanIWantToMock.iAlwaysReturnFalse()).thenReturn(true);
         Assert.assertFalse(uselessBean.iWantToMockThisMethod());
     }
 }

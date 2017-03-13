@@ -26,7 +26,7 @@ public class UselessBean {
     }
 
     public Boolean iWantToMockThisMethod() {
-        return aBeanIWantToMock.iAlwaysReturnTrue();
+        return aBeanIWantToMock.iAlwaysReturnFalse();
     }
 
     public String getTestPro() {

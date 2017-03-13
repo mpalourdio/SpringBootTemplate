@@ -11,5 +11,5 @@ package com.mpalourdio.springboottemplate.service;
 
 public interface ABeanIWantToMockInterface {
 
-    Boolean iAlwaysReturnTrue();
+    Boolean iAlwaysReturnFalse();
 }

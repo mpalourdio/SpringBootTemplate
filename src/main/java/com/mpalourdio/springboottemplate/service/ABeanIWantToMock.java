@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 final public class ABeanIWantToMock implements ABeanIWantToMockInterface {
 
     @Override
-    public Boolean iAlwaysReturnTrue() {
-        return true;
+    public Boolean iAlwaysReturnFalse() {
+        return false;
     }
 }
