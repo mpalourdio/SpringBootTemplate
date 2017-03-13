@@ -10,13 +10,11 @@
 package com.mpalourdio.springboottemplate.service;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -28,14 +26,9 @@ public class UselessBeanTest {
     @Mock
     private ABeanIWantToMock aBeanIWantToMock;
 
-    @Before
-    public void setup() {
-        MockitoAnnotations.initMocks(this);
-    }
-
     @Test
     public void testMyMockReturnFalseInTest() {
         Mockito.when(aBeanIWantToMock.iAlwaysReturnFalse()).thenReturn(true);
-        Assert.assertFalse(uselessBean.iWantToMockThisMethod());
+        Assert.assertTrue(uselessBean.iWantToMockThisMethod());
     }
 }
