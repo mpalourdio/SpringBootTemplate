@@ -19,9 +19,9 @@ public class UselessBean {
 
     private String testPro = "inclass";
 
-    private final ABeanIWantToMock aBeanIWantToMock;
+    private final ABeanIWantToMockInterface aBeanIWantToMock;
 
-    public UselessBean(final ABeanIWantToMock aBeanIWantToMock) {
+    public UselessBean(final ABeanIWantToMockInterface aBeanIWantToMock) {
         this.aBeanIWantToMock = aBeanIWantToMock;
     }
 

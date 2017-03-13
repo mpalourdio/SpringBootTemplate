@@ -26,7 +26,7 @@ public class UselessBeanTest {
     private UselessBean uselessBean;
 
     @Mock
-    private ABeanIWantToMock aBeanIWantToMock;
+    private ABeanIWantToMockInterface aBeanIWantToMock;
 
     @Before
     public void setup() {
