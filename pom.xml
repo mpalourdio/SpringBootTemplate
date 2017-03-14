@@ -107,6 +107,12 @@
             <version>2.7.17</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-inline</artifactId>
+            <version>2.7.17</version>
+            <scope>test</scope>
+        </dependency>
 
         <!--needed to use PATCH verbs with RestTemplate-->
         <!--We can use RestTemplateBuilder that is more convenient BTW-->
