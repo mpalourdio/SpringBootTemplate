@@ -9,7 +9,7 @@
 
 package com.mpalourdio.springboottemplate.generics;
 
-import com.mpalourdio.springboottemplate.model.Task;
+import com.mpalourdio.springboottemplate.model.entities.Task;
 
 public interface GenericInterface<T extends Task> {
 

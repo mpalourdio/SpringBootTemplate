@@ -9,17 +9,25 @@
 
 package app.config;
 
+import com.mpalourdio.springboottemplate.events.AsyncEvent;
+import com.mpalourdio.springboottemplate.events.AsyncLogger;
+import com.mpalourdio.springboottemplate.events.MyEventListener;
 import com.mpalourdio.springboottemplate.generics.BeanFromConfigurationClass;
-import com.mpalourdio.springboottemplate.model.Task;
+import com.mpalourdio.springboottemplate.model.entities.Task;
 import com.mpalourdio.springboottemplate.properties.MyPropertyConfigHolder;
+import com.mpalourdio.springboottemplate.service.ABeanIWantToMock;
 import com.mpalourdio.springboottemplate.service.ServiceWithConfigurationProperties;
+import com.mpalourdio.springboottemplate.service.ServiceWithProperties;
+import com.mpalourdio.springboottemplate.service.UselessBean;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableConfigurationProperties(MyPropertyConfigHolder.class)
-public class BeanConfig {
+public class BeansFactory {
 
     @Bean
     public BeanFromConfigurationClass<Task> beanFromConfigurationClass() {
@@ -31,6 +39,36 @@ public class BeanConfig {
     @Bean
     public ServiceWithConfigurationProperties serviceWithConfigurationProperties(final MyPropertyConfigHolder myProperty) {
         return new ServiceWithConfigurationProperties(myProperty);
+    }
+
+    @Bean
+    public ServiceWithProperties serviceWithProperties(@Value("${admin.username}") final String valueFromConfig) {
+        return new ServiceWithProperties(valueFromConfig);
+    }
+
+    @Bean
+    public AsyncEvent asyncEvent() {
+        return new AsyncEvent();
+    }
+
+    @Bean
+    public AsyncLogger asyncLogger(final ApplicationEventPublisher eventPublisher) {
+        return new AsyncLogger(eventPublisher);
+    }
+
+    @Bean
+    public MyEventListener myEventListener() {
+        return new MyEventListener();
+    }
+
+    @Bean
+    public ABeanIWantToMock aBeanIWantToMock() {
+        return new ABeanIWantToMock();
+    }
+
+    @Bean
+    public UselessBean uselessBean(final ABeanIWantToMock aBeanIWantToMock) {
+        return new UselessBean(aBeanIWantToMock);
     }
 }
 

@@ -7,7 +7,10 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.mpalourdio.springboottemplate.model;
+package com.mpalourdio.springboottemplate.model.repositories;
+
+import com.mpalourdio.springboottemplate.model.Dummy;
+import com.mpalourdio.springboottemplate.model.entities.Task;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

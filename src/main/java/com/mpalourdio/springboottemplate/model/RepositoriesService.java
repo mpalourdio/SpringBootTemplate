@@ -9,6 +9,10 @@
 
 package com.mpalourdio.springboottemplate.model;
 
+import com.mpalourdio.springboottemplate.model.entities.People;
+import com.mpalourdio.springboottemplate.model.entities.Task;
+import com.mpalourdio.springboottemplate.model.repositories.PeopleRepository;
+import com.mpalourdio.springboottemplate.model.repositories.TaskRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

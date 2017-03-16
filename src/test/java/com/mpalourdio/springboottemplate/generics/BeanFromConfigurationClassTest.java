@@ -9,15 +9,12 @@
 
 package com.mpalourdio.springboottemplate.generics;
 
-import app.config.BeanConfig;
 import com.mpalourdio.springboottemplate.AbstractTestRunner;
-import com.mpalourdio.springboottemplate.model.Task;
+import com.mpalourdio.springboottemplate.model.entities.Task;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Import;
 
-@Import({BeanConfig.class})
 public class BeanFromConfigurationClassTest extends AbstractTestRunner {
 
     @Autowired

@@ -7,7 +7,7 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.mpalourdio.springboottemplate.model;
+package com.mpalourdio.springboottemplate.model.entities;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.jpa.criteria.expression.function.CurrentTimestampFunction;

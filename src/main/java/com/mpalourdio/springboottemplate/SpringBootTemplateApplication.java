@@ -9,7 +9,7 @@
 
 package com.mpalourdio.springboottemplate;
 
-import app.config.BeanConfig;
+import app.config.BeansFactory;
 import app.config.PropertyPlaceholderConfig;
 import app.config.WebSecurityConfig;
 import org.springframework.boot.SpringApplication;
@@ -28,7 +28,7 @@ import java.util.Arrays;
 }, ignoreResourceNotFound = true)
 @Import({
         WebSecurityConfig.class,
-        BeanConfig.class,
+        BeansFactory.class,
         PropertyPlaceholderConfig.class
 })
 @EnableDiscoveryClient

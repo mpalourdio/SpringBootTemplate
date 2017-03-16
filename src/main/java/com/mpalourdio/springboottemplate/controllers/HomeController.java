@@ -9,8 +9,8 @@
 
 package com.mpalourdio.springboottemplate.controllers;
 
-import com.mpalourdio.springboottemplate.model.Task;
-import com.mpalourdio.springboottemplate.model.TaskRepository;
+import com.mpalourdio.springboottemplate.model.entities.Task;
+import com.mpalourdio.springboottemplate.model.repositories.TaskRepository;
 import com.mpalourdio.springboottemplate.service.ServiceWithProperties;
 import com.mpalourdio.springboottemplate.service.UselessBean;
 import org.springframework.beans.factory.annotation.Value;

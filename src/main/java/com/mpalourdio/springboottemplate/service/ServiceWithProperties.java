@@ -10,15 +10,12 @@
 package com.mpalourdio.springboottemplate.service;
 
 import com.mpalourdio.springboottemplate.exception.AnotherCustomException;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 
-@Service
 public class ServiceWithProperties {
 
     private final String valueFromConfig;
 
-    public ServiceWithProperties(@Value("${admin.username}") final String valueFromConfig) {
+    public ServiceWithProperties(final String valueFromConfig) {
         this.valueFromConfig = valueFromConfig;
     }
 

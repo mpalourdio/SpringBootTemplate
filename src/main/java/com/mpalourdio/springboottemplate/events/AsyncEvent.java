@@ -9,9 +9,6 @@
 
 package com.mpalourdio.springboottemplate.events;
 
-import org.springframework.stereotype.Service;
-
-@Service
 public class AsyncEvent {
 
     public void publishMeLater(final String message) {

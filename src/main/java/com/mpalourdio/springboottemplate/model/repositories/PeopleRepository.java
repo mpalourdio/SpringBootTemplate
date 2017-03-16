@@ -7,8 +7,10 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.mpalourdio.springboottemplate.model;
+package com.mpalourdio.springboottemplate.model.repositories;
 
+import com.mpalourdio.springboottemplate.model.entities.People;
+import com.mpalourdio.springboottemplate.model.entities.Task;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -9,6 +9,9 @@
 
 package com.mpalourdio.springboottemplate.model;
 
+import com.mpalourdio.springboottemplate.model.entities.People;
+import com.mpalourdio.springboottemplate.model.repositories.PeopleRepository;
+import com.mpalourdio.springboottemplate.model.repositories.TaskRepository;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

@@ -9,9 +9,6 @@
 
 package com.mpalourdio.springboottemplate.service;
 
-import org.springframework.stereotype.Component;
-
-@Component
 final public class ABeanIWantToMock {
 
     public Boolean iAlwaysReturnFalse() {

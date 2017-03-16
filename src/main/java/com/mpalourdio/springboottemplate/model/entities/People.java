@@ -7,7 +7,7 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.mpalourdio.springboottemplate.model;
+package com.mpalourdio.springboottemplate.model.entities;
 
 import javax.persistence.*;
 

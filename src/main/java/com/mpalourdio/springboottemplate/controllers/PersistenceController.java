@@ -10,6 +10,9 @@
 package com.mpalourdio.springboottemplate.controllers;
 
 import com.mpalourdio.springboottemplate.model.*;
+import com.mpalourdio.springboottemplate.model.entities.People;
+import com.mpalourdio.springboottemplate.model.entities.Task;
+import com.mpalourdio.springboottemplate.model.repositories.TaskRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;

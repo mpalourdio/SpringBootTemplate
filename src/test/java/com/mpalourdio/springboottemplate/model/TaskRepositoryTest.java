@@ -10,6 +10,8 @@
 package com.mpalourdio.springboottemplate.model;
 
 import com.mpalourdio.springboottemplate.AbstractTestRunner;
+import com.mpalourdio.springboottemplate.model.entities.Task;
+import com.mpalourdio.springboottemplate.model.repositories.TaskRepository;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
