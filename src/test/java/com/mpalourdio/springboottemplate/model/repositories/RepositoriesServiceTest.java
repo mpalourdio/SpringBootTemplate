@@ -7,11 +7,10 @@
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-package com.mpalourdio.springboottemplate.model;
+package com.mpalourdio.springboottemplate.model.repositories;
 
+import com.mpalourdio.springboottemplate.model.RepositoriesService;
 import com.mpalourdio.springboottemplate.model.entities.People;
-import com.mpalourdio.springboottemplate.model.repositories.PeopleRepository;
-import com.mpalourdio.springboottemplate.model.repositories.TaskRepository;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
