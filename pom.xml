@@ -33,7 +33,7 @@
         <commons-lang3.version>3.5</commons-lang3.version>
         <poi.version>3.15</poi.version>
         <httpclient.version>4.5.3</httpclient.version>
-        <!-- plugins -->
+        <!-- plugins versions -->
         <versions-maven-plugin.version>2.3</versions-maven-plugin.version>
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
@@ -118,8 +118,8 @@
             <scope>test</scope>
         </dependency>
 
-        <!--needed to use PATCH verbs with RestTemplate-->
-        <!--We can use RestTemplateBuilder that is more convenient BTW-->
+        <!-- needed to use PATCH verbs with RestTemplate -->
+        <!-- We can use RestTemplateBuilder that is more convenient BTW -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
