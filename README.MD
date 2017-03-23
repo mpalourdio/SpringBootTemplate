@@ -29,5 +29,8 @@ Include examples for :
 - Async static Logger event driven
 - Spring Cloud configuration server integration
 - Refreshable controller with @RefreshScope
+- Mockito 2 integration with Strict Stubs checking
+- @EnableConfigurationProperties examples
+- JSON Serialization/Unserialization examples
 - ...
 
