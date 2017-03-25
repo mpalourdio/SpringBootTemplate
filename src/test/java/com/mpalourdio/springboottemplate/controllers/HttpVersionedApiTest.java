@@ -34,7 +34,6 @@ public class HttpVersionedApiTest extends AbstractTestRunner {
     private static final String HEADER_V1_HIGH_QUALITY = HEADER_V1 + QUALITY_1;
     private static final String HEADER_V2_LOW_QUALITY = HEADER_V2 + QUALITY_09;
 
-
     @Autowired
     private MockMvc mvc;
 
