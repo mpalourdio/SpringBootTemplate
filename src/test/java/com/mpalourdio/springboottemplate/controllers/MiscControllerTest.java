@@ -13,13 +13,13 @@ import com.mpalourdio.springboottemplate.AbstractTestRunner;
 import com.mpalourdio.springboottemplate.json.Account;
 import com.mpalourdio.springboottemplate.json.AccountDecorator;
 import com.mpalourdio.springboottemplate.json.Context;
+import com.mpalourdio.springboottemplate.mediatype.MediaType;
 import com.mpalourdio.springboottemplate.service.ToSerialize;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment;

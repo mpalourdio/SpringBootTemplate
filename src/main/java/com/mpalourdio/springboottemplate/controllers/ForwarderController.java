@@ -9,7 +9,7 @@
 
 package com.mpalourdio.springboottemplate.controllers;
 
-import org.springframework.http.MediaType;
+import com.mpalourdio.springboottemplate.mediatype.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

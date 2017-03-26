@@ -9,10 +9,10 @@
 
 package com.mpalourdio.springboottemplate.controllers;
 
+import com.mpalourdio.springboottemplate.mediatype.MediaType;
 import com.mpalourdio.springboottemplate.properties.MarvelProperties;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

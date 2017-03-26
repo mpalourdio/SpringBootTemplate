@@ -9,13 +9,14 @@
 
 package com.mpalourdio.springboottemplate.controllers;
 
-import com.mpalourdio.springboottemplate.model.*;
+import com.mpalourdio.springboottemplate.mediatype.MediaType;
+import com.mpalourdio.springboottemplate.model.Dummy;
+import com.mpalourdio.springboottemplate.model.RepositoriesService;
 import com.mpalourdio.springboottemplate.model.entities.People;
 import com.mpalourdio.springboottemplate.model.entities.Task;
 import com.mpalourdio.springboottemplate.model.repositories.TaskRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
