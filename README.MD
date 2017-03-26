@@ -9,7 +9,7 @@ Include examples for :
 - @SpringBootTest
 - @DataJpaTest
 - @AutoConfigureMockMvc
-- JUnit & Mockito
+- JUnit & Mockito 2
 - EventListener : non void ``@EventListener`` method triggers automatically another event
 - Async Event (Annotation Driven)
 - Request Forwarding
@@ -25,12 +25,13 @@ Include examples for :
 - Mock EntityManager (@PersistenceContext)
 - File Download with HttpServletResponse and ResponseEntity
 - Excel Generation with Apache POI
-- Basic auth protected endpoint (/basicauth) and how to test this kind of (silly) protection
+- Basic auth protected endpoint (/basicauth) and how to test this kind of (silly) protection (lol)
 - Async static Logger event driven
 - Spring Cloud configuration server integration
 - Refreshable controller with @RefreshScope
 - Mockito 2 integration with Strict Stubs checking
 - @EnableConfigurationProperties examples
 - JSON Serialization/Unserialization examples
+- Custom MediaType
 - ...
 

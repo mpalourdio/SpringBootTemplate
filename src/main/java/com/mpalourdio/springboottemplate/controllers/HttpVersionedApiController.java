@@ -9,7 +9,7 @@
 
 package com.mpalourdio.springboottemplate.controllers;
 
-import org.springframework.http.MediaType;
+import com.mpalourdio.springboottemplate.mediatype.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,32 +30,33 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/http")
 public class HttpVersionedApiController {
 
-    @GetMapping(value = "/test", produces = "application/vnd.api.v1+json")
+
+    @GetMapping(value = "/test", produces = MediaType.APPLICATION_VND_API_V1_VALUE)
     public String processV1() {
         return "v1";
     }
 
-    @GetMapping(value = "/test", produces = {MediaType.APPLICATION_JSON_VALUE, "application/vnd.api.v2+json"})
+    @GetMapping(value = "/test", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_VND_API_V2_VALUE})
     public String processV2() {
         return "v2";
     }
 
-    @PostMapping(value = "/test", consumes = "application/vnd.api.v1+json", produces = "application/vnd.api.v1+json")
+    @PostMapping(value = "/test", consumes = MediaType.APPLICATION_VND_API_V1_VALUE, produces = MediaType.APPLICATION_VND_API_V1_VALUE)
     public String processV1Post() {
         return "v1-post";
     }
 
-    @PostMapping(value = "/test", consumes = "application/vnd.api.v2+json", produces = {MediaType.APPLICATION_JSON_VALUE, "application/vnd.api.v2+json"})
+    @PostMapping(value = "/test", consumes = MediaType.APPLICATION_VND_API_V2_VALUE, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_VND_API_V2_VALUE})
     public String processV2Post() {
         return "v2-post";
     }
 
-    @PostMapping(value = "/test", consumes = MediaType.ALL_VALUE, produces = "application/vnd.api.v1+json")
+    @PostMapping(value = "/test", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_VND_API_V1_VALUE)
     public String processV1PostConsumeAll() {
         return "v1-post-consumes-all";
     }
 
-    @PostMapping(value = "/test", consumes = MediaType.ALL_VALUE, produces = {MediaType.APPLICATION_JSON_VALUE, "application/vnd.api.v2+json"})
+    @PostMapping(value = "/test", consumes = MediaType.ALL_VALUE, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_VND_API_V2_VALUE})
     public String processV2PostConsumeAll() {
         return "v2-post-consumes-all";
     }

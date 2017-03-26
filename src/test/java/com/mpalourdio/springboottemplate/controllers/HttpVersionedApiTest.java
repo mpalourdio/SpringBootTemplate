@@ -10,10 +10,10 @@
 package com.mpalourdio.springboottemplate.controllers;
 
 import com.mpalourdio.springboottemplate.AbstractTestRunner;
+import com.mpalourdio.springboottemplate.mediatype.MediaType;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -24,8 +24,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(HttpVersionedApiController.class)
 public class HttpVersionedApiTest extends AbstractTestRunner {
 
-    private static final String HEADER_V1 = "application/vnd.api.v1+json";
-    private static final String HEADER_V2 = "application/vnd.api.v2+json";
+    private static final String HEADER_V1 = MediaType.APPLICATION_VND_API_V1_VALUE;
+    private static final String HEADER_V2 = MediaType.APPLICATION_VND_API_V2_VALUE;
 
     private static final String QUALITY_09 = ";q=0.9";
     private static final String QUALITY_1 = ";q=1";
@@ -52,7 +52,7 @@ public class HttpVersionedApiTest extends AbstractTestRunner {
     }
 
     @Test
-    public void testGetAndNoAcceptHeaderV2ReturnsV2ContentAsAcceptHeaderIsImplicitlyApplicationJson() throws Exception {
+    public void testGetAndNoAcceptHeaderReturnsV2ContentAsAcceptHeaderIsImplicitlyApplicationJson() throws Exception {
         mvc.perform(get("/http/test"))
                 .andExpect(content().string("v2"))
                 .andExpect(header().string("Content-Type", MediaType.APPLICATION_JSON_UTF8_VALUE));
@@ -105,7 +105,7 @@ public class HttpVersionedApiTest extends AbstractTestRunner {
     }
 
     @Test
-    public void testPostAndNoAcceptHeaderV2ReturnsV2ContentAsAcceptHeaderIsImplicitlyApplicationJson() throws Exception {
+    public void testPostAndNoAcceptHeaderReturnsV2ContentAsAcceptHeaderIsImplicitlyApplicationJson() throws Exception {
         mvc.perform(post("/http/test"))
                 .andExpect(content().string("v2-post-consumes-all"))
                 .andExpect(header().string("Content-Type", MediaType.APPLICATION_JSON_UTF8_VALUE));
