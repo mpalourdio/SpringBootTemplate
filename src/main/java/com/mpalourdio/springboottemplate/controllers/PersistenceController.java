@@ -64,4 +64,11 @@ public class PersistenceController {
     public List<Dummy> hydrate() {
         return taskRepository.hydrateDummyObject();
     }
+
+    @GetMapping(value = "/annotated", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public int annotated() {
+        final List<Task> allTasksByArchichedValue = taskRepository.getAllTasksByArchichedValue(false);
+
+        return allTasksByArchichedValue.size();
+    }
 }

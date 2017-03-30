@@ -10,7 +10,9 @@
 package com.mpalourdio.springboottemplate.model.repositories;
 
 import com.mpalourdio.springboottemplate.model.entities.Task;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,6 +23,9 @@ public interface TaskRepository extends CrudRepository<Task, Integer>, CustomRep
     List<Task> findByTaskArchived(int taskArchivedFalse);
 
     List<Task> findByTaskStatus(String taskStatus);
+
+    @Query("SELECT e FROM Task e where e.taskArchived = :status")
+    List<Task> getAllTasksByArchichedValue(@Param("status") Boolean archivedStatus);
 
     @Override
     List<Task> findAll();

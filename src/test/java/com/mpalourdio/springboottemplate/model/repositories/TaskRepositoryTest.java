@@ -12,7 +12,6 @@ package com.mpalourdio.springboottemplate.model.repositories;
 import com.mpalourdio.springboottemplate.AbstractTestRunner;
 import com.mpalourdio.springboottemplate.model.Dummy;
 import com.mpalourdio.springboottemplate.model.entities.Task;
-import com.mpalourdio.springboottemplate.model.repositories.TaskRepository;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -56,5 +55,14 @@ public class TaskRepositoryTest extends AbstractTestRunner {
 
         Assert.assertEquals(1, dummyList.size());
         Assert.assertEquals(true, (dummyList.get(0)) instanceof Dummy);
+    }
+
+    @Test
+    public void testAnnotatedQuery() {
+        entityManager.persist(task);
+        entityManager.persist(people);
+        final List<Task> allTasksByArchichedValue = taskRepository.getAllTasksByArchichedValue(true);
+
+        Assert.assertEquals(1, allTasksByArchichedValue.size());
     }
 }
