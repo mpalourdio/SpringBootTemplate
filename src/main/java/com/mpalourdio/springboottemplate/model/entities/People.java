@@ -9,10 +9,15 @@
 
 package com.mpalourdio.springboottemplate.model.entities;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "task_people")
+@Getter
+@Setter
 public class People {
 
     @Id
@@ -26,28 +31,4 @@ public class People {
     @ManyToOne
     @JoinColumn(name = "task_id", nullable = false)
     private Task task;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(final int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(final String name) {
-        this.name = name;
-    }
-
-    public Task getTask() {
-        return task;
-    }
-
-    public void setTask(final Task task) {
-        this.task = task;
-    }
 }
