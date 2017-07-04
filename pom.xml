@@ -35,11 +35,11 @@
         <poi.version>3.16</poi.version>
         <httpclient.version>4.5.3</httpclient.version>
         <lombok.version>1.16.18</lombok.version>
+        <postgresql.version>42.1.1</postgresql.version>
 
         <versions-maven-plugin.version>2.3</versions-maven-plugin.version>
         <maven-surefire-plugin.version>2.20</maven-surefire-plugin.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
-        <postgresql.version>42.1.1</postgresql.version>
     </properties>
 
     <dependencies>
