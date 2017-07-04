@@ -28,17 +28,18 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+
         <mockito-core.version>2.8.47</mockito-core.version>
         <commons-codec.version>1.10</commons-codec.version>
         <commons-lang3.version>3.6</commons-lang3.version>
         <poi.version>3.16</poi.version>
         <httpclient.version>4.5.3</httpclient.version>
-        <!-- plugins versions -->
+        <lombok.version>1.16.18</lombok.version>
+
         <versions-maven-plugin.version>2.3</versions-maven-plugin.version>
         <maven-surefire-plugin.version>2.20</maven-surefire-plugin.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
         <postgresql.version>42.1.1</postgresql.version>
-        <lombok.version>1.16.16</lombok.version>
     </properties>
 
     <dependencies>
