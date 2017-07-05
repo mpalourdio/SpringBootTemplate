@@ -81,6 +81,16 @@ public class HomeController {
         return "home/index";
     }
 
+    @GetMapping("/invalidpath")
+    @ResponseBody
+    public String testInvalidPath() {
+        final List<Task> tasks = taskRepository.testInvalidPath();
+        if (tasks.size() > 0) {
+            return tasks.get(0).getTaskName();
+        }
+        return "No matching results. Is the DB provisionned ?";
+    }
+
     @GetMapping("/valueinconstructor")
     @ResponseBody
     public String valueinConstructor() {

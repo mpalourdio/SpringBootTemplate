@@ -10,6 +10,7 @@
 package com.mpalourdio.springboottemplate.model.repositories;
 
 import com.mpalourdio.springboottemplate.model.Dummy;
+import com.mpalourdio.springboottemplate.model.entities.Task;
 
 import java.util.List;
 
@@ -18,4 +19,6 @@ interface CustomRepository<T> {
     List<T> customFindByPriority(String priority);
 
     List<Dummy> hydrateDummyObject();
+
+    List<Task> testInvalidPath();
 }

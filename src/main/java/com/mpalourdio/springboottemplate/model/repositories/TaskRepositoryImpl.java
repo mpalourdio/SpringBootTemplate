@@ -40,4 +40,14 @@ public class TaskRepositoryImpl implements CustomRepository<Task> {
                 .createQuery("select NEW com.mpalourdio.springboottemplate.model.Dummy(p.name, e.taskDescription) from Task e JOIN e.people p", Dummy.class)
                 .getResultList();
     }
+
+    @Override
+    public List<Task> testInvalidPath() {
+        // you need to JOIN p.task here to avoid 'invalid path' QuerySyntaxException
+        // this will not work :
+        //    -> select p.task from People p where t.taskArchived = true
+        return entityManager
+                .createQuery("select t from People p join p.task t where t.taskArchived = true", Task.class)
+                .getResultList();
+    }
 }
