@@ -9,8 +9,12 @@
 
 package com.mpalourdio.springboottemplate.service;
 
+import org.apache.commons.text.RandomStringGenerator;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.security.crypto.codec.Base64;
+
+import static org.apache.commons.text.CharacterPredicates.DIGITS;
+import static org.apache.commons.text.CharacterPredicates.LETTERS;
 
 public class PasswordService {
 
@@ -28,5 +32,13 @@ public class PasswordService {
 
     public String decodeBase64String(final String base64EncodedString) {
         return new String(Base64.decode(base64EncodedString.getBytes()));
+    }
+
+    public String generatedRandomPassword(final int length) {
+        return new RandomStringGenerator.Builder()
+                .withinRange('0', 'z')
+                .filteredBy(LETTERS, DIGITS)
+                .build()
+                .generate(length);
     }
 }

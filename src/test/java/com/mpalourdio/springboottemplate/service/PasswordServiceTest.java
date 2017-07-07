@@ -20,6 +20,7 @@ public class PasswordServiceTest {
 
     @Test
     public void testCanMakeMatchAGeneratedPassword() {
+
         final PasswordService passwordService = new PasswordService();
         final String myawesomepassword = "myawesomepassword";
         final String generatedPassword = passwordService.generateEncryptedPasword(myawesomepassword);
@@ -39,5 +40,14 @@ public class PasswordServiceTest {
         final PasswordService passwordService = new PasswordService();
         final String base64EncodedString = "dG9FbmNvZGU=";
         Assert.assertEquals("toEncode", passwordService.decodeBase64String(base64EncodedString));
+    }
+
+    @Test
+    public void testCanGeneratedAPasswordOfPredefinedLength() {
+        final PasswordService passwordService = new PasswordService();
+        final int passwordLength = 20;
+        final String generatedPassword = passwordService.generatedRandomPassword(passwordLength);
+
+        Assert.assertTrue(generatedPassword.length() == passwordLength);
     }
 }
