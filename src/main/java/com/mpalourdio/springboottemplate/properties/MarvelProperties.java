@@ -21,7 +21,7 @@ public class MarvelProperties {
         return privatekey;
     }
 
-    public void setPrivatekey(final String privatekey) {
+    public void setPrivatekey(String privatekey) {
         this.privatekey = privatekey;
     }
 
@@ -29,7 +29,7 @@ public class MarvelProperties {
         return publickey;
     }
 
-    public void setPublickey(final String publickey) {
+    public void setPublickey(String publickey) {
         this.publickey = publickey;
     }
 }

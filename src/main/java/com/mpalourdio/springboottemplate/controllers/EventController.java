@@ -26,17 +26,17 @@ public class EventController {
     private final ApplicationEventPublisher eventPublisher;
     private final AsyncLogger LOG;
 
-    public EventController(final ApplicationEventPublisher eventPublisher, final AsyncLogger asyncLogger) {
+    public EventController(ApplicationEventPublisher eventPublisher, AsyncLogger asyncLogger) {
         this.eventPublisher = eventPublisher;
         LOG = asyncLogger;
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public String publishAction() {
-        final AsyncEvent asyncEvent = new AsyncEvent();
+        AsyncEvent asyncEvent = new AsyncEvent();
         eventPublisher.publishEvent(asyncEvent);
 
-        final MyEvent event = new MyEvent("\uD83D\uDE0A");
+        MyEvent event = new MyEvent("\uD83D\uDE0A");
         eventPublisher.publishEvent(event);
 
         return event.getMessage();

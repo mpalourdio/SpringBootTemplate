@@ -34,9 +34,9 @@ public class MiscController {
     private final UselessBean uselessBean;
 
     public MiscController(
-            @Value("${server.port}") final String serverPort,
-            final CredentialsProperties credentialsProperties,
-            final UselessBean uselessBean
+            @Value("${server.port}") String serverPort,
+            CredentialsProperties credentialsProperties,
+            UselessBean uselessBean
     ) {
         this.serverPort = serverPort;
         this.credentialsProperties = credentialsProperties;
@@ -45,23 +45,23 @@ public class MiscController {
 
     @GetMapping("/basicauth")
     public String restTemplateWithBasicAuth() {
-        final RestTemplate rt = new RestTemplateBuilder()
+        RestTemplate rt = new RestTemplateBuilder()
                 .basicAuthorization(credentialsProperties.getUsername(), credentialsProperties.getPassword()).build();
         return rt.getForObject("http://localhost:" + serverPort + "/basicauth", String.class);
     }
 
     @PostMapping(value = "/serialization", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ToSerialize testSerialization(@RequestBody final ToSerialize toSerialize) {
+    public ToSerialize testSerialization(@RequestBody ToSerialize toSerialize) {
         uselessBean.testSerialization(toSerialize);
 
         return toSerialize;
     }
 
     @PostMapping(value = "/jsonunwrapped", produces = MediaType.APPLICATION_JSON_VALUE)
-    public AccountInterface jsonUnwrapped(@RequestBody final Account account) {
+    public AccountInterface jsonUnwrapped(@RequestBody Account account) {
 
-        final AccountDecorator accountDecorator = new AccountDecorator(account);
-        final Context context = new Context();
+        AccountDecorator accountDecorator = new AccountDecorator(account);
+        Context context = new Context();
         context.ref = "ref";
         accountDecorator.context = context;
 
@@ -69,21 +69,21 @@ public class MiscController {
     }
 
     @PostMapping(value = "/jsonraw", produces = MediaType.APPLICATION_JSON_VALUE)
-    public AccountInterface jsonraw(@RequestBody final Account account) {
+    public AccountInterface jsonraw(@RequestBody Account account) {
 
         return account;
     }
 
     @GetMapping(value = "/jsonunwrappedget", produces = MediaType.APPLICATION_JSON_VALUE)
     public AccountInterface jsonUnwrappedGet() {
-        final RestTemplate restTemplate = new RestTemplate();
+        RestTemplate restTemplate = new RestTemplate();
 
-        final Account account = new Account();
+        Account account = new Account();
         account.firstName = "firstName";
         account.lastName = "lastname";
 
-        final HttpEntity httpEntity = new HttpEntity<>(account);
-        final ResponseEntity<AccountDecorator> exchange = restTemplate.exchange(
+        HttpEntity httpEntity = new HttpEntity<>(account);
+        ResponseEntity<AccountDecorator> exchange = restTemplate.exchange(
                 "http://localhost:8080/misc/jsonunwrapped/",
                 HttpMethod.POST,
                 httpEntity,

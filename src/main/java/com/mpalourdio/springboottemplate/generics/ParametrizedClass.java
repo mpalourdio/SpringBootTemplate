@@ -15,7 +15,7 @@ public class ParametrizedClass<T extends Task> implements ParametrizedClassInter
 
     private final T property;
 
-    public ParametrizedClass(final T property) {
+    public ParametrizedClass(T property) {
         this.property = property;
     }
 

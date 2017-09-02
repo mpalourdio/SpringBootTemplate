@@ -18,23 +18,23 @@ import static org.apache.commons.text.CharacterPredicates.LETTERS;
 
 public class PasswordService {
 
-    public String generateEncryptedPasword(final String plainTextPassword) {
+    public String generateEncryptedPasword(String plainTextPassword) {
         return BCrypt.hashpw(plainTextPassword, BCrypt.gensalt());
     }
 
-    public Boolean isPasswordValid(final String plainTextPassword, final String hash) {
+    public Boolean isPasswordValid(String plainTextPassword, String hash) {
         return BCrypt.checkpw(plainTextPassword, hash);
     }
 
-    public String encodeStringToBase64(final String toEncode) {
+    public String encodeStringToBase64(String toEncode) {
         return new String(Base64.encode(toEncode.getBytes()));
     }
 
-    public String decodeBase64String(final String base64EncodedString) {
+    public String decodeBase64String(String base64EncodedString) {
         return new String(Base64.decode(base64EncodedString.getBytes()));
     }
 
-    public String generatedRandomPassword(final int length) {
+    public String generatedRandomPassword(int length) {
         return new RandomStringGenerator.Builder()
                 .withinRange('0', 'z')
                 .filteredBy(LETTERS, DIGITS)

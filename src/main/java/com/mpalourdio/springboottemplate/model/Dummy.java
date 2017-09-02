@@ -17,7 +17,7 @@ public class Dummy {
     @JsonIgnore
     public String desc;
 
-    public Dummy(final String name, final String desc) {
+    public Dummy(String name, String desc) {
         this.name = name;
         this.desc = desc;
     }

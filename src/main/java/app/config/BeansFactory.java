@@ -31,18 +31,18 @@ public class BeansFactory {
 
     @Bean
     public BeanFromConfigurationClass<Task> beanFromConfigurationClass() {
-        final Task task = new Task();
+        Task task = new Task();
         task.setTaskName("fromBeanConfiguration");
         return new BeanFromConfigurationClass<>(Task.class, task);
     }
 
     @Bean
-    public ServiceWithConfigurationProperties serviceWithConfigurationProperties(final MyPropertyConfigHolder myProperty) {
+    public ServiceWithConfigurationProperties serviceWithConfigurationProperties(MyPropertyConfigHolder myProperty) {
         return new ServiceWithConfigurationProperties(myProperty);
     }
 
     @Bean
-    public ServiceWithProperties serviceWithProperties(@Value("${admin.username}") final String valueFromConfig) {
+    public ServiceWithProperties serviceWithProperties(@Value("${admin.username}") String valueFromConfig) {
         return new ServiceWithProperties(valueFromConfig);
     }
 
@@ -52,7 +52,7 @@ public class BeansFactory {
     }
 
     @Bean
-    public AsyncLogger asyncLogger(final ApplicationEventPublisher eventPublisher) {
+    public AsyncLogger asyncLogger(ApplicationEventPublisher eventPublisher) {
         return new AsyncLogger(eventPublisher);
     }
 
@@ -67,7 +67,7 @@ public class BeansFactory {
     }
 
     @Bean
-    public UselessBean uselessBean(final ABeanIWantToMock aBeanIWantToMock) {
+    public UselessBean uselessBean(ABeanIWantToMock aBeanIWantToMock) {
         return new UselessBean(aBeanIWantToMock);
     }
 }

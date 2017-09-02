@@ -20,7 +20,7 @@ public class AccountDecorator implements AccountInterface {
     public AccountDecorator() {
     }
 
-    public AccountDecorator(final Account account) {
+    public AccountDecorator(Account account) {
         this.account = account;
     }
 }

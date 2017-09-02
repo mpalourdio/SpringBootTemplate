@@ -11,7 +11,7 @@ package com.mpalourdio.springboottemplate.events;
 
 public class AsyncEvent {
 
-    public void publishMeLater(final String message) {
+    public void publishMeLater(String message) {
         System.out.println(message);
     }
 }

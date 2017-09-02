@@ -20,13 +20,13 @@ public class ServiceWithPropertiesTest {
 
     @Test
     public void testClassPropertyIsRead() {
-        final ServiceWithProperties serviceWithProperties = new ServiceWithProperties("hey");
+        ServiceWithProperties serviceWithProperties = new ServiceWithProperties("hey");
         Assert.assertEquals("hey", serviceWithProperties.getValueFromConfig());
     }
 
     @Test(expected = AnotherCustomException.class)
     public void throwExceptionTest() throws AnotherCustomException {
-        final ServiceWithProperties serviceWithProperties = new ServiceWithProperties("hey");
+        ServiceWithProperties serviceWithProperties = new ServiceWithProperties("hey");
         serviceWithProperties.throwException();
     }
 }

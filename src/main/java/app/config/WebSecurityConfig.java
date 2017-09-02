@@ -32,12 +32,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CredentialsProperties credentialsProperties;
 
-    public WebSecurityConfig(final CredentialsProperties credentialsProperties) {
+    public WebSecurityConfig(CredentialsProperties credentialsProperties) {
         this.credentialsProperties = credentialsProperties;
     }
 
     @Override
-    protected void configure(final HttpSecurity http) throws Exception {
+    protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
 
         http.headers().defaultsDisabled().cacheControl();
@@ -60,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
                 .withUser(credentialsProperties.getUsername())
                 .password(credentialsProperties.getPassword())
@@ -68,8 +68,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     private LogoutSuccessHandler logoutHandler() {
-        final SimpleUrlLogoutSuccessHandler logoutSuccessHandler = new SimpleUrlLogoutSuccessHandler();
-        final DefaultRedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
+        SimpleUrlLogoutSuccessHandler logoutSuccessHandler = new SimpleUrlLogoutSuccessHandler();
+        DefaultRedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
 
         redirectStrategy.setContextRelative(false);
         logoutSuccessHandler.setRedirectStrategy(redirectStrategy);

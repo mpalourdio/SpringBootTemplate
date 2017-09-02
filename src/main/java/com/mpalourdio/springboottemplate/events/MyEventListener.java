@@ -22,7 +22,7 @@ public class MyEventListener {
     private MyEvent myEvent;
 
     @EventListener
-    public AnotherEvent publishMyEvent(final MyEvent myEvent) {
+    public AnotherEvent publishMyEvent(MyEvent myEvent) {
         this.myEvent = myEvent;
         myEvent.setMessage(myEvent.getMessage() + " -> now I have been published");
 
@@ -30,20 +30,20 @@ public class MyEventListener {
     }
 
     @EventListener
-    public void publishAnotherEvent(final AnotherEvent myOtherEvent) {
+    public void publishAnotherEvent(AnotherEvent myOtherEvent) {
         myEvent.setMessage(myEvent.getMessage() + "\n" + myOtherEvent.publishMeToo());
     }
 
     @Async
     @EventListener
-    public void publishMeAsynchronously(final AsyncEvent event) throws InterruptedException {
+    public void publishMeAsynchronously(AsyncEvent event) throws InterruptedException {
         Thread.sleep(5000);
         LOG.debug("I've been fired first in EventController#publishAction, but displayed last");
     }
 
     @Async
     @EventListener
-    public void loggerEventListener(final LogEvent event) throws InterruptedException {
+    public void loggerEventListener(LogEvent event) throws InterruptedException {
         Thread.sleep(5000);
         event.triggerLogging();
     }

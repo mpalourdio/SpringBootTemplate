@@ -27,9 +27,9 @@ public class RepositoriesService {
     private final TaskRepository taskRepository;
 
     public RepositoriesService(
-            final PeopleRepository peopleRepository,
-            final TaskRepository taskRepository,
-            final EntityManager entityManager) {
+            PeopleRepository peopleRepository,
+            TaskRepository taskRepository,
+            EntityManager entityManager) {
         this.peopleRepository = peopleRepository;
         this.taskRepository = taskRepository;
         this.entityManager = entityManager;

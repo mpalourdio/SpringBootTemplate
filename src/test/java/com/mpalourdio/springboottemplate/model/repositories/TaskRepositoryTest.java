@@ -37,13 +37,13 @@ public class TaskRepositoryTest extends AbstractTestRunner {
 
     @Test
     public void testTableIsEmpty() {
-        final List<Task> taskList = taskRepository.findAll();
+        List<Task> taskList = taskRepository.findAll();
         Assert.assertEquals(0, taskList.size());
     }
 
     @Test
     public void testAndPlayWithTheFakeentityManager() {
-        final Task persistedTask = entityManager.persistFlushFind(task);
+        Task persistedTask = entityManager.persistFlushFind(task);
         Assert.assertEquals(persistedTask.getTaskDescription(), "description");
     }
 
@@ -51,7 +51,7 @@ public class TaskRepositoryTest extends AbstractTestRunner {
     public void testResultsAreDummyObjects() {
         entityManager.persist(task);
         entityManager.persist(people);
-        final List<Dummy> dummyList = taskRepository.hydrateDummyObject();
+        List<Dummy> dummyList = taskRepository.hydrateDummyObject();
 
         Assert.assertEquals(1, dummyList.size());
         Assert.assertEquals(true, (dummyList.get(0)) instanceof Dummy);
@@ -61,7 +61,7 @@ public class TaskRepositoryTest extends AbstractTestRunner {
     public void testAnnotatedQuery() {
         entityManager.persist(task);
         entityManager.persist(people);
-        final List<Task> allTasksByArchichedValue = taskRepository.getAllTasksByArchichedValue(true);
+        List<Task> allTasksByArchichedValue = taskRepository.getAllTasksByArchichedValue(true);
 
         Assert.assertEquals(1, allTasksByArchichedValue.size());
     }

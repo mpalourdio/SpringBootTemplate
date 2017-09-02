@@ -13,7 +13,7 @@ public class CustomParameterizedType implements ParameterizedType {
     private final ParameterizedType delegate;
     private final Type[] actualTypeArguments;
 
-    public CustomParameterizedType(final ParameterizedType delegate, final Type[] actualTypeArguments) {
+    public CustomParameterizedType(ParameterizedType delegate, Type[] actualTypeArguments) {
         this.delegate = delegate;
         this.actualTypeArguments = actualTypeArguments;
     }

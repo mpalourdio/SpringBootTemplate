@@ -34,9 +34,9 @@ import java.util.Arrays;
 @EnableDiscoveryClient
 public class SpringBootTemplateApplication {
 
-    public static void main(final String... args) {
-        final ApplicationContext ctx = SpringApplication.run(SpringBootTemplateApplication.class, args);
-        final String[] beanNames = ctx.getBeanDefinitionNames();
+    public static void main(String... args) {
+        ApplicationContext ctx = SpringApplication.run(SpringBootTemplateApplication.class, args);
+        String[] beanNames = ctx.getBeanDefinitionNames();
 
         Arrays.stream(beanNames)
                 .sorted()

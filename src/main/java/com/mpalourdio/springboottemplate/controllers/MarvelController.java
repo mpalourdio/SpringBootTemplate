@@ -26,16 +26,16 @@ public class MarvelController {
 
     private final MarvelProperties marvelProperties;
 
-    public MarvelController(final MarvelProperties marvelProperties) {
+    public MarvelController(MarvelProperties marvelProperties) {
         this.marvelProperties = marvelProperties;
     }
 
     @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> allCharacters() {
-        final RestTemplate restTemplate = new RestTemplate();
-        final String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
-        final String hash = DigestUtils.md5Hex(timestamp + marvelProperties.getPrivatekey() + marvelProperties.getPublickey());
-        final String uri = "http://gateway.marvel.com/v1/public/characters/1009220?apikey=" + marvelProperties.getPublickey() + "&ts=" + timestamp + "&hash=" + hash;
+        RestTemplate restTemplate = new RestTemplate();
+        String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+        String hash = DigestUtils.md5Hex(timestamp + marvelProperties.getPrivatekey() + marvelProperties.getPublickey());
+        String uri = "http://gateway.marvel.com/v1/public/characters/1009220?apikey=" + marvelProperties.getPublickey() + "&ts=" + timestamp + "&hash=" + hash;
 
         return restTemplate.getForEntity(uri, String.class);
     }

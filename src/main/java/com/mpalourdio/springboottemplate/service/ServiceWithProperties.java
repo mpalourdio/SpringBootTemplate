@@ -15,7 +15,7 @@ public class ServiceWithProperties {
 
     private final String valueFromConfig;
 
-    public ServiceWithProperties(final String valueFromConfig) {
+    public ServiceWithProperties(String valueFromConfig) {
         this.valueFromConfig = valueFromConfig;
     }
 

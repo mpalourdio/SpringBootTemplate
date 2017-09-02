@@ -13,7 +13,7 @@ public class MyEvent {
 
     private String message;
 
-    public MyEvent(final String message) {
+    public MyEvent(String message) {
         this.message = message;
     }
 
@@ -21,7 +21,7 @@ public class MyEvent {
         return message;
     }
 
-    public void setMessage(final String message) {
+    public void setMessage(String message) {
         this.message = message;
     }
 }

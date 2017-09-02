@@ -10,7 +10,7 @@ final public class RandomStringUtils {
     private RandomStringUtils() {
     }
 
-    public static String randomAlphaNumeric(final int length) {
+    public static String randomAlphaNumeric(int length) {
         return new RandomStringGenerator.Builder()
                 .withinRange('0', 'z')
                 .filteredBy(LETTERS, DIGITS)
@@ -19,14 +19,14 @@ final public class RandomStringUtils {
                 .toLowerCase();
     }
 
-    public static String randomAlphabetic(final int length) {
+    public static String randomAlphabetic(int length) {
         return new RandomStringGenerator.Builder()
                 .withinRange('a', 'z')
                 .build()
                 .generate(length);
     }
 
-    public static String randomNumeric(final int length) {
+    public static String randomNumeric(int length) {
         return new RandomStringGenerator.Builder()
                 .withinRange('0', '9')
                 .build()

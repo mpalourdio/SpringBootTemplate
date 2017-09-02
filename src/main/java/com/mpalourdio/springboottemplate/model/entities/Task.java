@@ -53,7 +53,7 @@ public class Task {
         return taskName;
     }
 
-    public void setTaskName(final String taskName) {
+    public void setTaskName(String taskName) {
         this.taskName = taskName;
     }
 
@@ -61,7 +61,7 @@ public class Task {
         return taskDescription;
     }
 
-    public void setTaskDescription(final String taskDescription) {
+    public void setTaskDescription(String taskDescription) {
         this.taskDescription = taskDescription;
     }
 
@@ -69,7 +69,7 @@ public class Task {
         return taskPriority;
     }
 
-    public void setTaskPriority(final String taskPriority) {
+    public void setTaskPriority(String taskPriority) {
         this.taskPriority = taskPriority;
     }
 
@@ -77,7 +77,7 @@ public class Task {
         return taskStatus;
     }
 
-    public void setTaskStatus(final String taskStatus) {
+    public void setTaskStatus(String taskStatus) {
         this.taskStatus = taskStatus;
     }
 
@@ -85,7 +85,7 @@ public class Task {
         return taskArchived;
     }
 
-    public void setTaskArchived(final Boolean taskArchived) {
+    public void setTaskArchived(Boolean taskArchived) {
         this.taskArchived = taskArchived;
     }
 
@@ -93,7 +93,7 @@ public class Task {
         return people;
     }
 
-    public void setPeople(final List<People> people) {
+    public void setPeople(List<People> people) {
         this.people = people;
     }
 
@@ -102,7 +102,7 @@ public class Task {
         return startDate;
     }
 
-    public void setStartDate(final LocalDateTime startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 

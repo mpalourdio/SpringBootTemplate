@@ -36,10 +36,10 @@ public class MiscControllerTest extends AbstractTestRunner {
 
     @Test
     public void testSerializationForMvcTests() throws Exception {
-        final ToSerialize toSerialize = new ToSerialize();
-        final String input = serializeToJson(toSerialize);
+        ToSerialize toSerialize = new ToSerialize();
+        String input = serializeToJson(toSerialize);
 
-        final ToSerialize output = toSerialize.clone();
+        ToSerialize output = toSerialize.clone();
         output.prop1 = "prop1updated";
 
         mockMvc.perform(post("/misc/serialization")
@@ -51,14 +51,14 @@ public class MiscControllerTest extends AbstractTestRunner {
     @Test
     public void testJsonUnwrappingInAClassDecorator() throws Exception {
 
-        final Account account = new Account();
+        Account account = new Account();
         account.lastName = "lastName";
         account.firstName = "firstName";
 
-        final String input = serializeToJson(account);
+        String input = serializeToJson(account);
 
-        final AccountDecorator accountDecorator = new AccountDecorator(account);
-        final Context context = new Context();
+        AccountDecorator accountDecorator = new AccountDecorator(account);
+        Context context = new Context();
         accountDecorator.context = context;
         context.ref = "ref";
 

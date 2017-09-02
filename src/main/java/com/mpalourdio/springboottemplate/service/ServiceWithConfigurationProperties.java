@@ -15,7 +15,7 @@ public class ServiceWithConfigurationProperties {
 
     private final MyPropertyConfigHolder myProperty;
 
-    public ServiceWithConfigurationProperties(final MyPropertyConfigHolder myProperty) {
+    public ServiceWithConfigurationProperties(MyPropertyConfigHolder myProperty) {
         this.myProperty = myProperty;
     }
 

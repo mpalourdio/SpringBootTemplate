@@ -17,7 +17,7 @@ public class MediaType extends org.springframework.http.MediaType {
     public final static org.springframework.http.MediaType APPLICATION_VND_API_V2;
     public static final String APPLICATION_VND_API_V2_VALUE = "application/vnd.api.v2+json";
 
-    private MediaType(final String type) {
+    private MediaType(String type) {
         super(type);
     }
 

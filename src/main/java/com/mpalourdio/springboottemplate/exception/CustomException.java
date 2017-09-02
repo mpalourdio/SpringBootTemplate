@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(code = HttpStatus.PAYLOAD_TOO_LARGE)
 public class CustomException extends Exception {
 
-    public CustomException(final String message) {
+    public CustomException(String message) {
         super(message);
     }
 }

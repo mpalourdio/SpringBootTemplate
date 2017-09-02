@@ -25,10 +25,10 @@ public class ConfigServerController {
     private final String common2;
 
     public ConfigServerController(
-            @Value("${username}") final String username,
-            @Value("${password}") final String password,
-            @Value("${common1}") final String common1,
-            @Value("${common2}") final String common2
+            @Value("${username}") String username,
+            @Value("${password}") String password,
+            @Value("${common1}") String common1,
+            @Value("${common2}") String common2
     ) {
         this.username = username;
         this.password = password;

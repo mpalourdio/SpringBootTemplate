@@ -21,12 +21,12 @@ public class DiscoveryServerController {
 
     private final DiscoveryClient discoveryClient;
 
-    public DiscoveryServerController(final DiscoveryClient discoveryClient) {
+    public DiscoveryServerController(DiscoveryClient discoveryClient) {
         this.discoveryClient = discoveryClient;
     }
 
     @GetMapping("/service-instances/{applicationName}")
-    public List<ServiceInstance> serviceInstancesByApplicationName(@PathVariable final String applicationName) {
+    public List<ServiceInstance> serviceInstancesByApplicationName(@PathVariable String applicationName) {
         return discoveryClient.getInstances(applicationName);
     }
 }

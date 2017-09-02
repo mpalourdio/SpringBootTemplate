@@ -18,16 +18,16 @@ public class AsyncLogger {
 
     private final ApplicationEventPublisher eventPublisher;
 
-    public AsyncLogger(final ApplicationEventPublisher eventPublisher) {
+    public AsyncLogger(ApplicationEventPublisher eventPublisher) {
         this.eventPublisher = eventPublisher;
     }
 
-    public void write(final Class ownerClass, final Level logLevel, final String logMessage) {
+    public void write(Class ownerClass, Level logLevel, String logMessage) {
         eventPublisher.publishEvent(new LogEvent(ownerClass, logLevel, logMessage));
     }
 
-    public static void log(final Class ownerClass, final Level logLevel, final String logMessage) {
-        final Logger logger = LoggerFactory.getLogger(ownerClass);
+    public static void log(Class ownerClass, Level logLevel, String logMessage) {
+        Logger logger = LoggerFactory.getLogger(ownerClass);
 
         switch (logLevel.levelInt) {
             case Level.TRACE_INT:

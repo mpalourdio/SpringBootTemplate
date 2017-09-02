@@ -21,32 +21,32 @@ public class PasswordServiceTest {
     @Test
     public void testCanMakeMatchAGeneratedPassword() {
 
-        final PasswordService passwordService = new PasswordService();
-        final String myawesomepassword = "myawesomepassword";
-        final String generatedPassword = passwordService.generateEncryptedPasword(myawesomepassword);
+        PasswordService passwordService = new PasswordService();
+        String myawesomepassword = "myawesomepassword";
+        String generatedPassword = passwordService.generateEncryptedPasword(myawesomepassword);
 
         Assert.assertTrue(passwordService.isPasswordValid(myawesomepassword, generatedPassword));
     }
 
     @Test
     public void testCanEncodeToBase64() {
-        final PasswordService passwordService = new PasswordService();
-        final String toEncode = "toEncode";
+        PasswordService passwordService = new PasswordService();
+        String toEncode = "toEncode";
         Assert.assertTrue(Base64.isBase64(passwordService.encodeStringToBase64(toEncode).getBytes()));
     }
 
     @Test
     public void testCanDecodeBase64() {
-        final PasswordService passwordService = new PasswordService();
-        final String base64EncodedString = "dG9FbmNvZGU=";
+        PasswordService passwordService = new PasswordService();
+        String base64EncodedString = "dG9FbmNvZGU=";
         Assert.assertEquals("toEncode", passwordService.decodeBase64String(base64EncodedString));
     }
 
     @Test
     public void testCanGeneratedAPasswordOfPredefinedLength() {
-        final PasswordService passwordService = new PasswordService();
-        final int passwordLength = 20;
-        final String generatedPassword = passwordService.generatedRandomPassword(passwordLength);
+        PasswordService passwordService = new PasswordService();
+        int passwordLength = 20;
+        String generatedPassword = passwordService.generatedRandomPassword(passwordLength);
 
         Assert.assertTrue(generatedPassword.length() == passwordLength);
     }

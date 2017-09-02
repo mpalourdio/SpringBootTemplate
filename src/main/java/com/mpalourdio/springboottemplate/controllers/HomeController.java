@@ -35,10 +35,10 @@ public class HomeController {
     private final TaskRepository taskRepository;
 
     public HomeController(
-            final TaskRepository taskRepository,
-            final UselessBean uselessBean,
-            final ServiceWithProperties serviceWithProperties,
-            @Value("${property.whatever}") final String myProperty
+            TaskRepository taskRepository,
+            UselessBean uselessBean,
+            ServiceWithProperties serviceWithProperties,
+            @Value("${property.whatever}") String myProperty
     ) {
         this.taskRepository = taskRepository;
         this.uselessBean = uselessBean;
@@ -47,9 +47,9 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String indexAction(final Model model) {
-        final List task = taskRepository.findByTaskStatus(TASK_STATUS_ACTIVE);
-        final Task activity = taskRepository.findOne(1);
+    public String indexAction(Model model) {
+        List task = taskRepository.findByTaskStatus(TASK_STATUS_ACTIVE);
+        Task activity = taskRepository.findOne(1);
         model.addAttribute("iwantthisinmyview", uselessBean.getTestPro());
         model.addAttribute("iwantthisinmyviewfromhibernate", activity.getTaskName());
 
@@ -57,10 +57,10 @@ public class HomeController {
     }
 
     @GetMapping("/other")
-    public String otherAction(final Model model) {
+    public String otherAction(Model model) {
         uselessBean.setTestPro("imsetinthecontrolleronthefly");
-        final List task = taskRepository.findByTaskStatus(TASK_STATUS_ACTIVE);
-        final Task activity = taskRepository.findOne(1);
+        List task = taskRepository.findByTaskStatus(TASK_STATUS_ACTIVE);
+        Task activity = taskRepository.findOne(1);
         model.addAttribute("iwantthisinmyview", uselessBean.getTestPro());
         model.addAttribute("iwantthisinmyviewfromhibernate", activity.getTaskName());
         model.addAttribute("iwantthisinmyviewfromproperties", myProperty);
@@ -69,9 +69,9 @@ public class HomeController {
     }
 
     @GetMapping("/custorepo")
-    public String customRepoAction(final Model model) {
+    public String customRepoAction(Model model) {
         //use a custom method repository
-        final List<Task> mediumTasks = taskRepository.customFindByPriority(TASK_PRIORITY_MEDIUM);
+        List<Task> mediumTasks = taskRepository.customFindByPriority(TASK_PRIORITY_MEDIUM);
         //print only those who have 'Implementation' as task_name
         mediumTasks.
                 stream().
@@ -84,7 +84,7 @@ public class HomeController {
     @GetMapping("/invalidpath")
     @ResponseBody
     public String testInvalidPath() {
-        final List<Task> tasks = taskRepository.testInvalidPath();
+        List<Task> tasks = taskRepository.testInvalidPath();
         if (tasks.size() > 0) {
             return tasks.get(0).getTaskName();
         }
@@ -100,15 +100,15 @@ public class HomeController {
     @GetMapping("patchwithrestemplate")
     @ResponseBody
     public JsonPlaceHolder testPatchWithRestTemplate() {
-        final RestTemplate restTemplateforGet = new RestTemplate();
-        final JsonPlaceHolder jsonPlaceHolder = restTemplateforGet.getForObject(
+        RestTemplate restTemplateforGet = new RestTemplate();
+        JsonPlaceHolder jsonPlaceHolder = restTemplateforGet.getForObject(
                 "https://jsonplaceholder.typicode.com/posts/1",
                 JsonPlaceHolder.class
         );
 
         jsonPlaceHolder.body = "new body";
 
-        final RestTemplate restTemplateForPatch = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
+        RestTemplate restTemplateForPatch = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
         return restTemplateForPatch.patchForObject(
                 "https://jsonplaceholder.typicode.com/posts/1",
                 jsonPlaceHolder,
@@ -119,8 +119,8 @@ public class HomeController {
     @GetMapping("patchwithrestemplatebuilder")
     @ResponseBody
     public JsonPlaceHolder testPatchWithRestTemplateBuilder() {
-        final RestTemplate restTemplate = new RestTemplateBuilder().build();
-        final JsonPlaceHolder jsonPlaceHolder = restTemplate.getForObject(
+        RestTemplate restTemplate = new RestTemplateBuilder().build();
+        JsonPlaceHolder jsonPlaceHolder = restTemplate.getForObject(
                 "https://jsonplaceholder.typicode.com/posts/1",
                 JsonPlaceHolder.class
         );

@@ -17,7 +17,7 @@ public class LogEvent {
     private final Level logLevel;
     private final String logMessage;
 
-    public LogEvent(final Class ownerClass, final Level logLevel, final String logMessage) {
+    public LogEvent(Class ownerClass, Level logLevel, String logMessage) {
         this.ownerClass = ownerClass;
         this.logLevel = logLevel;
         this.logMessage = logMessage;

@@ -12,19 +12,19 @@ public class RandomStringUtilsTest {
 
     @Test
     public void randomAlphaNumeric() throws Exception {
-        final String generated = RandomStringUtils.randomAlphaNumeric(LENGTH);
+        String generated = RandomStringUtils.randomAlphaNumeric(LENGTH);
         Assert.assertTrue(generated.matches("^[a-z\\d]{" + LENGTH + "}$"));
     }
 
     @Test
     public void randomAlphabetic() throws Exception {
-        final String generated = RandomStringUtils.randomAlphabetic(LENGTH);
+        String generated = RandomStringUtils.randomAlphabetic(LENGTH);
         Assert.assertTrue(generated.matches("^[a-z]{" + LENGTH + "}$"));
     }
 
     @Test
     public void randomNumeric() throws Exception {
-        final String generated = RandomStringUtils.randomNumeric(LENGTH);
+        String generated = RandomStringUtils.randomNumeric(LENGTH);
         Assert.assertTrue(generated.matches("^\\d{" + LENGTH + "}$"));
     }
 }

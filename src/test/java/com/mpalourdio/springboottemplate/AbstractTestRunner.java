@@ -40,7 +40,7 @@ public abstract class AbstractTestRunner {
         people.setTask(task);
     }
 
-    public String serializeToJson(final Object object) throws JsonProcessingException {
+    public String serializeToJson(Object object) throws JsonProcessingException {
         return new ObjectMapper().writeValueAsString(object);
     }
 }

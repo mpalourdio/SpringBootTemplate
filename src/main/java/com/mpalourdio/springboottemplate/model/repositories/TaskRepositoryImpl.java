@@ -27,7 +27,7 @@ public class TaskRepositoryImpl implements CustomRepository<Task> {
     private EntityManager entityManager;
 
     @Override
-    public List<Task> customFindByPriority(final String priority) {
+    public List<Task> customFindByPriority(String priority) {
         return entityManager
                 .createQuery("select e from Task e where e.taskPriority = :taskPriority", Task.class)
                 .setParameter("taskPriority", priority)

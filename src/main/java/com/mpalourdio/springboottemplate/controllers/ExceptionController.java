@@ -25,19 +25,19 @@ public class ExceptionController {
     @GetMapping(value = "ok", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseObject ok() throws CustomException {
 
-        final ResponseObject responseObject = new ResponseObject();
+        ResponseObject responseObject = new ResponseObject();
         responseObject.property = "toto";
 
         return responseObject;
     }
 
 
-    private ResponseEntity callException(final String param) {
-        final RestTemplate restTemplate = new RestTemplate();
-        final ResponseEntity<ResponseObject> exchange;
+    private ResponseEntity callException(String param) {
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<ResponseObject> exchange;
 
-        final HttpHeaders httpHeaders = new HttpHeaders();
-        final HttpEntity httpEntity = new HttpEntity<>(httpHeaders);
+        HttpHeaders httpHeaders = new HttpHeaders();
+        HttpEntity httpEntity = new HttpEntity<>(httpHeaders);
         try {
             exchange = restTemplate.exchange(
                     "http://localhost:8080/exception/" + param,
@@ -45,7 +45,7 @@ public class ExceptionController {
                     httpEntity,
                     ResponseObject.class
             );
-        } catch (final HttpClientErrorException e) {
+        } catch (HttpClientErrorException e) {
             return ResponseEntity.status(e.getRawStatusCode()).body(e.getResponseBodyAsString());
         }
 
@@ -54,10 +54,10 @@ public class ExceptionController {
 
     @GetMapping(value = "/callok")
     public ResponseEntity getCallOk() {
-        final ResponseEntity call = callException("ok");
+        ResponseEntity call = callException("ok");
 
         if (call.getStatusCode() != HttpStatus.OK) {
-            final ResponseObject responseObject = (ResponseObject) call.getBody();
+            ResponseObject responseObject = (ResponseObject) call.getBody();
             //do things here
         }
 

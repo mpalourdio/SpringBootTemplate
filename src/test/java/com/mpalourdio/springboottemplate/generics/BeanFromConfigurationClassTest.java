@@ -22,7 +22,7 @@ public class BeanFromConfigurationClassTest extends AbstractTestRunner {
 
     @Test
     public void testImportBeanConfigurationFile() {
-        final Task task = beanFromConfigurationClass.getInstance();
+        Task task = beanFromConfigurationClass.getInstance();
         Assert.assertEquals("fromBeanConfiguration", task.getTaskName());
     }
 }

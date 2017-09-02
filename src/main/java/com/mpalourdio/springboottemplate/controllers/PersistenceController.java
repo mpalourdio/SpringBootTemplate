@@ -30,7 +30,7 @@ public class PersistenceController {
     private final TaskRepository taskRepository;
     private final RepositoriesService repositoriesService;
 
-    public PersistenceController(final TaskRepository taskRepository, final RepositoriesService repositoriesService) {
+    public PersistenceController(TaskRepository taskRepository, RepositoriesService repositoriesService) {
         this.taskRepository = taskRepository;
         this.repositoriesService = repositoriesService;
     }
@@ -43,9 +43,9 @@ public class PersistenceController {
 
     @GetMapping(value = "/testinsert", produces = MediaType.APPLICATION_JSON_VALUE)
     public Task testInsert() {
-        final String aspecificstatusfordate = "ASPECIFICSTATUSFORDATE";
+        String aspecificstatusfordate = "ASPECIFICSTATUSFORDATE";
 
-        final Task task = new Task();
+        Task task = new Task();
         task.setTaskName("name");
         task.setTaskDescription("desc");
         task.setTaskStatus(aspecificstatusfordate);
@@ -53,7 +53,7 @@ public class PersistenceController {
 
         taskRepository.save(task);
 
-        final List<Task> allTasksByStatus = taskRepository.findByTaskStatus(aspecificstatusfordate);
+        List<Task> allTasksByStatus = taskRepository.findByTaskStatus(aspecificstatusfordate);
 
         allTasksByStatus.forEach(t -> LOG.debug(t.getStartDate().toString()));
 
@@ -67,7 +67,7 @@ public class PersistenceController {
 
     @GetMapping(value = "/annotated", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public int annotated() {
-        final List<Task> allTasksByArchichedValue = taskRepository.getAllTasksByArchichedValue(false);
+        List<Task> allTasksByArchichedValue = taskRepository.getAllTasksByArchichedValue(false);
 
         return allTasksByArchichedValue.size();
     }

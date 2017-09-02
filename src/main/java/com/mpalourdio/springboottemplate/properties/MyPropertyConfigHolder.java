@@ -21,7 +21,7 @@ public class MyPropertyConfigHolder {
         return first;
     }
 
-    public void setFirst(final String first) {
+    public void setFirst(String first) {
         this.first = first;
     }
 
@@ -29,7 +29,7 @@ public class MyPropertyConfigHolder {
         return second;
     }
 
-    public void setSecond(final String second) {
+    public void setSecond(String second) {
         this.second = second;
     }
 }

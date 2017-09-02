@@ -20,7 +20,7 @@ public class RefreshScopeController {
 
     private final String refreshable;
 
-    public RefreshScopeController(@Value("${refreshable}") final String refreshable) {
+    public RefreshScopeController(@Value("${refreshable}") String refreshable) {
         this.refreshable = refreshable;
     }
 

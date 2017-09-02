@@ -19,7 +19,7 @@ public class UselessBean {
 
     private final ABeanIWantToMock aBeanIWantToMock;
 
-    public UselessBean(final ABeanIWantToMock aBeanIWantToMock) {
+    public UselessBean(ABeanIWantToMock aBeanIWantToMock) {
         this.aBeanIWantToMock = aBeanIWantToMock;
     }
 
@@ -31,11 +31,11 @@ public class UselessBean {
         return testPro;
     }
 
-    public void setTestPro(final String testPro) {
+    public void setTestPro(String testPro) {
         this.testPro = testPro;
     }
 
-    public void testSerialization(final ToSerialize toSerialize) {
+    public void testSerialization(ToSerialize toSerialize) {
         toSerialize.prop1 = "prop1updated";
     }
 }

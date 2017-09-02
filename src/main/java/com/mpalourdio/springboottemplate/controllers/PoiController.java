@@ -36,23 +36,23 @@ public class PoiController {
 
     @GetMapping(value = "/download", produces = "application/vnd.ms-excel")
     public ResponseEntity<byte[]> donwloadExcel() throws IOException {
-        final HSSFWorkbook workbook = generateExcelFile();
+        HSSFWorkbook workbook = generateExcelFile();
 
-        final HttpHeaders responseHeaders = new HttpHeaders();
+        HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.setContentDispositionFormData("attachment", "excel_file.xls");
 
-        final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         workbook.write(outputStream);
 
-        final byte[] responseBody = outputStream.toByteArray();
+        byte[] responseBody = outputStream.toByteArray();
         responseHeaders.setContentLength(responseBody.length);// useful ?
 
         return new ResponseEntity<>(responseBody, responseHeaders, HttpStatus.OK);
     }
 
     @GetMapping(value = "/download2")
-    public void donwloadExcelFile(final HttpServletResponse response) throws IOException {
-        final HSSFWorkbook workbook = generateExcelFile();
+    public void donwloadExcelFile(HttpServletResponse response) throws IOException {
+        HSSFWorkbook workbook = generateExcelFile();
 
         response.setHeader("Content-Disposition", "attachement; filename=\"" + FILENAME + "\"");
 
@@ -62,10 +62,10 @@ public class PoiController {
     }
 
     private HSSFWorkbook generateExcelFile() {
-        final HSSFWorkbook workbook = new HSSFWorkbook();
-        final HSSFSheet worksheet = workbook.createSheet("POI Worksheet");
-        final HSSFRow row = worksheet.createRow(0);
-        final HSSFCell cell = row.createCell(0);
+        HSSFWorkbook workbook = new HSSFWorkbook();
+        HSSFSheet worksheet = workbook.createSheet("POI Worksheet");
+        HSSFRow row = worksheet.createRow(0);
+        HSSFCell cell = row.createCell(0);
         cell.setCellValue("cell value");
 
         return workbook;

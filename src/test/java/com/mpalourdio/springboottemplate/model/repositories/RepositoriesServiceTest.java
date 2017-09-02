@@ -44,9 +44,9 @@ public class RepositoriesServiceTest {
 
     @Test
     public void testEntityManagerIsMocked() {
-        final int expectedId = 666;
+        int expectedId = 666;
 
-        final People people = new People();
+        People people = new People();
         people.setId(expectedId);
 
         Mockito.when(entityManager.getReference(People.class, 1)).thenReturn(people);

@@ -11,7 +11,7 @@ package com.mpalourdio.springboottemplate.exception;
 
 public class AnotherCustomException extends Exception {
 
-    public AnotherCustomException(final String message) {
+    public AnotherCustomException(String message) {
         super(message);
     }
 }
