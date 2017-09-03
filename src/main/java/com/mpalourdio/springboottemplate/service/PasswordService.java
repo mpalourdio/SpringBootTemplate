@@ -11,7 +11,8 @@ package com.mpalourdio.springboottemplate.service;
 
 import org.apache.commons.text.RandomStringGenerator;
 import org.springframework.security.crypto.bcrypt.BCrypt;
-import org.springframework.security.crypto.codec.Base64;
+
+import java.util.Base64;
 
 import static org.apache.commons.text.CharacterPredicates.DIGITS;
 import static org.apache.commons.text.CharacterPredicates.LETTERS;
@@ -27,11 +28,11 @@ public class PasswordService {
     }
 
     public String encodeStringToBase64(String toEncode) {
-        return new String(Base64.encode(toEncode.getBytes()));
+        return new String(Base64.getEncoder().encode(toEncode.getBytes()));
     }
 
     public String decodeBase64String(String base64EncodedString) {
-        return new String(Base64.decode(base64EncodedString.getBytes()));
+        return new String(Base64.getDecoder().decode(base64EncodedString.getBytes()));
     }
 
     public String generatedRandomPassword(int length) {

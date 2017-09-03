@@ -13,7 +13,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
-import org.springframework.security.crypto.codec.Base64;
 
 @RunWith(JUnit4.class)
 public class PasswordServiceTest {
@@ -31,8 +30,8 @@ public class PasswordServiceTest {
     @Test
     public void testCanEncodeToBase64() {
         PasswordService passwordService = new PasswordService();
-        String toEncode = "toEncode";
-        Assert.assertTrue(Base64.isBase64(passwordService.encodeStringToBase64(toEncode).getBytes()));
+        String base64EncodedString = "dG9FbmNvZGU=";
+        Assert.assertEquals(base64EncodedString, passwordService.encodeStringToBase64("toEncode"));
     }
 
     @Test
