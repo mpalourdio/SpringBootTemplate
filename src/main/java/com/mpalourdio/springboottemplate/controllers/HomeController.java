@@ -49,7 +49,7 @@ public class HomeController {
     @GetMapping("/")
     public String indexAction(Model model) {
         List task = taskRepository.findByTaskStatus(TASK_STATUS_ACTIVE);
-        Task activity = taskRepository.findOne(1);
+        Task activity = taskRepository.findById(1).orElse(null);
         model.addAttribute("iwantthisinmyview", uselessBean.getTestPro());
         model.addAttribute("iwantthisinmyviewfromhibernate", activity.getTaskName());
 
@@ -60,7 +60,7 @@ public class HomeController {
     public String otherAction(Model model) {
         uselessBean.setTestPro("imsetinthecontrolleronthefly");
         List task = taskRepository.findByTaskStatus(TASK_STATUS_ACTIVE);
-        Task activity = taskRepository.findOne(1);
+        Task activity = taskRepository.findById(1).orElse(null);
         model.addAttribute("iwantthisinmyview", uselessBean.getTestPro());
         model.addAttribute("iwantthisinmyviewfromhibernate", activity.getTaskName());
         model.addAttribute("iwantthisinmyviewfromproperties", myProperty);

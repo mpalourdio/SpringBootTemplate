@@ -10,7 +10,7 @@
 package com.mpalourdio.springboottemplate.model.entities;
 
 import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.jpa.criteria.expression.function.CurrentTimestampFunction;
+import org.hibernate.query.criteria.internal.expression.function.CurrentTimestampFunction;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
