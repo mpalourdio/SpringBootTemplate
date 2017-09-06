@@ -38,7 +38,7 @@
         <lombok.version>1.16.18</lombok.version>
         <postgresql.version>42.1.4</postgresql.version>
 
-        <versions-maven-plugin.version>2.3</versions-maven-plugin.version>
+        <versions-maven-plugin.version>2.4</versions-maven-plugin.version>
         <maven-surefire-plugin.version>2.20</maven-surefire-plugin.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
     </properties>
