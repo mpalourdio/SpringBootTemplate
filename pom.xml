@@ -103,7 +103,6 @@
             <artifactId>lombok</artifactId>
         </dependency>
         <!-- needed to use PATCH verbs with RestTemplate -->
-        <!-- We can use RestTemplateBuilder that is more convenient BTW -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
