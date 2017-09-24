@@ -2,4 +2,3 @@ dist: trusty
 language: java
 jdk:
   - openjdk8
-  - openjdk9
