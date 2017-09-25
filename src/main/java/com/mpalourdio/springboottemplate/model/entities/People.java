@@ -11,6 +11,7 @@ package com.mpalourdio.springboottemplate.model.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 
@@ -18,6 +19,7 @@ import javax.persistence.*;
 @Table(name = "task_people")
 @Getter
 @Setter
+@Accessors(chain = true)
 public class People {
 
     @Id

@@ -35,9 +35,9 @@ public abstract class AbstractTestRunner {
         task.setTaskPriority("LOW");
         task.setTaskStatus("ACTIVE");
 
-        people = new People();
-        people.setName("john");
-        people.setTask(task);
+        people = new People()
+                .setName("john")
+                .setTask(task);
     }
 
     public String serializeToJson(Object object) throws JsonProcessingException {
