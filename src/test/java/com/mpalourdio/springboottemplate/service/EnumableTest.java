@@ -19,7 +19,6 @@ import java.io.IOException;
 
 public class EnumableTest {
 
-
     @Test
     public void testCanSerializeWithEnums() throws JsonProcessingException {
         Enumable enumable = new Enumable();
