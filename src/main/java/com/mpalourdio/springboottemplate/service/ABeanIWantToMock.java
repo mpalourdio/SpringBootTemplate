@@ -9,7 +9,7 @@
 
 package com.mpalourdio.springboottemplate.service;
 
-final public class ABeanIWantToMock {
+public final class ABeanIWantToMock {
 
     public Boolean iAlwaysReturnFalse() {
         return false;

@@ -11,10 +11,10 @@ package com.mpalourdio.springboottemplate.mediatype;
 
 public class MediaType extends org.springframework.http.MediaType {
 
-    public final static org.springframework.http.MediaType APPLICATION_VND_API_V1;
+    public static final org.springframework.http.MediaType APPLICATION_VND_API_V1;
     public static final String APPLICATION_VND_API_V1_VALUE = "application/vnd.api.v1+json";
 
-    public final static org.springframework.http.MediaType APPLICATION_VND_API_V2;
+    public static final org.springframework.http.MediaType APPLICATION_VND_API_V2;
     public static final String APPLICATION_VND_API_V2_VALUE = "application/vnd.api.v2+json";
 
     private MediaType(String type) {
