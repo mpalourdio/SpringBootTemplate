@@ -12,12 +12,16 @@ package com.mpalourdio.springboottemplate.controllers;
 import com.mpalourdio.springboottemplate.mediatype.MediaType;
 import com.mpalourdio.springboottemplate.properties.MarvelProperties;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.Arrays;
 
 @RestController
 @RequestMapping("/marvel")
@@ -25,9 +29,22 @@ import org.springframework.web.client.RestTemplate;
 public class MarvelController {
 
     private final MarvelProperties marvelProperties;
+    private final HttpHeaders addonHeaders = new HttpHeaders();
 
     public MarvelController(MarvelProperties marvelProperties) {
         this.marvelProperties = marvelProperties;
+        buildAddonsHeaders(marvelProperties);
+    }
+
+    private void buildAddonsHeaders(MarvelProperties marvelProperties) {
+        String unkownProperty = marvelProperties.getUnknownProperty();
+
+        if (StringUtils.isNotBlank(unkownProperty)) {
+            Arrays.asList(unkownProperty.split(",")).forEach(h -> {
+                        String[] split = h.split("=");
+                        addonHeaders.add(split[0], split[1]);
+                    });
+        }
     }
 
     @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)

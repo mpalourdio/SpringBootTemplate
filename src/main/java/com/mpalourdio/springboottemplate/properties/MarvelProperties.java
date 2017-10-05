@@ -16,6 +16,7 @@ public class MarvelProperties {
 
     private String privatekey;
     private String publickey;
+    private String unknownProperty;
 
     public String getPrivatekey() {
         return privatekey;
@@ -31,5 +32,13 @@ public class MarvelProperties {
 
     public void setPublickey(String publickey) {
         this.publickey = publickey;
+    }
+
+    public String getUnknownProperty() {
+        return unknownProperty;
+    }
+
+    public void setUnknownProperty(String unknownProperty) {
+        this.unknownProperty = unknownProperty;
     }
 }
