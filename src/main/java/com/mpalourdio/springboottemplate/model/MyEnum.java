@@ -19,7 +19,7 @@ public enum MyEnum {
 
     private final String value;
 
-    private MyEnum(String value) {
+    MyEnum(String value) {
         this.value = value;
     }
 
