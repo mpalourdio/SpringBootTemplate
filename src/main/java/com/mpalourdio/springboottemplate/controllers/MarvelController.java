@@ -41,9 +41,9 @@ public class MarvelController {
 
         if (StringUtils.isNotBlank(unkownProperty)) {
             Arrays.asList(unkownProperty.split(",")).forEach(h -> {
-                        String[] split = h.split("=");
-                        addonHeaders.add(split[0], split[1]);
-                    });
+                String[] split = h.split("=");
+                addonHeaders.add(split[0], split[1]);
+            });
         }
     }
 
@@ -52,7 +52,12 @@ public class MarvelController {
         RestTemplate restTemplate = new RestTemplate();
         String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
         String hash = DigestUtils.md5Hex(timestamp + marvelProperties.getPrivatekey() + marvelProperties.getPublickey());
-        String uri = "http://gateway.marvel.com/v1/public/characters/1009220?apikey=" + marvelProperties.getPublickey() + "&ts=" + timestamp + "&hash=" + hash;
+        String uri = "http://gateway.marvel.com/v1/public/characters/1009220?apikey="
+                + marvelProperties.getPublickey()
+                + "&ts="
+                + timestamp
+                + "&hash="
+                + hash;
 
         return restTemplate.getForEntity(uri, String.class);
     }

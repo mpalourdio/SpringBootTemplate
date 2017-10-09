@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/configserver", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class ConfigServerController {
 
+    public static final String SEPARATOR = " - ";
     private final String username;
     private final String password;
     private final String common1;
@@ -38,6 +39,6 @@ public class ConfigServerController {
 
     @GetMapping
     public String getPropertyFromConfigServer() {
-        return common1 + " - " + common2 + " // " + username + " - " + password;
+        return common1 + SEPARATOR + common2 + " // " + username + SEPARATOR + password;
     }
 }

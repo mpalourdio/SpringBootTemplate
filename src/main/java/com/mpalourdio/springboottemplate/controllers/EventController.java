@@ -24,11 +24,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class EventController {
 
     private final ApplicationEventPublisher eventPublisher;
-    private final AsyncLogger LOG;
+    private final AsyncLogger logger;
 
     public EventController(ApplicationEventPublisher eventPublisher, AsyncLogger asyncLogger) {
         this.eventPublisher = eventPublisher;
-        LOG = asyncLogger;
+        logger = asyncLogger;
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
@@ -43,13 +43,13 @@ public class EventController {
     }
 
     @GetMapping(value = "/log", produces = MediaType.APPLICATION_JSON_VALUE)
-    public String LogAction() {
-        LOG.write(getClass(), Level.TRACE, "TRACE");
-        LOG.write(getClass(), Level.ERROR, "ERROR");
-        LOG.write(getClass(), Level.DEBUG, "DEBUG");
-        LOG.write(getClass(), Level.WARN, "WARN");
-        LOG.write(getClass(), Level.INFO, "INFO");
-        LOG.write(getClass(), Level.OFF, "OFF");
+    public String logAction() {
+        logger.write(getClass(), Level.TRACE, "TRACE");
+        logger.write(getClass(), Level.ERROR, "ERROR");
+        logger.write(getClass(), Level.DEBUG, "DEBUG");
+        logger.write(getClass(), Level.WARN, "WARN");
+        logger.write(getClass(), Level.INFO, "INFO");
+        logger.write(getClass(), Level.OFF, "OFF");
 
         return "things logged (async)";
     }

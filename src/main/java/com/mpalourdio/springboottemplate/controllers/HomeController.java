@@ -29,6 +29,14 @@ public class HomeController {
 
     private static final String TASK_STATUS_ACTIVE = "ACTIVE";
     private static final String TASK_PRIORITY_MEDIUM = "MEDIUM";
+
+    public static final String IWANTTHISINMYVIEW = "iwantthisinmyview";
+    public static final String IWANTTHISINMYVIEWFROMHIBERNATE = "iwantthisinmyviewfromhibernate";
+
+    public static final String HTTPS_JSONPLACEHOLDER_TYPICODE_COM_POSTS_1 = "https://jsonplaceholder.typicode.com/posts/1";
+    public static final String HOME_INDEX = "home/index";
+    public static final String NEW_BODY = "new body";
+
     private final ServiceWithProperties serviceWithProperties;
     private final String myProperty;
     private final UselessBean uselessBean;
@@ -50,10 +58,10 @@ public class HomeController {
     public String indexAction(Model model) {
         List task = taskRepository.findByTaskStatus(TASK_STATUS_ACTIVE);
         Task activity = taskRepository.findById(1).orElse(null);
-        model.addAttribute("iwantthisinmyview", uselessBean.getTestPro());
-        model.addAttribute("iwantthisinmyviewfromhibernate", activity.getTaskName());
+        model.addAttribute(IWANTTHISINMYVIEW, uselessBean.getTestPro());
+        model.addAttribute(IWANTTHISINMYVIEWFROMHIBERNATE, activity.getTaskName());
 
-        return "home/index";
+        return HOME_INDEX;
     }
 
     @GetMapping("/other")
@@ -61,11 +69,11 @@ public class HomeController {
         uselessBean.setTestPro("imsetinthecontrolleronthefly");
         List task = taskRepository.findByTaskStatus(TASK_STATUS_ACTIVE);
         Task activity = taskRepository.findById(1).orElse(null);
-        model.addAttribute("iwantthisinmyview", uselessBean.getTestPro());
-        model.addAttribute("iwantthisinmyviewfromhibernate", activity.getTaskName());
+        model.addAttribute(IWANTTHISINMYVIEW, uselessBean.getTestPro());
+        model.addAttribute(IWANTTHISINMYVIEWFROMHIBERNATE, activity.getTaskName());
         model.addAttribute("iwantthisinmyviewfromproperties", myProperty);
 
-        return "home/index";
+        return HOME_INDEX;
     }
 
     @GetMapping("/custorepo")
@@ -73,12 +81,11 @@ public class HomeController {
         //use a custom method repository
         List<Task> mediumTasks = taskRepository.customFindByPriority(TASK_PRIORITY_MEDIUM);
         //print only those who have 'Implementation' as task_name
-        mediumTasks.
-                stream().
-                filter(s -> s.getTaskName().equals("Implementation")).
-                forEach(System.out::println);
+        mediumTasks.stream()
+                .filter(s -> s.getTaskName().equals("Implementation"))
+                .forEach(System.out::println);
 
-        return "home/index";
+        return HOME_INDEX;
     }
 
     @GetMapping("/invalidpath")
@@ -102,15 +109,15 @@ public class HomeController {
     public JsonPlaceHolder testPatchWithRestTemplate() {
         RestTemplate restTemplateforGet = new RestTemplate();
         JsonPlaceHolder jsonPlaceHolder = restTemplateforGet.getForObject(
-                "https://jsonplaceholder.typicode.com/posts/1",
+                HTTPS_JSONPLACEHOLDER_TYPICODE_COM_POSTS_1,
                 JsonPlaceHolder.class
         );
 
-        jsonPlaceHolder.body = "new body";
+        jsonPlaceHolder.body = NEW_BODY;
 
         RestTemplate restTemplateForPatch = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
         return restTemplateForPatch.patchForObject(
-                "https://jsonplaceholder.typicode.com/posts/1",
+                HTTPS_JSONPLACEHOLDER_TYPICODE_COM_POSTS_1,
                 jsonPlaceHolder,
                 JsonPlaceHolder.class
         );
@@ -121,13 +128,13 @@ public class HomeController {
     public JsonPlaceHolder testPatchWithRestTemplateBuilder() {
         RestTemplate restTemplate = new RestTemplateBuilder().build();
         JsonPlaceHolder jsonPlaceHolder = restTemplate.getForObject(
-                "https://jsonplaceholder.typicode.com/posts/1",
+                HTTPS_JSONPLACEHOLDER_TYPICODE_COM_POSTS_1,
                 JsonPlaceHolder.class
         );
 
-        jsonPlaceHolder.body = "new body";
+        jsonPlaceHolder.body = NEW_BODY;
         return restTemplate.patchForObject(
-                "https://jsonplaceholder.typicode.com/posts/1",
+                HTTPS_JSONPLACEHOLDER_TYPICODE_COM_POSTS_1,
                 jsonPlaceHolder,
                 JsonPlaceHolder.class
         );

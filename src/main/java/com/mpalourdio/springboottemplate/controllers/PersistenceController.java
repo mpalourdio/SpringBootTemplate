@@ -25,7 +25,7 @@ import java.util.List;
 @RestController
 public class PersistenceController {
 
-    private final Logger LOG = LoggerFactory.getLogger(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private final TaskRepository taskRepository;
     private final RepositoriesService repositoriesService;
@@ -55,7 +55,7 @@ public class PersistenceController {
 
         List<Task> allTasksByStatus = taskRepository.findByTaskStatus(aspecificstatusfordate);
 
-        allTasksByStatus.forEach(t -> LOG.debug(t.getStartDate().toString()));
+        allTasksByStatus.forEach(t -> logger.debug(t.getStartDate().toString()));
 
         return task;
     }

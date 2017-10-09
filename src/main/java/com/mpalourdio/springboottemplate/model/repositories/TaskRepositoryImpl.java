@@ -37,7 +37,8 @@ public class TaskRepositoryImpl implements CustomRepository<Task> {
     @Override
     public List<Dummy> hydrateDummyObject() {
         return entityManager
-                .createQuery("select NEW com.mpalourdio.springboottemplate.model.Dummy(p.name, e.taskDescription) from Task e JOIN e.people p", Dummy.class)
+                .createQuery("select NEW com.mpalourdio.springboottemplate.model.Dummy(p.name, e.taskDescription) "
+                        + "from Task e JOIN e.people p", Dummy.class)
                 .getResultList();
     }
 

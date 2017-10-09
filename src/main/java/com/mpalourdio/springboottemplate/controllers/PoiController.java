@@ -39,13 +39,13 @@ public class PoiController {
         HSSFWorkbook workbook = generateExcelFile();
 
         HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.setContentDispositionFormData("attachment", "excel_file.xls");
+        responseHeaders.setContentDispositionFormData("attachment", FILENAME);
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         workbook.write(outputStream);
 
         byte[] responseBody = outputStream.toByteArray();
-        responseHeaders.setContentLength(responseBody.length);// useful ?
+        responseHeaders.setContentLength(responseBody.length); // useful ?
 
         return new ResponseEntity<>(responseBody, responseHeaders, HttpStatus.OK);
     }

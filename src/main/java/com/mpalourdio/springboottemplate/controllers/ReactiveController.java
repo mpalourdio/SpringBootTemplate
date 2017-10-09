@@ -33,7 +33,11 @@ public class ReactiveController {
     public Mono<String> get() {
         String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
         String hash = DigestUtils.md5Hex(timestamp + marvelProperties.getPrivatekey() + marvelProperties.getPublickey());
-        String uri = "http://gateway.marvel.com/v1/public/characters/1009220?apikey=" + marvelProperties.getPublickey() + "&ts=" + timestamp + "&hash=" + hash;
+        String uri = "http://gateway.marvel.com/v1/public/characters/1009220?apikey="
+                + marvelProperties.getPublickey()
+                + "&ts="
+                + timestamp
+                + "&hash=" + hash;
 
         WebClient webClient = WebClient.create(uri);
 

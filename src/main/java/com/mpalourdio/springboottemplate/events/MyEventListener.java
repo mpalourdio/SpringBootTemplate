@@ -18,7 +18,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableAsync
 public class MyEventListener {
 
-    private final Logger LOG = LoggerFactory.getLogger(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
     private MyEvent myEvent;
 
     @EventListener
@@ -38,7 +38,7 @@ public class MyEventListener {
     @EventListener
     public void publishMeAsynchronously(AsyncEvent event) throws InterruptedException {
         Thread.sleep(5000);
-        LOG.debug("I've been fired first in EventController#publishAction, but displayed last");
+        logger.debug("I've been fired first in EventController#publishAction, but displayed last");
     }
 
     @Async

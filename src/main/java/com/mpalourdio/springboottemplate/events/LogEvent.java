@@ -24,6 +24,6 @@ public class LogEvent {
     }
 
     public void triggerLogging() {
-        AsyncLogger.log(ownerClass, logLevel,logMessage);
+        AsyncLogger.log(ownerClass, logLevel, logMessage);
     }
 }

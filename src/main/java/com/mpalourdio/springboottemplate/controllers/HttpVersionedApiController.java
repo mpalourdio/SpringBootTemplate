@@ -41,12 +41,20 @@ public class HttpVersionedApiController {
         return "v2";
     }
 
-    @PostMapping(value = "/test", consumes = MediaType.APPLICATION_VND_API_V1_VALUE, produces = MediaType.APPLICATION_VND_API_V1_VALUE)
+    @PostMapping(
+            value = "/test",
+            consumes = MediaType.APPLICATION_VND_API_V1_VALUE,
+            produces = MediaType.APPLICATION_VND_API_V1_VALUE
+    )
     public String processV1Post() {
         return "v1-post";
     }
 
-    @PostMapping(value = "/test", consumes = MediaType.APPLICATION_VND_API_V2_VALUE, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_VND_API_V2_VALUE})
+    @PostMapping(
+            value = "/test",
+            consumes = MediaType.APPLICATION_VND_API_V2_VALUE,
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_VND_API_V2_VALUE}
+    )
     public String processV2Post() {
         return "v2-post";
     }
@@ -56,7 +64,11 @@ public class HttpVersionedApiController {
         return "v1-post-consumes-all";
     }
 
-    @PostMapping(value = "/test", consumes = MediaType.ALL_VALUE, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_VND_API_V2_VALUE})
+    @PostMapping(
+            value = "/test",
+            consumes = MediaType.ALL_VALUE,
+            produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_VND_API_V2_VALUE}
+    )
     public String processV2PostConsumeAll() {
         return "v2-post-consumes-all";
     }
