@@ -1,6 +1,4 @@
 language: java
-group: edge
 
 jdk:
   - openjdk8
-  - openjdk9
