@@ -1,4 +1,7 @@
 dist: trusty
 language: java
+groupe: edge
+
 jdk:
   - openjdk8
+  - openjdk9
