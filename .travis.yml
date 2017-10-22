@@ -3,4 +3,4 @@ group: edge
 
 jdk:
   - openjdk8
-  - oraclejdk9
+  - openjdk9
