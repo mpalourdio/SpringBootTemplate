@@ -124,6 +124,11 @@
             <artifactId>javax.annotation-api</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>javax.transaction</groupId>
+            <artifactId>javax.transaction-api</artifactId>
+            <version>1.2</version>
+        </dependency>
         <!-- tests dependencies -->
         <dependency>
             <groupId>org.mockito</groupId>
