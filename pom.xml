@@ -164,7 +164,7 @@
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
-                    <argLine>--add-modules java.base</argLine>
+                    <argLine>--add-modules java.se.ee</argLine>
                 </configuration>
             </plugin>
             <plugin>
