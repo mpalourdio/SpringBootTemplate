@@ -30,12 +30,12 @@ public class HomeController {
     private static final String TASK_STATUS_ACTIVE = "ACTIVE";
     private static final String TASK_PRIORITY_MEDIUM = "MEDIUM";
 
-    public static final String IWANTTHISINMYVIEW = "iwantthisinmyview";
-    public static final String IWANTTHISINMYVIEWFROMHIBERNATE = "iwantthisinmyviewfromhibernate";
+    private static final String IWANTTHISINMYVIEW = "iwantthisinmyview";
+    private static final String IWANTTHISINMYVIEWFROMHIBERNATE = "iwantthisinmyviewfromhibernate";
 
-    public static final String HTTPS_JSONPLACEHOLDER_TYPICODE_COM_POSTS_1 = "https://jsonplaceholder.typicode.com/posts/1";
-    public static final String HOME_INDEX = "home/index";
-    public static final String NEW_BODY = "new body";
+    private static final String HTTPS_JSONPLACEHOLDER_TYPICODE_COM_POSTS_1 = "https://jsonplaceholder.typicode.com/posts/1";
+    private static final String HOME_INDEX = "home/index";
+    private static final String NEW_BODY = "new body";
 
     private final ServiceWithProperties serviceWithProperties;
     private final String myProperty;
