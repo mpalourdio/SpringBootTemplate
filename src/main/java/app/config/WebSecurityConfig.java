@@ -11,11 +11,13 @@ package app.config;
 
 import com.mpalourdio.springboottemplate.properties.CredentialsProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
@@ -54,17 +56,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic();
 
         http.authorizeRequests()
-                .antMatchers(PROTECTED_ENDPOINT, "/actuator")
+                .antMatchers("/actuator")
                 .hasRole(ACTUATOR_ROLE).and()
                 .httpBasic();
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.inMemoryAuthentication()
-                .withUser(credentialsProperties.getUsername())
-                .password(credentialsProperties.getPassword())
-                .roles(ADMIN_ROLE, ACTUATOR_ROLE);
+
+    @Bean
+    public InMemoryUserDetailsManager inMemoryUserDetailsManager() throws Exception {
+        return new InMemoryUserDetailsManager(
+                User.withDefaultPasswordEncoder()
+                        .username(credentialsProperties.getUsername())
+                        .password(credentialsProperties.getPassword())
+                        .roles(ADMIN_ROLE, ACTUATOR_ROLE)
+                        .build()
+        );
     }
 
     private LogoutSuccessHandler logoutHandler() {
