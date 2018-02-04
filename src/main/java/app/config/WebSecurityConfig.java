@@ -61,7 +61,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .httpBasic();
     }
 
-
     @Bean
     public InMemoryUserDetailsManager inMemoryUserDetailsManager() throws Exception {
         return new InMemoryUserDetailsManager(
