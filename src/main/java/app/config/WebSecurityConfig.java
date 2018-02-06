@@ -62,7 +62,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public InMemoryUserDetailsManager inMemoryUserDetailsManager() throws Exception {
+    public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
         return new InMemoryUserDetailsManager(
                 User.withDefaultPasswordEncoder()
                         .username(credentialsProperties.getUsername())
