@@ -28,7 +28,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
 
-        <common-text.version>1.2</common-text.version>
+        <common-text.version>1.3</common-text.version>
         <poi.version>3.17</poi.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
 
