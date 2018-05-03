@@ -39,7 +39,7 @@ public class BasicAuthControllerTest extends AbstractTestRunner {
     }
 
     @Test
-    public void testWrongCredentialsReturnUnauthorized() throws Exception {
+    public void testWrongCredentialsReturnsUnauthorized() throws Exception {
         String basicDigestHeaderValue =
                 "Basic " + new String(Base64.encodeBase64(("fuck:you").getBytes()));
 
@@ -49,7 +49,7 @@ public class BasicAuthControllerTest extends AbstractTestRunner {
     }
 
     @Test
-    public void testNoCredentialsReturnUnauthorized() throws Exception {
+    public void testNoCredentialsReturnsUnauthorized() throws Exception {
         mvc.perform(get("/basicauth"))
                 .andExpect(status().isUnauthorized());
     }
