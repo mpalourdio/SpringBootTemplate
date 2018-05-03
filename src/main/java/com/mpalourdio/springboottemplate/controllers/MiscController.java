@@ -25,20 +25,27 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RequestMapping("/misc")
 @RestController
 public class MiscController {
 
     private final String serverPort;
+    private final String[] propertiesList;
     private final CredentialsProperties credentialsProperties;
     private final UselessBean uselessBean;
 
     public MiscController(
             @Value("${server.port}") String serverPort,
+            @Value("${list}") String[] propertiesList,
             CredentialsProperties credentialsProperties,
             UselessBean uselessBean
     ) {
         this.serverPort = serverPort;
+        this.propertiesList = propertiesList;
         this.credentialsProperties = credentialsProperties;
         this.uselessBean = uselessBean;
     }
@@ -90,5 +97,13 @@ public class MiscController {
                 AccountDecorator.class);
 
         return exchange.getBody();
+    }
+
+    @GetMapping(value = "/propertieslist", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Integer> getList() {
+        return Arrays.stream(propertiesList)
+                .map(Integer::valueOf)
+                .sorted()
+                .collect(Collectors.toList());
     }
 }

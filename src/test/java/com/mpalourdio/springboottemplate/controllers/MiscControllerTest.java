@@ -22,7 +22,12 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
@@ -66,5 +71,13 @@ public class MiscControllerTest extends AbstractTestRunner {
                 .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
                 .content(input))
                 .andExpect(content().json(serializeToJson(accountDecorator), true));
+    }
+
+    @Test
+    public void testCanReturnedAnOrderedListFromProperties() throws Exception {
+        List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
+
+        mockMvc.perform(get("/misc/propertieslist"))
+                .andExpect(content().json(serializeToJson(list), true));
     }
 }
