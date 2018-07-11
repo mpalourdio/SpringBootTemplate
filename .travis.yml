@@ -3,8 +3,14 @@ language: java
 jdk:
   - openjdk8
   - oraclejdk8
+  - openjdk9
   - oraclejdk9
+  - openjdk10
+  - oraclejdk10
 
 matrix:
   allow_failures:
+    - jdk: openjdk9
     - jdk: oraclejdk9
+    - jdk: openjdk10
+    - jdk: oraclejdk10
