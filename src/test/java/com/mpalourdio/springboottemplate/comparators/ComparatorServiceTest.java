@@ -1,0 +1,68 @@
+/*
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+ * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+ * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
+package com.mpalourdio.springboottemplate.comparators;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+
+public class ComparatorServiceTest {
+
+    private static final String FIRST_LABEL = "aA";
+    private static final String SECOND_LABEL = "Bb";
+    private static final String THIRD_LABEL = "a";
+    private static final String LAST_LABEL = "B";
+    private final List<Application> applicationList = new ArrayList<>();
+    private ComparatorService comparatorService;
+
+    @Before
+    public void setUp() {
+        //should come last
+        Application application1 = new Application();
+        application1.setLabel(LAST_LABEL);
+        application1.setIsFavorite(false);
+
+        //should come third
+        Application application2 = new Application();
+        application2.setLabel(THIRD_LABEL);
+        application2.setIsFavorite(false);
+
+        //should come second
+        Application application3 = new Application();
+        application3.setLabel(SECOND_LABEL);
+        application3.setIsFavorite(true);
+
+        //should come first
+        Application application4 = new Application();
+        application4.setLabel(FIRST_LABEL);
+        application4.setIsFavorite(true);
+
+        applicationList.add(application1);
+        applicationList.add(application2);
+        applicationList.add(application3);
+        applicationList.add(application4);
+
+        comparatorService = new ComparatorService();
+    }
+
+    @Test
+    public void testCanOrderApplicationsByMultipleComparators() {
+        comparatorService.sortApplicationsByFavoriteThenLabel(applicationList);
+
+        assertEquals(FIRST_LABEL, applicationList.get(0).getLabel());
+        assertEquals(SECOND_LABEL, applicationList.get(1).getLabel());
+        assertEquals(THIRD_LABEL, applicationList.get(2).getLabel());
+        assertEquals(LAST_LABEL, applicationList.get(3).getLabel());
+    }
+}
