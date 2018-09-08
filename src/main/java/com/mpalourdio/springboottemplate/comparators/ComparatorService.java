@@ -11,14 +11,18 @@ package com.mpalourdio.springboottemplate.comparators;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ComparatorService {
 
-    public void sortApplicationsByFavoriteThenLabel(List<Application> applicationList) {
+    public List<Application> sortApplicationsByFavoriteThenLabel(List<Application> applicationList) {
         Comparator<Application> combinedAppComparator = Comparator
                 .comparing(Application::getIsFavorite).reversed()
                 .thenComparing(Application::getLabel, String.CASE_INSENSITIVE_ORDER);
 
-        applicationList.sort(combinedAppComparator);
+        return applicationList
+                .stream()
+                .sorted(combinedAppComparator)
+                .collect(Collectors.toList());
     }
 }

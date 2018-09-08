@@ -58,11 +58,12 @@ public class ComparatorServiceTest {
 
     @Test
     public void testCanOrderApplicationsByMultipleComparators() {
-        comparatorService.sortApplicationsByFavoriteThenLabel(applicationList);
+        List<Application> sortedApps =
+                comparatorService.sortApplicationsByFavoriteThenLabel(applicationList);
 
-        assertEquals(FIRST_LABEL, applicationList.get(0).getLabel());
-        assertEquals(SECOND_LABEL, applicationList.get(1).getLabel());
-        assertEquals(THIRD_LABEL, applicationList.get(2).getLabel());
-        assertEquals(LAST_LABEL, applicationList.get(3).getLabel());
+        assertEquals(FIRST_LABEL, sortedApps.get(0).getLabel());
+        assertEquals(SECOND_LABEL, sortedApps.get(1).getLabel());
+        assertEquals(THIRD_LABEL, sortedApps.get(2).getLabel());
+        assertEquals(LAST_LABEL, sortedApps.get(3).getLabel());
     }
 }
