@@ -14,8 +14,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Application {
+public class Preferences {
 
     private Long id;
-    private String name;
+    private Boolean isFavorite = Boolean.FALSE;
+    private long appId;
 }

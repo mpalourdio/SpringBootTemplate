@@ -14,8 +14,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Application {
+public class Aggregate {
 
-    private Long id;
-    private String name;
+    private Application application;
+    private Boolean isFavorite;
 }

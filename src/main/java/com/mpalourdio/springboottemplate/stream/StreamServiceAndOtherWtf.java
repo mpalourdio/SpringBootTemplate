@@ -17,20 +17,36 @@ import java.util.stream.Stream;
 public class StreamServiceAndOtherWtf {
 
     public final List<Application> applicationsList = new ArrayList<>();
+    public final List<Preferences> preferencesList = new ArrayList<>();
     public Stream<Application> stream;
 
     public StreamServiceAndOtherWtf() {
         Application app1 = new Application();
+        app1.setId(1L);
         app1.setName("name1");
-        app1.setIsVisible(true);
 
         Application app2 = new Application();
+        app2.setId(2L);
         app2.setName("name2");
-        app2.setIsVisible(true);
 
         applicationsList.add(app1);
         applicationsList.add(app2);
         stream = applicationsList.stream();
+
+
+        Preferences preferences1 = new Preferences();
+        preferences1.setId(1L);
+        preferences1.setAppId(2);
+        preferences1.setIsFavorite(true);
+
+        Preferences preferences2 = new Preferences();
+        preferences2.setId(2L);
+        preferences2.setAppId(1);
+        preferences2.setIsFavorite(false);
+
+        preferencesList.add(preferences1);
+        preferencesList.add(preferences2);
+
     }
 
     public List<Application> getApplications() {

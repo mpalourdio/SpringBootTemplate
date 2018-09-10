@@ -3,12 +3,12 @@ package com.mpalourdio.springboottemplate.stream;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.*;
 
 public class StreamServiceAndOtherWtfTest {
 
@@ -56,5 +56,30 @@ public class StreamServiceAndOtherWtfTest {
         List<Application> applications = streamServiceAndOtherWtf.getApplications();
         List<Application> collect = applications.stream().collect(Collectors.toList());
         assertEquals(collect.get(0), applications.get(0));
+    }
+
+    @Test
+    public void iHaveNoIdeaWhatIAmDoing() {
+        List<Application> applicationsList = streamServiceAndOtherWtf.applicationsList;
+        List<Preferences> preferences = streamServiceAndOtherWtf.preferencesList;
+        List<Aggregate> aggregates = new ArrayList<>();
+
+        applicationsList.stream()
+                .map(a -> {
+                    Aggregate aggregate = new Aggregate();
+                    preferences.forEach(p -> {
+                        if (p.getAppId() == a.getId()) {
+                            aggregate.setApplication(a);
+                            aggregate.setIsFavorite(p.getIsFavorite());
+                        }
+                    });
+                    return aggregate;
+                })
+                .filter(ag -> ag.getApplication() != null)
+                .collect(Collectors.toCollection(() -> aggregates));
+
+        assertEquals(2, aggregates.size());
+        assertEquals("name1", aggregates.get(0).getApplication().getName());
+        assertFalse(aggregates.get(0).getIsFavorite());
     }
 }
