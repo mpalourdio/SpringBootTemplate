@@ -15,17 +15,15 @@ import com.mpalourdio.springboottemplate.model.RepositoriesService;
 import com.mpalourdio.springboottemplate.model.entities.People;
 import com.mpalourdio.springboottemplate.model.entities.Task;
 import com.mpalourdio.springboottemplate.model.repositories.TaskRepository;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController
+@Slf4j
 public class PersistenceController {
-
-    private final Logger logger = LoggerFactory.getLogger(getClass());
 
     private final TaskRepository taskRepository;
     private final RepositoriesService repositoriesService;
@@ -55,7 +53,7 @@ public class PersistenceController {
 
         List<Task> allTasksByStatus = taskRepository.findByTaskStatus(aspecificstatusfordate);
 
-        allTasksByStatus.forEach(t -> logger.debug(t.getStartDate().toString()));
+        allTasksByStatus.forEach(t -> log.debug(t.getStartDate().toString()));
 
         return task;
     }
