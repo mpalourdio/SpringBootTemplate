@@ -20,11 +20,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest(webEnvironment = WebEnvironment.MOCK)
+@SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase
 public class HomeControllerTest extends AbstractTestRunner {
@@ -54,5 +56,10 @@ public class HomeControllerTest extends AbstractTestRunner {
         HomeController.JsonPlaceHolder jsonPlaceHolder = gson.fromJson(mvcResult.getResponse().getContentAsString(), HomeController.JsonPlaceHolder.class);
 
         Assert.assertTrue(jsonPlaceHolder.body.equals("new body"));
+    }
+
+    @Test
+    public void testCanPutWithCsrf() throws Exception {
+        mvc.perform(put("/putput").with(csrf())).andExpect(status().isOk());
     }
 }

@@ -27,6 +27,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -48,6 +49,7 @@ public class MiscControllerTest extends AbstractTestRunner {
         output.prop1 = "prop1updated";
 
         mockMvc.perform(post("/misc/serialization")
+                .with(csrf())
                 .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
                 .content(input))
                 .andExpect(content().json(serializeToJson(output), true));
@@ -68,6 +70,7 @@ public class MiscControllerTest extends AbstractTestRunner {
         context.ref = "ref";
 
         mockMvc.perform(post("/misc/jsonunwrapped")
+                .with(csrf())
                 .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
                 .content(input))
                 .andExpect(content().json(serializeToJson(accountDecorator), true));

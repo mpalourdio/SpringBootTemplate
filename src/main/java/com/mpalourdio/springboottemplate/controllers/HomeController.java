@@ -19,6 +19,7 @@ import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
@@ -138,6 +139,12 @@ public class HomeController {
                 jsonPlaceHolder,
                 JsonPlaceHolder.class
         );
+    }
+
+    @PutMapping("putput")
+    @ResponseBody
+    public String testPutForCsrf() {
+        return "csrf";
     }
 
     //needs to be static for jackson as it's a quick and dirty inner class
