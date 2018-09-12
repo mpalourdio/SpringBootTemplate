@@ -10,7 +10,6 @@
 package com.mpalourdio.springboottemplate;
 
 import app.config.BeansFactory;
-import app.config.PropertyPlaceholderConfig;
 import app.config.WebSecurityConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -29,7 +28,6 @@ import java.util.Arrays;
 @Import({
         WebSecurityConfig.class,
         BeansFactory.class,
-        PropertyPlaceholderConfig.class
 })
 @EnableDiscoveryClient
 public class SpringBootTemplateApplication {
