@@ -12,14 +12,17 @@ package com.mpalourdio.springboottemplate.model.repositories;
 import com.mpalourdio.springboottemplate.AbstractTestRunner;
 import com.mpalourdio.springboottemplate.model.Dummy;
 import com.mpalourdio.springboottemplate.model.entities.Task;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.test.context.transaction.TestTransaction;
 
 import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 @DataJpaTest
 public class TaskRepositoryTest extends AbstractTestRunner {
@@ -38,13 +41,13 @@ public class TaskRepositoryTest extends AbstractTestRunner {
     @Test
     public void testTableIsEmpty() {
         List<Task> taskList = taskRepository.findAll();
-        Assert.assertEquals(0, taskList.size());
+        assertEquals(0, taskList.size());
     }
 
     @Test
     public void testAndPlayWithTheFakeentityManager() {
         Task persistedTask = entityManager.persistFlushFind(task);
-        Assert.assertEquals(persistedTask.getTaskDescription(), "description");
+        assertEquals(persistedTask.getTaskDescription(), "description");
     }
 
     @Test
@@ -53,8 +56,8 @@ public class TaskRepositoryTest extends AbstractTestRunner {
         entityManager.persist(people);
         List<Dummy> dummyList = taskRepository.hydrateDummyObject();
 
-        Assert.assertEquals(1, dummyList.size());
-        Assert.assertEquals(true, (dummyList.get(0)) instanceof Dummy);
+        assertEquals(1, dummyList.size());
+        assertEquals(true, (dummyList.get(0)) instanceof Dummy);
     }
 
     @Test
@@ -63,6 +66,17 @@ public class TaskRepositoryTest extends AbstractTestRunner {
         entityManager.persist(people);
         List<Task> allTasksByArchichedValue = taskRepository.getAllTasksByArchichedValue(true);
 
-        Assert.assertEquals(1, allTasksByArchichedValue.size());
+        assertEquals(1, allTasksByArchichedValue.size());
+    }
+
+    @Test
+    public void testManuallyEndstheTransaction() {
+        entityManager.persist(task);
+        entityManager.persist(people);
+        TestTransaction.end();
+
+        List<Task> allTasksByArchichedValue = taskRepository.getAllTasksByArchichedValue(true);
+        assertFalse(TestTransaction.isActive());
+        assertEquals(0, allTasksByArchichedValue.size());
     }
 }
