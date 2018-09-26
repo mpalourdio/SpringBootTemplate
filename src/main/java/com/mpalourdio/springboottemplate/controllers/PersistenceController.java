@@ -65,7 +65,7 @@ public class PersistenceController {
 
     @GetMapping(value = "/annotated", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public int annotated() {
-        List<Task> allTasksByArchichedValue = taskRepository.getAllTasksByArchichedValue(false);
+        List<Task> allTasksByArchichedValue = taskRepository.getAllTasksByArchivedValue(false);
 
         return allTasksByArchichedValue.size();
     }

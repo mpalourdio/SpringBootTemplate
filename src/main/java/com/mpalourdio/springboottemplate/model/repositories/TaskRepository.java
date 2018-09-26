@@ -25,7 +25,7 @@ public interface TaskRepository extends CrudRepository<Task, Integer>, CustomRep
     List<Task> findByTaskStatus(String taskStatus);
 
     @Query("SELECT e FROM Task e where e.taskArchived = :status")
-    List<Task> getAllTasksByArchichedValue(@Param("status") Boolean archivedStatus);
+    List<Task> getAllTasksByArchivedValue(@Param("status") Boolean archivedStatus);
 
     @Override
     List<Task> findAll();

@@ -64,9 +64,9 @@ public class TaskRepositoryTest extends AbstractTestRunner {
     public void testAnnotatedQuery() {
         entityManager.persist(task);
         entityManager.persist(people);
-        List<Task> allTasksByArchichedValue = taskRepository.getAllTasksByArchichedValue(true);
+        List<Task> allTasksByArchivedValue = taskRepository.getAllTasksByArchivedValue(true);
 
-        assertEquals(1, allTasksByArchichedValue.size());
+        assertEquals(1, allTasksByArchivedValue.size());
     }
 
     @Test
@@ -75,7 +75,7 @@ public class TaskRepositoryTest extends AbstractTestRunner {
         entityManager.persist(people);
         TestTransaction.end();
 
-        List<Task> allTasksByArchichedValue = taskRepository.getAllTasksByArchichedValue(true);
+        List<Task> allTasksByArchichedValue = taskRepository.getAllTasksByArchivedValue(true);
         assertFalse(TestTransaction.isActive());
         assertEquals(0, allTasksByArchichedValue.size());
     }
