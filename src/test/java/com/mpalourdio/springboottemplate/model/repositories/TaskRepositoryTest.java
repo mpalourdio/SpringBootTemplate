@@ -21,8 +21,7 @@ import org.springframework.test.context.transaction.TestTransaction;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 
 @DataJpaTest
 public class TaskRepositoryTest extends AbstractTestRunner {
@@ -57,7 +56,7 @@ public class TaskRepositoryTest extends AbstractTestRunner {
         List<Dummy> dummyList = taskRepository.hydrateDummyObject();
 
         assertEquals(1, dummyList.size());
-        assertEquals(true, (dummyList.get(0)) instanceof Dummy);
+        assertNotNull(dummyList.get(0));
     }
 
     @Test
