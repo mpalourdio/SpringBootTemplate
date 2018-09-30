@@ -10,10 +10,10 @@
 package app.config;
 
 import com.mpalourdio.springboottemplate.properties.CredentialsProperties;
+import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -24,16 +24,14 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import static app.config.ActuatorSecurityConfig.ACTUATOR_ROLE;
-
 @Configuration
 @EnableWebSecurity
 @EnableConfigurationProperties(CredentialsProperties.class)
-@Order(2)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String BASIC_AUTH_ENDPOINT = "/basicauth";
     private static final String ADMIN_ROLE = "ADMIN";
+    private static final String ACTUATOR_ROLE = "ACTUATOR";
 
     private final CredentialsProperties credentialsProperties;
 
@@ -51,7 +49,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers(BASIC_AUTH_ENDPOINT)
-                .hasRole(ADMIN_ROLE).and()
+                .hasRole(ADMIN_ROLE)
+                .requestMatchers(EndpointRequest.toAnyEndpoint())
+                .hasRole(ACTUATOR_ROLE)
+                .and()
                 .httpBasic();
     }
 
