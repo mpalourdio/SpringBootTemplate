@@ -31,8 +31,7 @@
         <common-text.version>1.4</common-text.version>
         <poi.version>4.0.0</poi.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
-        <mockito-core.version>2.15.0</mockito-core.version>
-        <byte-buddy.version>1.8.22</byte-buddy.version>
+        <mockito-core.version>2.22.1</mockito-core.version>
 
         <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
         <checkstyle.version>8.12</checkstyle.version>
@@ -64,9 +63,6 @@
                     <artifactId>javassist</artifactId>
                 </dependency>
             </dependencies>
-            <properties>
-                <mockito-core.version>2.22.0</mockito-core.version>
-            </properties>
         </profile>
     </profiles>
 
@@ -184,11 +180,6 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>net.bytebuddy</groupId>
-            <artifactId>byte-buddy</artifactId>
-            <version>${byte-buddy.version}</version>
         </dependency>
     </dependencies>
 
