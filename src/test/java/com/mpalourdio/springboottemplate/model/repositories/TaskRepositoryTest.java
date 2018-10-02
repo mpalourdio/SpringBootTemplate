@@ -46,7 +46,7 @@ public class TaskRepositoryTest extends AbstractTestRunner {
     @Test
     public void testAndPlayWithTheFakeentityManager() {
         Task persistedTask = entityManager.persistFlushFind(task);
-        assertEquals(persistedTask.getTaskDescription(), "description");
+        assertEquals("description", persistedTask.getTaskDescription());
     }
 
     @Test
