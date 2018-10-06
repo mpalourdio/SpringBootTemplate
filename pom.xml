@@ -32,7 +32,7 @@
         <poi.version>4.0.0</poi.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
         <mockito-core.version>2.23.0</mockito-core.version>
-        <byte-buddy.version>1.8.22</byte-buddy.version>
+        <byte-buddy.version>1.9.0</byte-buddy.version>
 
         <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
         <checkstyle.version>8.12</checkstyle.version>
