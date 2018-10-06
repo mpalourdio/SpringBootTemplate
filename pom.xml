@@ -65,7 +65,7 @@
                 </dependency>
             </dependencies>
             <properties>
-                <mockito-core.version>2.22.0</mockito-core.version>
+                <mockito-core.version>2.23.0</mockito-core.version>
             </properties>
         </profile>
     </profiles>
