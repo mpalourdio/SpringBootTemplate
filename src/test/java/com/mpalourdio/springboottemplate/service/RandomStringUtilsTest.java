@@ -20,19 +20,19 @@ public class RandomStringUtilsTest {
     public static final int LENGTH = 100;
 
     @Test
-    public void randomAlphaNumeric() throws Exception {
+    public void randomAlphaNumeric() {
         String generated = RandomStringUtils.randomAlphaNumeric(LENGTH);
         Assert.assertTrue(generated.matches("^[a-z\\d]{" + LENGTH + "}$"));
     }
 
     @Test
-    public void randomAlphabetic() throws Exception {
+    public void randomAlphabetic() {
         String generated = RandomStringUtils.randomAlphabetic(LENGTH);
         Assert.assertTrue(generated.matches("^[a-z]{" + LENGTH + "}$"));
     }
 
     @Test
-    public void randomNumeric() throws Exception {
+    public void randomNumeric() {
         String generated = RandomStringUtils.randomNumeric(LENGTH);
         Assert.assertTrue(generated.matches("^\\d{" + LENGTH + "}$"));
     }

@@ -23,7 +23,7 @@ public class ExceptionController {
     }
 
     @GetMapping(value = "ok", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseObject ok() throws CustomException {
+    public ResponseObject ok() {
 
         ResponseObject responseObject = new ResponseObject();
         responseObject.property = "toto";
