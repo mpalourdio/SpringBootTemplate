@@ -53,7 +53,7 @@ public class MiscController {
     @GetMapping("/basicauth")
     public String restTemplateWithBasicAuth() {
         RestTemplate rt = new RestTemplateBuilder()
-                .basicAuthorization(credentialsProperties.getUsername(), credentialsProperties.getPassword()).build();
+                .basicAuthentication(credentialsProperties.getUsername(), credentialsProperties.getPassword()).build();
         return rt.getForObject("http://localhost:" + serverPort + "/basicauth", String.class);
     }
 
