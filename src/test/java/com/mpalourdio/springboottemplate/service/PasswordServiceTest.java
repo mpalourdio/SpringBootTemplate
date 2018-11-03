@@ -47,6 +47,6 @@ public class PasswordServiceTest {
         int passwordLength = 20;
         String generatedPassword = passwordService.generatedRandomPassword(passwordLength);
 
-        Assert.assertTrue(generatedPassword.length() == passwordLength);
+        Assert.assertEquals(generatedPassword.length(), passwordLength);
     }
 }

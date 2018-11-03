@@ -46,7 +46,7 @@ public class HomeControllerTest extends AbstractTestRunner {
         Gson gson = new Gson();
         HomeController.JsonPlaceHolder jsonPlaceHolder = gson.fromJson(mvcResult.getResponse().getContentAsString(), HomeController.JsonPlaceHolder.class);
 
-        Assert.assertTrue(jsonPlaceHolder.body.equals("new body"));
+        Assert.assertEquals("new body", jsonPlaceHolder.body);
     }
 
     @Test
@@ -55,7 +55,7 @@ public class HomeControllerTest extends AbstractTestRunner {
         Gson gson = new Gson();
         HomeController.JsonPlaceHolder jsonPlaceHolder = gson.fromJson(mvcResult.getResponse().getContentAsString(), HomeController.JsonPlaceHolder.class);
 
-        Assert.assertTrue(jsonPlaceHolder.body.equals("new body"));
+        Assert.assertEquals("new body", jsonPlaceHolder.body);
     }
 
     @Test
