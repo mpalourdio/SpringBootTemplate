@@ -108,7 +108,7 @@ public class HomeController {
     @GetMapping("patchwithrestemplate")
     @ResponseBody
     public JsonPlaceHolder testPatchWithRestTemplate() {
-        RestTemplate restTemplateforGet = new RestTemplate();
+        RestTemplate restTemplateforGet = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
         JsonPlaceHolder jsonPlaceHolder = restTemplateforGet.getForObject(
                 HTTPS_JSONPLACEHOLDER_TYPICODE_COM_POSTS_1,
                 JsonPlaceHolder.class
