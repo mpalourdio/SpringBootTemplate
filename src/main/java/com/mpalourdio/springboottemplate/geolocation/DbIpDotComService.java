@@ -44,6 +44,7 @@ public final class DbIpDotComService implements IpGeolocationInterface {
         }
 
         finalResponse.setIp(ipAddress);
+
         return finalResponse;
     }
 
