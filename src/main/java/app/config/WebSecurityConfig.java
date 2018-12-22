@@ -40,24 +40,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String ACTUATOR_ROLE = "ACTUATOR";
 
     private final CredentialsProperties credentialsProperties;
-    private final ManagementServerProperties managementServerProperties;
 
-    public WebSecurityConfig(
-            CredentialsProperties credentialsProperties,
-            ManagementServerProperties managementServerProperties
-    ) {
+    public WebSecurityConfig(CredentialsProperties credentialsProperties) {
         this.credentialsProperties = credentialsProperties;
-        this.managementServerProperties = managementServerProperties;
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //We disable csrf protection for actuator endpoints so we can post with curl
         //ex : the refresh endpoint
-        http.csrf()
-                .ignoringRequestMatchers(
-                        r -> r.getContextPath().equals(managementServerProperties.getServlet().getContextPath())
-                );
+        http.csrf().ignoringRequestMatchers(EndpointRequest.toAnyEndpoint());
 
         http.logout()
                 .logoutSuccessUrl("/")

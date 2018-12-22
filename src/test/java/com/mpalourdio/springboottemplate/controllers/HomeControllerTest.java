@@ -20,7 +20,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -60,6 +59,6 @@ public class HomeControllerTest extends AbstractTestRunner {
 
     @Test
     public void testCanPutWithCsrf() throws Exception {
-        mvc.perform(put("/putput").with(csrf())).andExpect(status().isOk());
+        mvc.perform(put("/putput")).andExpect(status().isOk());
     }
 }
