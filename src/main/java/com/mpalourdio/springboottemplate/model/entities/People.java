@@ -23,7 +23,7 @@ import javax.persistence.*;
 public class People {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "task_people_people_id_seq")
     @Column(name = "people_id")
     private int id;
 
