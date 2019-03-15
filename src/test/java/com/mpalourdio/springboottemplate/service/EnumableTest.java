@@ -12,10 +12,11 @@ package com.mpalourdio.springboottemplate.service;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mpalourdio.springboottemplate.model.MyEnum;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class EnumableTest {
 
@@ -24,7 +25,7 @@ public class EnumableTest {
         Enumable enumable = new Enumable();
         enumable.myEnum = MyEnum.TOTO;
 
-        Assert.assertEquals(
+        assertEquals(
                 "{\"myEnum\":\"tata\"}",
                 new ObjectMapper().writeValueAsString(enumable)
         );
@@ -34,6 +35,6 @@ public class EnumableTest {
     public void testCanUnserializeWithEnums() throws IOException {
         Enumable enumable = new ObjectMapper().readValue("{\"myEnum\":\"tata\"}", Enumable.class);
 
-        Assert.assertEquals(MyEnum.TOTO, enumable.myEnum);
+        assertEquals(MyEnum.TOTO, enumable.myEnum);
     }
 }

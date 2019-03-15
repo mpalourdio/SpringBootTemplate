@@ -13,9 +13,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.mpalourdio.springboottemplate.AbstractTestRunner;
 import com.mpalourdio.springboottemplate.model.Dummy;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -28,6 +27,7 @@ import javax.persistence.EntityManager;
 import java.lang.reflect.Type;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
@@ -41,7 +41,7 @@ public class PersistenceControllerTest extends AbstractTestRunner {
     @Autowired
     private MockMvc mvc;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         initializeData();
     }
@@ -61,6 +61,6 @@ public class PersistenceControllerTest extends AbstractTestRunner {
         List<Dummy> dummyList = gson.fromJson(mvcResult.getResponse().getContentAsString(), unserializationType);
 
 
-        Assert.assertNull(dummyList.get(0).desc);
+        assertNull(dummyList.get(0).desc);
     }
 }

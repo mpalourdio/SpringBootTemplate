@@ -11,17 +11,18 @@ package com.mpalourdio.springboottemplate.model.repositories;
 
 import com.mpalourdio.springboottemplate.model.RepositoriesService;
 import com.mpalourdio.springboottemplate.model.entities.People;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.persistence.EntityManager;
 
-@RunWith(MockitoJUnitRunner.StrictStubs.class)
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+@ExtendWith(MockitoExtension.class)
 public class RepositoriesServiceTest {
 
     @Mock
@@ -35,7 +36,7 @@ public class RepositoriesServiceTest {
 
     private RepositoriesService repositoriesService;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         repositoriesService = new RepositoriesService(
                 peopleRepository, taskRepository, entityManager
@@ -50,6 +51,6 @@ public class RepositoriesServiceTest {
         people.setId(expectedId);
 
         Mockito.when(entityManager.getReference(People.class, 1)).thenReturn(people);
-        Assert.assertEquals(expectedId, repositoriesService.useEntityManager().getId());
+        assertEquals(expectedId, repositoriesService.useEntityManager().getId());
     }
 }

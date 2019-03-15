@@ -15,7 +15,7 @@ import com.mpalourdio.springboottemplate.json.AccountDecorator;
 import com.mpalourdio.springboottemplate.json.Context;
 import com.mpalourdio.springboottemplate.mediatype.MediaType;
 import com.mpalourdio.springboottemplate.service.ToSerialize;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

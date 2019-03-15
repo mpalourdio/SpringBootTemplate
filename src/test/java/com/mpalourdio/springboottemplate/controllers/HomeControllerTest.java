@@ -11,8 +11,7 @@ package com.mpalourdio.springboottemplate.controllers;
 
 import com.google.gson.Gson;
 import com.mpalourdio.springboottemplate.AbstractTestRunner;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -20,6 +19,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -46,7 +46,7 @@ public class HomeControllerTest extends AbstractTestRunner {
         Gson gson = new Gson();
         HomeController.JsonPlaceHolder jsonPlaceHolder = gson.fromJson(mvcResult.getResponse().getContentAsString(), HomeController.JsonPlaceHolder.class);
 
-        Assert.assertEquals("new body", jsonPlaceHolder.body);
+        assertEquals("new body", jsonPlaceHolder.body);
     }
 
     @Test
@@ -55,7 +55,7 @@ public class HomeControllerTest extends AbstractTestRunner {
         Gson gson = new Gson();
         HomeController.JsonPlaceHolder jsonPlaceHolder = gson.fromJson(mvcResult.getResponse().getContentAsString(), HomeController.JsonPlaceHolder.class);
 
-        Assert.assertEquals("new body", jsonPlaceHolder.body);
+        assertEquals("new body", jsonPlaceHolder.body);
     }
 
     @Test

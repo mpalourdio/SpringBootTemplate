@@ -11,9 +11,10 @@ package com.mpalourdio.springboottemplate.generics;
 
 import com.mpalourdio.springboottemplate.AbstractTestRunner;
 import com.mpalourdio.springboottemplate.model.entities.Task;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class BeanFromConfigurationClassTest extends AbstractTestRunner {
 
@@ -23,7 +24,7 @@ public class BeanFromConfigurationClassTest extends AbstractTestRunner {
     @Test
     public void testImportBeanConfigurationFile() {
         Task task = beanFromConfigurationClass.getInstance();
-        Assert.assertEquals("fromBeanConfiguration", task.getTaskName());
+        assertEquals("fromBeanConfiguration", task.getTaskName());
     }
 }
 

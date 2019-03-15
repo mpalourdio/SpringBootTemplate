@@ -10,9 +10,10 @@
 package com.mpalourdio.springboottemplate.service;
 
 import com.mpalourdio.springboottemplate.AbstractTestRunner;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ServiceWithConfigurationPropertiesTest extends AbstractTestRunner {
 
@@ -21,6 +22,6 @@ public class ServiceWithConfigurationPropertiesTest extends AbstractTestRunner {
 
     @Test
     public void testPropertiesHaveBeenAutomaticallySet() {
-        Assert.assertEquals("first", serviceWithConfigurationProperties.getFirstProperty());
+        assertEquals("first", serviceWithConfigurationProperties.getFirstProperty());
     }
 }

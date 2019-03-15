@@ -10,23 +10,22 @@
 package com.mpalourdio.springboottemplate.service;
 
 import com.mpalourdio.springboottemplate.exception.AnotherCustomException;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
+import org.junit.jupiter.api.Test;
 
-@RunWith(JUnit4.class)
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 public class ServiceWithPropertiesTest {
 
     @Test
     public void testClassPropertyIsRead() {
         ServiceWithProperties serviceWithProperties = new ServiceWithProperties("hey");
-        Assert.assertEquals("hey", serviceWithProperties.getValueFromConfig());
+        assertEquals("hey", serviceWithProperties.getValueFromConfig());
     }
 
-    @Test(expected = AnotherCustomException.class)
-    public void throwExceptionTest() throws AnotherCustomException {
+    @Test()
+    public void throwExceptionTest() {
         ServiceWithProperties serviceWithProperties = new ServiceWithProperties("hey");
-        serviceWithProperties.throwException();
+        assertThrows(AnotherCustomException.class, serviceWithProperties::throwException);
     }
 }

@@ -9,15 +9,16 @@
 
 package com.mpalourdio.springboottemplate.service;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-@RunWith(MockitoJUnitRunner.StrictStubs.class)
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+@ExtendWith(MockitoExtension.class)
 public class UselessBeanTest {
 
     private UselessBean uselessBean;
@@ -25,7 +26,7 @@ public class UselessBeanTest {
     @Mock
     private ABeanIWantToMock aBeanIWantToMock;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         uselessBean = new UselessBean(aBeanIWantToMock);
     }
@@ -33,6 +34,6 @@ public class UselessBeanTest {
     @Test
     public void testMyMockReturnFalseInTest() {
         Mockito.when(aBeanIWantToMock.iAlwaysReturnFalse()).thenReturn(true);
-        Assert.assertTrue(uselessBean.iWantToMockThisMethod());
+        assertTrue(uselessBean.iWantToMockThisMethod());
     }
 }

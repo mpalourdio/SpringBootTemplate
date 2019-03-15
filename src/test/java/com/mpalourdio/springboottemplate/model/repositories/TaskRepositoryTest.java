@@ -12,8 +12,8 @@ package com.mpalourdio.springboottemplate.model.repositories;
 import com.mpalourdio.springboottemplate.AbstractTestRunner;
 import com.mpalourdio.springboottemplate.model.Dummy;
 import com.mpalourdio.springboottemplate.model.entities.Task;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
@@ -21,7 +21,7 @@ import org.springframework.test.context.transaction.TestTransaction;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
 public class TaskRepositoryTest extends AbstractTestRunner {
@@ -32,7 +32,7 @@ public class TaskRepositoryTest extends AbstractTestRunner {
     @Autowired
     private TaskRepository taskRepository;
 
-    @Before
+    @BeforeEach
     public void setUp() {
         initializeData();
     }

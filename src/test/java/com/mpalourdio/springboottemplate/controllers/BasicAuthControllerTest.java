@@ -12,7 +12,7 @@ package com.mpalourdio.springboottemplate.controllers;
 import com.mpalourdio.springboottemplate.AbstractTestRunner;
 import com.mpalourdio.springboottemplate.properties.CredentialsProperties;
 import org.apache.commons.codec.binary.Base64;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.MockMvc;
@@ -32,7 +32,7 @@ public class BasicAuthControllerTest extends AbstractTestRunner {
     @Test
     public void testBasicAuthWhenCredentialsAreOk() throws Exception {
         String basicDigestHeaderValue =
-                "Basic " + new String(Base64.encodeBase64((credentialsProperties.getUsername()+ ":" + credentialsProperties.getPassword()).getBytes()));
+                "Basic " + new String(Base64.encodeBase64((credentialsProperties.getUsername() + ":" + credentialsProperties.getPassword()).getBytes()));
         mvc.perform(get("/basicauth")
                 .header("Authorization", basicDigestHeaderValue))
                 .andExpect(status().isOk());
