@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(BasicAuthController.class)
-public class BasicAuthControllerTest extends AbstractTestRunner {
+class BasicAuthControllerTest extends AbstractTestRunner {
 
     @Autowired
     private MockMvc mvc;
@@ -30,7 +30,7 @@ public class BasicAuthControllerTest extends AbstractTestRunner {
     private CredentialsProperties credentialsProperties;
 
     @Test
-    public void testBasicAuthWhenCredentialsAreOk() throws Exception {
+    void testBasicAuthWhenCredentialsAreOk() throws Exception {
         String basicDigestHeaderValue =
                 "Basic " + new String(Base64.encodeBase64((credentialsProperties.getUsername() + ":" + credentialsProperties.getPassword()).getBytes()));
         mvc.perform(get("/basicauth")
@@ -39,7 +39,7 @@ public class BasicAuthControllerTest extends AbstractTestRunner {
     }
 
     @Test
-    public void testWrongCredentialsReturnsUnauthorized() throws Exception {
+    void testWrongCredentialsReturnsUnauthorized() throws Exception {
         String basicDigestHeaderValue =
                 "Basic " + new String(Base64.encodeBase64(("fuck:you").getBytes()));
 
@@ -49,7 +49,7 @@ public class BasicAuthControllerTest extends AbstractTestRunner {
     }
 
     @Test
-    public void testNoCredentialsReturnsUnauthorized() throws Exception {
+    void testNoCredentialsReturnsUnauthorized() throws Exception {
         mvc.perform(get("/basicauth"))
                 .andExpect(status().isUnauthorized());
     }

@@ -10,17 +10,17 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class StreamServiceAndOtherWtfTest {
+class StreamServiceAndOtherWtfTest {
 
     private StreamServiceAndOtherWtf streamServiceAndOtherWtf;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         streamServiceAndOtherWtf = new StreamServiceAndOtherWtf();
     }
 
     @Test
-    public void tetsCollectorAndMap() {
+    void tetsCollectorAndMap() {
         List<Application> applications = streamServiceAndOtherWtf.getApplications();
 
         assertEquals("modified", applications.get(0).getName());
@@ -28,7 +28,7 @@ public class StreamServiceAndOtherWtfTest {
     }
 
     @Test
-    public void testStreamDoesNotModifyValuesIfNotCollected() {
+    void testStreamDoesNotModifyValuesIfNotCollected() {
         Stream<Application> stream = streamServiceAndOtherWtf.stream;
         String newName = "modified and not collected";
         stream.map(a -> {
@@ -40,7 +40,7 @@ public class StreamServiceAndOtherWtfTest {
     }
 
     @Test
-    public void testStreamModifiesValuesIfCollected() {
+    void testStreamModifiesValuesIfCollected() {
         Stream<Application> stream = streamServiceAndOtherWtf.stream;
         String newName = "modified and not collected";
         stream.map(a -> {
@@ -52,14 +52,14 @@ public class StreamServiceAndOtherWtfTest {
     }
 
     @Test()
-    public void testCollectedObjectsAreTheSameInstance() {
+    void testCollectedObjectsAreTheSameInstance() {
         List<Application> applications = streamServiceAndOtherWtf.getApplications();
         List<Application> collect = applications.stream().collect(Collectors.toList());
         assertEquals(collect.get(0), applications.get(0));
     }
 
     @Test
-    public void iHaveNoIdeaWhatIAmDoing() {
+    void iHaveNoIdeaWhatIAmDoing() {
         List<Application> applicationsList = streamServiceAndOtherWtf.applicationsList;
         List<Preferences> preferences = streamServiceAndOtherWtf.preferencesList;
         List<Aggregate> aggregates = new ArrayList<>();

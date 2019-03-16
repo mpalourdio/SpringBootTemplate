@@ -13,24 +13,24 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class RandomStringUtilsTest {
+class RandomStringUtilsTest {
 
-    public static final int LENGTH = 100;
+    private static final int LENGTH = 100;
 
     @Test
-    public void randomAlphaNumeric() {
+    void randomAlphaNumeric() {
         String generated = RandomStringUtils.randomAlphaNumeric(LENGTH);
         assertTrue(generated.matches("^[a-z\\d]{" + LENGTH + "}$"));
     }
 
     @Test
-    public void randomAlphabetic() {
+    void randomAlphabetic() {
         String generated = RandomStringUtils.randomAlphabetic(LENGTH);
         assertTrue(generated.matches("^[a-z]{" + LENGTH + "}$"));
     }
 
     @Test
-    public void randomNumeric() {
+    void randomNumeric() {
         String generated = RandomStringUtils.randomNumeric(LENGTH);
         assertTrue(generated.matches("^\\d{" + LENGTH + "}$"));
     }

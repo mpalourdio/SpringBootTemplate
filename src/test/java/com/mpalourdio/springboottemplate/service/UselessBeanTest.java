@@ -19,7 +19,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(MockitoExtension.class)
-public class UselessBeanTest {
+class UselessBeanTest {
 
     private UselessBean uselessBean;
 
@@ -27,12 +27,12 @@ public class UselessBeanTest {
     private ABeanIWantToMock aBeanIWantToMock;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         uselessBean = new UselessBean(aBeanIWantToMock);
     }
 
     @Test
-    public void testMyMockReturnFalseInTest() {
+    void testMyMockReturnFalseInTest() {
         Mockito.when(aBeanIWantToMock.iAlwaysReturnFalse()).thenReturn(true);
         assertTrue(uselessBean.iWantToMockThisMethod());
     }

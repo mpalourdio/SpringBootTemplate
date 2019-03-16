@@ -16,13 +16,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class BeanFromConfigurationClassTest extends AbstractTestRunner {
+class BeanFromConfigurationClassTest extends AbstractTestRunner {
 
     @Autowired
-    public BeanFromConfigurationClass<Task> beanFromConfigurationClass;
+    private BeanFromConfigurationClass<Task> beanFromConfigurationClass;
 
     @Test
-    public void testImportBeanConfigurationFile() {
+    void testImportBeanConfigurationFile() {
         Task task = beanFromConfigurationClass.getInstance();
         assertEquals("fromBeanConfiguration", task.getTaskName());
     }

@@ -21,14 +21,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(ExceptionController.class)
-public class ExceptionControllerTest extends AbstractTestRunner {
+class ExceptionControllerTest extends AbstractTestRunner {
 
     @Autowired
     private MockMvc mvc;
 
     @Test
     //expected exception won't work here because the exception is annotated wit @ResponseStatus
-    public void testException() throws Exception {
+    void testException() throws Exception {
         mvc.perform(get("/exception/nok"))
                 .andExpect(content().string(StringUtils.EMPTY))
                 .andExpect(status().isPayloadTooLarge());

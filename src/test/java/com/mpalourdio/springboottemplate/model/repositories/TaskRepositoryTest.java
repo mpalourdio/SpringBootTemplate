@@ -24,7 +24,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DataJpaTest
-public class TaskRepositoryTest extends AbstractTestRunner {
+class TaskRepositoryTest extends AbstractTestRunner {
 
     @Autowired
     private TestEntityManager entityManager;
@@ -33,24 +33,24 @@ public class TaskRepositoryTest extends AbstractTestRunner {
     private TaskRepository taskRepository;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         initializeData();
     }
 
     @Test
-    public void testTableIsEmpty() {
+    void testTableIsEmpty() {
         List<Task> taskList = taskRepository.findAll();
         assertEquals(0, taskList.size());
     }
 
     @Test
-    public void testAndPlayWithTheFakeentityManager() {
+    void testAndPlayWithTheFakeentityManager() {
         Task persistedTask = entityManager.persistFlushFind(task);
         assertEquals("description", persistedTask.getTaskDescription());
     }
 
     @Test
-    public void testResultsAreDummyObjects() {
+    void testResultsAreDummyObjects() {
         entityManager.persist(task);
         entityManager.persist(people);
         List<Dummy> dummyList = taskRepository.hydrateDummyObject();
@@ -60,7 +60,7 @@ public class TaskRepositoryTest extends AbstractTestRunner {
     }
 
     @Test
-    public void testAnnotatedQuery() {
+    void testAnnotatedQuery() {
         entityManager.persist(task);
         entityManager.persist(people);
         List<Task> allTasksByArchivedValue = taskRepository.getAllTasksByArchivedValue(true);
@@ -69,7 +69,7 @@ public class TaskRepositoryTest extends AbstractTestRunner {
     }
 
     @Test
-    public void testManuallyEndstheTransaction() {
+    void testManuallyEndstheTransaction() {
         entityManager.persist(task);
         entityManager.persist(people);
         TestTransaction.end();

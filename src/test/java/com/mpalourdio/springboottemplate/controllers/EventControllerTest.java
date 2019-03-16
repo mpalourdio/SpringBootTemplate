@@ -24,13 +24,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase
-public class EventControllerTest extends AbstractTestRunner {
+class EventControllerTest extends AbstractTestRunner {
 
     @Autowired
     private MockMvc mvc;
 
     @Test
-    public void testEventIsPublished() throws Exception {
+    void testEventIsPublished() throws Exception {
         mvc.perform(get("/event")).andExpect(
                 content().string("\uD83D\uDE0A -> now I have been published\nHey I'm there too!")
         );

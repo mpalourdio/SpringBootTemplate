@@ -29,19 +29,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase
-public class HomeControllerTest extends AbstractTestRunner {
+class HomeControllerTest extends AbstractTestRunner {
 
     @Autowired
     private MockMvc mvc;
 
     @Test
-    public void testValueInjectedInConstructor() throws Exception {
+    void testValueInjectedInConstructor() throws Exception {
         mvc.perform(get("/valueinconstructor"))
                 .andExpect(content().string("admin"));
     }
 
     @Test
-    public void testPatchWithRestTemplate() throws Exception {
+    void testPatchWithRestTemplate() throws Exception {
         MvcResult mvcResult = mvc.perform(get("/patchwithrestemplate")).andReturn();
         Gson gson = new Gson();
         HomeController.JsonPlaceHolder jsonPlaceHolder = gson.fromJson(mvcResult.getResponse().getContentAsString(), HomeController.JsonPlaceHolder.class);
@@ -50,7 +50,7 @@ public class HomeControllerTest extends AbstractTestRunner {
     }
 
     @Test
-    public void testPatchWithRestTemplateBuilder() throws Exception {
+    void testPatchWithRestTemplateBuilder() throws Exception {
         MvcResult mvcResult = mvc.perform(get("/patchwithrestemplatebuilder")).andReturn();
         Gson gson = new Gson();
         HomeController.JsonPlaceHolder jsonPlaceHolder = gson.fromJson(mvcResult.getResponse().getContentAsString(), HomeController.JsonPlaceHolder.class);
@@ -59,7 +59,7 @@ public class HomeControllerTest extends AbstractTestRunner {
     }
 
     @Test
-    public void testCanPutWithCsrf() throws Exception {
+    void testCanPutWithCsrf() throws Exception {
         mvc.perform(put("/putput").with(csrf())).andExpect(status().isOk());
     }
 }

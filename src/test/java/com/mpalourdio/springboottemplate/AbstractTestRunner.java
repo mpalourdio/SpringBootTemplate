@@ -27,7 +27,7 @@ public abstract class AbstractTestRunner {
     protected Task task;
     protected People people;
 
-    public void initializeData() {
+    protected void initializeData() {
         task = new Task();
         task.setTaskArchived(true);
         task.setTaskName("name");
@@ -40,7 +40,7 @@ public abstract class AbstractTestRunner {
                 .setTask(task);
     }
 
-    public String serializeToJson(Object object) throws JsonProcessingException {
+    protected String serializeToJson(Object object) throws JsonProcessingException {
         return new ObjectMapper().writeValueAsString(object);
     }
 }

@@ -14,10 +14,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class PasswordServiceTest {
+class PasswordServiceTest {
 
     @Test
-    public void testCanMakeMatchAGeneratedPassword() {
+    void testCanMakeMatchAGeneratedPassword() {
 
         PasswordService passwordService = new PasswordService();
         String myawesomepassword = "myawesomepassword";
@@ -27,21 +27,21 @@ public class PasswordServiceTest {
     }
 
     @Test
-    public void testCanEncodeToBase64() {
+    void testCanEncodeToBase64() {
         PasswordService passwordService = new PasswordService();
         String base64EncodedString = "dG9FbmNvZGU=";
         assertEquals(base64EncodedString, passwordService.encodeStringToBase64("toEncode"));
     }
 
     @Test
-    public void testCanDecodeBase64() {
+    void testCanDecodeBase64() {
         PasswordService passwordService = new PasswordService();
         String base64EncodedString = "dG9FbmNvZGU=";
         assertEquals("toEncode", passwordService.decodeBase64String(base64EncodedString));
     }
 
     @Test
-    public void testCanGeneratedAPasswordOfPredefinedLength() {
+    void testCanGeneratedAPasswordOfPredefinedLength() {
         PasswordService passwordService = new PasswordService();
         int passwordLength = 20;
         String generatedPassword = passwordService.generatedRandomPassword(passwordLength);

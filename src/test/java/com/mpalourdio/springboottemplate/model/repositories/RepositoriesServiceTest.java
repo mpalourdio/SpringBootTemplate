@@ -23,7 +23,7 @@ import javax.persistence.EntityManager;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(MockitoExtension.class)
-public class RepositoriesServiceTest {
+class RepositoriesServiceTest {
 
     @Mock
     private EntityManager entityManager;
@@ -37,14 +37,14 @@ public class RepositoriesServiceTest {
     private RepositoriesService repositoriesService;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         repositoriesService = new RepositoriesService(
                 peopleRepository, taskRepository, entityManager
         );
     }
 
     @Test
-    public void testEntityManagerIsMocked() {
+    void testEntityManagerIsMocked() {
         int expectedId = 666;
 
         People people = new People();

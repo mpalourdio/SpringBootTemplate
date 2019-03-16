@@ -15,14 +15,12 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
-public class DbIpDotComServiceTest {
+class DbIpDotComServiceTest {
 
     @Test
-    public void testCanGeolocalizeSwissIp() {
+    void testCanGeolocalizeSwissIp() {
         IpGeolocationInterface ipGeolocationService = new DbIpDotComService(new RestTemplateBuilder().build());
         String ipAddress = "145.232.192.197";
         GeoLocationApiResponse geoLocationApiResponse = ipGeolocationService.geoLocateIp(ipAddress);
@@ -34,7 +32,7 @@ public class DbIpDotComServiceTest {
     }
 
     @Test
-    public void testFailsGracefullyIfIpIsFuckedUp() {
+    void testFailsGracefullyIfIpIsFuckedUp() {
         IpGeolocationInterface ipGeolocationService = new DbIpDotComService(new RestTemplateBuilder().build());
         String ipAddress = "666.666.666.666";
         GeoLocationApiResponse geoLocationApiResponse = ipGeolocationService.geoLocateIp(ipAddress);
@@ -45,7 +43,7 @@ public class DbIpDotComServiceTest {
     }
 
     @Test
-    public void testFailsGracefullyIfHttpException() {
+    void testFailsGracefullyIfHttpException() {
         String ipAddress = "666.666.666.666";
         RestTemplate restTemplate = mock(RestTemplate.class);
         when(restTemplate.getForObject(anyString(), any(), eq(ipAddress))).thenThrow(HttpClientErrorException.class);

@@ -17,7 +17,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ComparatorServiceTest {
+class ComparatorServiceTest {
 
     private static final String FIRST_LABEL = "aA";
     private static final String SECOND_LABEL = "Bb";
@@ -27,7 +27,7 @@ public class ComparatorServiceTest {
     private ComparatorService comparatorService;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         //should come last
         Application application1 = new Application();
         application1.setLabel(LAST_LABEL);
@@ -57,7 +57,7 @@ public class ComparatorServiceTest {
     }
 
     @Test
-    public void testCanOrderApplicationsByMultipleComparators() {
+    void testCanOrderApplicationsByMultipleComparators() {
         List<Application> sortedApps =
                 comparatorService.sortApplicationsByFavoriteThenLabel(applicationList);
 

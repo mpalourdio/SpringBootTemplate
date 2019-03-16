@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 
 @WebMvcTest(HttpVersionedApiController.class)
-public class HttpVersionedApiTest extends AbstractTestRunner {
+class HttpVersionedApiTest extends AbstractTestRunner {
 
     private static final String HEADER_V1 = MediaType.APPLICATION_VND_API_V1_VALUE;
     private static final String HEADER_V2 = MediaType.APPLICATION_VND_API_V2_VALUE;
@@ -39,35 +39,35 @@ public class HttpVersionedApiTest extends AbstractTestRunner {
     private MockMvc mvc;
 
     @Test
-    public void testGetAndAcceptHeaderV1ReturnsV1Content() throws Exception {
+    void testGetAndAcceptHeaderV1ReturnsV1Content() throws Exception {
         mvc.perform(get("/http/test")
                 .header("Accept", HEADER_V1))
                 .andExpect(content().string("v1"));
     }
 
     @Test
-    public void testGetAndAcceptHeaderV2ReturnsV2Content() throws Exception {
+    void testGetAndAcceptHeaderV2ReturnsV2Content() throws Exception {
         mvc.perform(get("/http/test")
                 .header("Accept", HEADER_V2))
                 .andExpect(content().string("v2"));
     }
 
     @Test
-    public void testGetAndNoAcceptHeaderReturnsV2ContentAsAcceptHeaderIsImplicitlyApplicationJson() throws Exception {
+    void testGetAndNoAcceptHeaderReturnsV2ContentAsAcceptHeaderIsImplicitlyApplicationJson() throws Exception {
         mvc.perform(get("/http/test"))
                 .andExpect(content().string("v2"))
                 .andExpect(header().string("Content-Type", MediaType.APPLICATION_JSON_UTF8_VALUE));
     }
 
     @Test
-    public void testGetAndLowQualityAcceptHeaderV2ReturnsV2Content() throws Exception {
+    void testGetAndLowQualityAcceptHeaderV2ReturnsV2Content() throws Exception {
         mvc.perform(get("/http/test")
                 .header("Accept", HEADER_V2_LOW_QUALITY + ", " + MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(content().string("v2"));
     }
 
     @Test
-    public void testGetAndLowQualityAcceptHeaderV1ReturnsV2ContentBecauseThePriorityIsLow() throws Exception {
+    void testGetAndLowQualityAcceptHeaderV1ReturnsV2ContentBecauseThePriorityIsLow() throws Exception {
         mvc.perform(get("/http/test")
                 .header("Accept", HEADER_V1_LOW_QUALITY + ", " + MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(content().string("v2"))
@@ -75,7 +75,7 @@ public class HttpVersionedApiTest extends AbstractTestRunner {
     }
 
     @Test
-    public void testGetAndHighQualityAcceptHeaderV1ReturnsV1ContentBecauseThePriorityIsHigh() throws Exception {
+    void testGetAndHighQualityAcceptHeaderV1ReturnsV1ContentBecauseThePriorityIsHigh() throws Exception {
         mvc.perform(get("/http/test")
                 .header("Accept", HEADER_V1_HIGH_QUALITY + ", " + MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(content().string("v1"));
@@ -83,7 +83,7 @@ public class HttpVersionedApiTest extends AbstractTestRunner {
 
 
     @Test
-    public void testPostAndContentTypeHeaderV1ReturnsV1Content() throws Exception {
+    void testPostAndContentTypeHeaderV1ReturnsV1Content() throws Exception {
         mvc.perform(post("/http/test")
                 .header("Content-Type", HEADER_V1)
                 .with(csrf()))
@@ -91,7 +91,7 @@ public class HttpVersionedApiTest extends AbstractTestRunner {
     }
 
     @Test
-    public void testPostAndContentTypeHeaderV2ReturnsV2Content() throws Exception {
+    void testPostAndContentTypeHeaderV2ReturnsV2Content() throws Exception {
         mvc.perform(post("/http/test")
                 .header("Content-Type", HEADER_V2)
                 .with(csrf()))
@@ -99,7 +99,7 @@ public class HttpVersionedApiTest extends AbstractTestRunner {
     }
 
     @Test
-    public void testPostAndLowQualityAcceptHeaderV2ReturnsV2ContentBecauseThePriorityIsLow() throws Exception {
+    void testPostAndLowQualityAcceptHeaderV2ReturnsV2ContentBecauseThePriorityIsLow() throws Exception {
         mvc.perform(post("/http/test")
                 .header("Content-Type", HEADER_V2)
                 .header("Accept", HEADER_V1_LOW_QUALITY + ", " + MediaType.APPLICATION_JSON_VALUE)
@@ -109,7 +109,7 @@ public class HttpVersionedApiTest extends AbstractTestRunner {
     }
 
     @Test
-    public void testPostAndNoAcceptHeaderReturnsV2ContentAsAcceptHeaderIsImplicitlyApplicationJson() throws Exception {
+    void testPostAndNoAcceptHeaderReturnsV2ContentAsAcceptHeaderIsImplicitlyApplicationJson() throws Exception {
         mvc.perform(post("/http/test")
                 .with(csrf()))
                 .andExpect(content().string("v2-post-consumes-all"))
@@ -117,7 +117,7 @@ public class HttpVersionedApiTest extends AbstractTestRunner {
     }
 
     @Test
-    public void testPostAndLowQualityAcceptHeaderV2ReturnsV2Content() throws Exception {
+    void testPostAndLowQualityAcceptHeaderV2ReturnsV2Content() throws Exception {
         mvc.perform(post("/http/test")
                 .header("Content-Type", MediaType.ALL_VALUE)
                 .header("Accept", HEADER_V2_LOW_QUALITY + ", " + MediaType.APPLICATION_JSON_VALUE)
@@ -126,7 +126,7 @@ public class HttpVersionedApiTest extends AbstractTestRunner {
     }
 
     @Test
-    public void testPostAndLowQualityAcceptHeaderV1ReturnsV2ContentBecauseThePriorityIsLow() throws Exception {
+    void testPostAndLowQualityAcceptHeaderV1ReturnsV2ContentBecauseThePriorityIsLow() throws Exception {
         mvc.perform(post("/http/test")
                 .header("Content-Type", MediaType.ALL_VALUE)
                 .header("Accept", HEADER_V1_LOW_QUALITY + ", " + MediaType.APPLICATION_JSON_VALUE)
@@ -136,7 +136,7 @@ public class HttpVersionedApiTest extends AbstractTestRunner {
     }
 
     @Test
-    public void testPostAndHighQualityAcceptHeaderV1ReturnsV1ContentBecauseThePriorityIsHigh() throws Exception {
+    void testPostAndHighQualityAcceptHeaderV1ReturnsV1ContentBecauseThePriorityIsHigh() throws Exception {
         mvc.perform(post("/http/test")
                 .header("Content-Type", MediaType.ALL_VALUE)
                 .header("Accept", HEADER_V1_HIGH_QUALITY + ", " + MediaType.APPLICATION_JSON_VALUE)
@@ -145,7 +145,7 @@ public class HttpVersionedApiTest extends AbstractTestRunner {
     }
 
     @Test
-    public void testPostContenTypeOfResponseIfTheOneThatHasTheHigherPriorityInTheAcceptRequestHeader() throws Exception {
+    void testPostContenTypeOfResponseIfTheOneThatHasTheHigherPriorityInTheAcceptRequestHeader() throws Exception {
         mvc.perform(post("/http/test")
                 .header("Content-Type", MediaType.ALL_VALUE)
                 .header("Accept", HEADER_V1_HIGH_QUALITY + ", " + MediaType.APPLICATION_JSON_VALUE)
@@ -154,7 +154,7 @@ public class HttpVersionedApiTest extends AbstractTestRunner {
     }
 
     @Test
-    public void testPostContenTypeOfResponseIfTheOneThatHasTheHigherPriorityInTheAcceptRequestHeaderAgain() throws Exception {
+    void testPostContenTypeOfResponseIfTheOneThatHasTheHigherPriorityInTheAcceptRequestHeaderAgain() throws Exception {
         mvc.perform(post("/http/test")
                 .header("Content-Type", MediaType.ALL_VALUE)
                 .header("Accept", HEADER_V1_LOW_QUALITY + ", " + MediaType.APPLICATION_JSON_VALUE)
@@ -163,7 +163,7 @@ public class HttpVersionedApiTest extends AbstractTestRunner {
     }
 
     @Test
-    public void testGetContenTypeOfResponseIfTheOneThatHasTheHigherPriorityInTheAcceptRequestHeader() throws Exception {
+    void testGetContenTypeOfResponseIfTheOneThatHasTheHigherPriorityInTheAcceptRequestHeader() throws Exception {
         mvc.perform(get("/http/test")
                 .header("Content-Type", MediaType.ALL_VALUE)
                 .header("Accept", HEADER_V1_HIGH_QUALITY + ", " + MediaType.APPLICATION_JSON_VALUE))
@@ -171,7 +171,7 @@ public class HttpVersionedApiTest extends AbstractTestRunner {
     }
 
     @Test
-    public void testGetContenTypeOfResponseIfTheOneThatHasTheHigherPriorityInTheAcceptRequestHeaderAgain() throws Exception {
+    void testGetContenTypeOfResponseIfTheOneThatHasTheHigherPriorityInTheAcceptRequestHeaderAgain() throws Exception {
         mvc.perform(get("/http/test")
                 .header("Content-Type", MediaType.ALL_VALUE)
                 .header("Accept", HEADER_V1_LOW_QUALITY + ", " + MediaType.APPLICATION_JSON_VALUE))

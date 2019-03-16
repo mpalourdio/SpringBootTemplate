@@ -15,13 +15,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ServiceWithConfigurationPropertiesTest extends AbstractTestRunner {
+class ServiceWithConfigurationPropertiesTest extends AbstractTestRunner {
 
     @Autowired
     private ServiceWithConfigurationProperties serviceWithConfigurationProperties;
 
     @Test
-    public void testPropertiesHaveBeenAutomaticallySet() {
+    void testPropertiesHaveBeenAutomaticallySet() {
         assertEquals("first", serviceWithConfigurationProperties.getFirstProperty());
     }
 }

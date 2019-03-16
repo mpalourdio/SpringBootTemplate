@@ -15,16 +15,16 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class ServiceWithPropertiesTest {
+class ServiceWithPropertiesTest {
 
     @Test
-    public void testClassPropertyIsRead() {
+    void testClassPropertyIsRead() {
         ServiceWithProperties serviceWithProperties = new ServiceWithProperties("hey");
         assertEquals("hey", serviceWithProperties.getValueFromConfig());
     }
 
     @Test()
-    public void throwExceptionTest() {
+    void throwExceptionTest() {
         ServiceWithProperties serviceWithProperties = new ServiceWithProperties("hey");
         assertThrows(AnotherCustomException.class, serviceWithProperties::throwException);
     }

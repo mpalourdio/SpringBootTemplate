@@ -35,13 +35,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(webEnvironment = WebEnvironment.MOCK)
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase
-public class MiscControllerTest extends AbstractTestRunner {
+class MiscControllerTest extends AbstractTestRunner {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public void testSerializationForMvcTests() throws Exception {
+    void testSerializationForMvcTests() throws Exception {
         ToSerialize toSerialize = new ToSerialize();
         String input = serializeToJson(toSerialize);
 
@@ -56,7 +56,7 @@ public class MiscControllerTest extends AbstractTestRunner {
     }
 
     @Test
-    public void testJsonUnwrappingInAClassDecorator() throws Exception {
+    void testJsonUnwrappingInAClassDecorator() throws Exception {
 
         Account account = new Account();
         account.lastName = "lastName";
@@ -77,7 +77,7 @@ public class MiscControllerTest extends AbstractTestRunner {
     }
 
     @Test
-    public void testCanReturnedAnOrderedListFromProperties() throws Exception {
+    void testCanReturnedAnOrderedListFromProperties() throws Exception {
         List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
 
         mockMvc.perform(get("/misc/propertieslist"))

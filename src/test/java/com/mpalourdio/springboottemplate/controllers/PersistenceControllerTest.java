@@ -33,7 +33,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
 @AutoConfigureMockMvc
 @AutoConfigureTestDatabase
-public class PersistenceControllerTest extends AbstractTestRunner {
+class PersistenceControllerTest extends AbstractTestRunner {
 
     @Autowired
     private EntityManager entityManager;
@@ -42,13 +42,13 @@ public class PersistenceControllerTest extends AbstractTestRunner {
     private MockMvc mvc;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         initializeData();
     }
 
     @Test
     @Transactional
-    public void testHydrationWithJsonIgnoreProperty() throws Exception {
+    void testHydrationWithJsonIgnoreProperty() throws Exception {
 
         entityManager.persist(task);
         entityManager.persist(people);

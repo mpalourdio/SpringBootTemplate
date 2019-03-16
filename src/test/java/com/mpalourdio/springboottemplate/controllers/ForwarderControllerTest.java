@@ -19,13 +19,13 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.forwardedUrl;
 
 @WebMvcTest(ForwarderController.class)
-public class ForwarderControllerTest extends AbstractTestRunner {
+class ForwarderControllerTest extends AbstractTestRunner {
 
     @Autowired
     private MockMvc mvc;
 
     @Test
-    public void testRequestIsForwarded() throws Exception {
+    void testRequestIsForwarded() throws Exception {
         mvc.perform(get("/forwarder/first"))
                 .andExpect(forwardedUrl("/forwarder/second"));
     }

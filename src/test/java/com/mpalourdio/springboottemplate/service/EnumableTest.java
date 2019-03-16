@@ -18,10 +18,10 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class EnumableTest {
+class EnumableTest {
 
     @Test
-    public void testCanSerializeWithEnums() throws JsonProcessingException {
+    void testCanSerializeWithEnums() throws JsonProcessingException {
         Enumable enumable = new Enumable();
         enumable.myEnum = MyEnum.TOTO;
 
@@ -32,7 +32,7 @@ public class EnumableTest {
     }
 
     @Test
-    public void testCanUnserializeWithEnums() throws IOException {
+    void testCanUnserializeWithEnums() throws IOException {
         Enumable enumable = new ObjectMapper().readValue("{\"myEnum\":\"tata\"}", Enumable.class);
 
         assertEquals(MyEnum.TOTO, enumable.myEnum);
