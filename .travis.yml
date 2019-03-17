@@ -2,6 +2,8 @@ dist: xenial
 
 language: java
 
+env: jdk.tls.client.protocols=TLSv1.2
+
 jdk:
   - openjdk8
   - openjdk9
