@@ -30,7 +30,7 @@
 
         <common-text.version>1.6</common-text.version>
         <poi.version>4.0.1</poi.version>
-        <!-- can be remove in Spring Boot 2.2 -->
+        <!-- can be removed in Spring Boot 2.2 -->
         <junit-jupiter.version>5.4.0</junit-jupiter.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
 
