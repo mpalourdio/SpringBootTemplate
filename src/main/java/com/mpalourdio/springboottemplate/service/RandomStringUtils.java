@@ -5,7 +5,7 @@ import org.apache.commons.text.RandomStringGenerator;
 import static org.apache.commons.text.CharacterPredicates.DIGITS;
 import static org.apache.commons.text.CharacterPredicates.LETTERS;
 
-public final class RandomStringUtils {
+public class RandomStringUtils {
 
     private RandomStringUtils() {
     }
