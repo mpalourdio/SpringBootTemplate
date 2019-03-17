@@ -7,6 +7,7 @@ jdk:
   - openjdk9
   - openjdk10
   - openjdk11
+  - oraclejdk11
   - openjdk12
   - openjdk-ea
 
@@ -16,5 +17,6 @@ matrix:
     - jdk: openjdk9
     - jdk: openjdk10
     - jdk: openjdk11
+    - jdk: oraclejdk11
     - jdk: openjdk12
     - jdk: openjdk-ea
