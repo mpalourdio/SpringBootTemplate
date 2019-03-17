@@ -10,10 +10,7 @@ matrix:
     - jdk: openjdk10
     - jdk: openjdk11
       env: _JAVA_OPTIONS=-Djdk.tls.client.protocols=TLSv1.2
-    - jdk: oraclejdk11
-      env: _JAVA_OPTIONS=-Djdk.tls.client.protocols=TLSv1.2
     - jdk: openjdk12
-    - jdk: openjdk
 
   allow_failures:
     - jdk: openjdk9
