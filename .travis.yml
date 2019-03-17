@@ -2,19 +2,19 @@ dist: xenial
 
 language: java
 
-env: _JAVA_OPTIONS=-Djdk.tls.client.protocols=TLSv1.2
-
-jdk:
-  - openjdk8
-  - openjdk9
-  - openjdk10
-  - openjdk11
-  - oraclejdk11
-  - openjdk12
-  - openjdk-ea
-
 matrix:
   fast_finish: true
+  include:
+    - jdk: openjdk8
+    - jdk: openjdk9
+    - jdk: openjdk10
+    - jdk: openjdk11
+      env: _JAVA_OPTIONS=-Djdk.tls.client.protocols=TLSv1.2
+    - jdk: oraclejdk11
+      env: _JAVA_OPTIONS=-Djdk.tls.client.protocols=TLSv1.2
+    - jdk: openjdk12
+    - jdk: openjdk
+
   allow_failures:
     - jdk: openjdk9
     - jdk: openjdk10
