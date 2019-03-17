@@ -30,6 +30,8 @@
 
         <common-text.version>1.6</common-text.version>
         <poi.version>4.0.1</poi.version>
+        <!-- can be remove in Spring Boot 2.2 -->
+        <junit-jupiter.version>5.4.0</junit-jupiter.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
 
         <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
@@ -170,12 +172,7 @@
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
+            <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
