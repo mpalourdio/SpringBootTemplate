@@ -15,10 +15,7 @@ import com.mpalourdio.springboottemplate.events.MyEventListener;
 import com.mpalourdio.springboottemplate.generics.BeanFromConfigurationClass;
 import com.mpalourdio.springboottemplate.model.entities.Task;
 import com.mpalourdio.springboottemplate.properties.MyPropertyConfigHolder;
-import com.mpalourdio.springboottemplate.service.ABeanIWantToMock;
-import com.mpalourdio.springboottemplate.service.ServiceWithConfigurationProperties;
-import com.mpalourdio.springboottemplate.service.ServiceWithProperties;
-import com.mpalourdio.springboottemplate.service.UselessBean;
+import com.mpalourdio.springboottemplate.service.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationEventPublisher;
@@ -62,12 +59,12 @@ public class BeansFactory {
     }
 
     @Bean
-    public ABeanIWantToMock aBeanIWantToMock() {
+    public ABeanIWantToMockInterface aBeanIWantToMock() {
         return new ABeanIWantToMock();
     }
 
     @Bean
-    public UselessBean uselessBean(ABeanIWantToMock aBeanIWantToMock) {
+    public UselessBean uselessBean(ABeanIWantToMockInterface aBeanIWantToMock) {
         return new UselessBean(aBeanIWantToMock);
     }
 }

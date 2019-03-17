@@ -9,10 +9,7 @@
 
 package com.mpalourdio.springboottemplate.service;
 
-public final class ABeanIWantToMock implements ABeanIWantToMockInterface {
+public interface ABeanIWantToMockInterface {
 
-    @Override
-    public boolean iAlwaysReturnFalse() {
-        return false;
-    }
+    boolean iAlwaysReturnFalse();
 }
