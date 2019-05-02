@@ -39,22 +39,6 @@
         <maven-checkstyle-plugin.configLocation>https://raw.githubusercontent.com/mpalourdio/configuration/master/checkstyle.xml</maven-checkstyle-plugin.configLocation>
     </properties>
 
-    <profiles>
-        <profile>
-            <id>java9+</id>
-            <activation>
-                <jdk>[9,)</jdk>
-            </activation>
-            <dependencies>
-                <dependency>
-                    <groupId>jakarta.xml.bind</groupId>
-                    <artifactId>jakarta.xml.bind-api</artifactId>
-                    <version>2.3.2</version>
-                </dependency>
-            </dependencies>
-        </profile>
-    </profiles>
-
     <repositories>
         <repository>
             <id>spring-milestones</id>
