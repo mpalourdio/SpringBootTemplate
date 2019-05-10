@@ -29,13 +29,13 @@
         <java.version>1.8</java.version>
 
         <common-text.version>1.6</common-text.version>
-        <poi.version>4.0.1</poi.version>
+        <poi.version>4.1.0</poi.version>
         <!-- can be removed in Spring Boot 2.2 -->
         <junit-jupiter.version>5.4.0</junit-jupiter.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
 
         <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
-        <checkstyle.version>8.18</checkstyle.version>
+        <checkstyle.version>8.20</checkstyle.version>
         <maven-checkstyle-plugin.configLocation>https://raw.githubusercontent.com/mpalourdio/configuration/master/checkstyle.xml</maven-checkstyle-plugin.configLocation>
     </properties>
 
