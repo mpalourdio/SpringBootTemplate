@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BasicAuthController {
 
-    @GetMapping(value = "/basicauth", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value = "/basicauth", produces = MediaType.APPLICATION_JSON_VALUE)
     public String protectedEndPoint() {
         return "ok";
     }

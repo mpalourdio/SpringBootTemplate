@@ -50,7 +50,7 @@ class MiscControllerTest extends AbstractTestRunner {
 
         mockMvc.perform(post("/misc/serialization")
                 .with(csrf())
-                .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(input))
                 .andExpect(content().json(serializeToJson(output), true));
     }
@@ -71,7 +71,7 @@ class MiscControllerTest extends AbstractTestRunner {
 
         mockMvc.perform(post("/misc/jsonunwrapped")
                 .with(csrf())
-                .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(input))
                 .andExpect(content().json(serializeToJson(accountDecorator), true));
     }

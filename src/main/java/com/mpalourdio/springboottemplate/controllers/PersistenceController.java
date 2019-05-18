@@ -58,12 +58,12 @@ public class PersistenceController {
         return task;
     }
 
-    @GetMapping(value = "/hydrate", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value = "/hydrate", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Dummy> hydrate() {
         return taskRepository.hydrateDummyObject();
     }
 
-    @GetMapping(value = "/annotated", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value = "/annotated", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public int annotated() {
         List<Task> allTasksByArchichedValue = taskRepository.getAllTasksByArchivedValue(false);
 

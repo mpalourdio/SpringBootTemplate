@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 @RequestMapping("/exception")
 public class ExceptionController {
 
-    @GetMapping(value = "nok", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value = "nok", produces = MediaType.APPLICATION_JSON_VALUE)
     public String throwException() throws CustomException {
         if (1 == 1) {
             throw new CustomException("bad");
@@ -22,7 +22,7 @@ public class ExceptionController {
         return "all is ok if here";
     }
 
-    @GetMapping(value = "ok", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value = "ok", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseObject ok() {
 
         ResponseObject responseObject = new ResponseObject();

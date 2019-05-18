@@ -26,7 +26,7 @@ public class ReactiveController {
         this.marvelProperties = marvelProperties;
     }
 
-    @GetMapping(value = "/reactive", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value = "/reactive", produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono<String> get() {
         String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
         String hash = DigestUtils.md5Hex(timestamp + marvelProperties.getPrivatekey() + marvelProperties.getPublickey());

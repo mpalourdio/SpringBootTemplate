@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/configserver", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+@RequestMapping(value = "/configserver", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ConfigServerController {
 
     public static final String SEPARATOR = " - ";
