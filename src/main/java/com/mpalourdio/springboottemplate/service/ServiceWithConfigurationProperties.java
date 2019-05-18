@@ -20,6 +20,6 @@ public class ServiceWithConfigurationProperties {
     }
 
     public String getFirstProperty() {
-        return myProperty.first;
+        return myProperty.getFirst();
     }
 }

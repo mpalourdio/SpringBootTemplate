@@ -9,36 +9,16 @@
 
 package com.mpalourdio.springboottemplate.properties;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+@Getter
+@AllArgsConstructor
 @ConfigurationProperties("marvel")
 public class MarvelProperties {
 
-    private String privatekey;
-    private String publickey;
-    private String unknownProperty;
-
-    public String getPrivatekey() {
-        return privatekey;
-    }
-
-    public void setPrivatekey(String privatekey) {
-        this.privatekey = privatekey;
-    }
-
-    public String getPublickey() {
-        return publickey;
-    }
-
-    public void setPublickey(String publickey) {
-        this.publickey = publickey;
-    }
-
-    public String getUnknownProperty() {
-        return unknownProperty;
-    }
-
-    public void setUnknownProperty(String unknownProperty) {
-        this.unknownProperty = unknownProperty;
-    }
+    private final String privatekey;
+    private final String publickey;
+    private final String unknownProperty;
 }

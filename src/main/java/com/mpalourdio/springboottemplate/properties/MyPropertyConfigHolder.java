@@ -9,27 +9,15 @@
 
 package com.mpalourdio.springboottemplate.properties;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
+@Getter
+@AllArgsConstructor
 @ConfigurationProperties("myproperty")
 public class MyPropertyConfigHolder {
 
-    public String first;
-    public String second;
-
-    public String getFirst() {
-        return first;
-    }
-
-    public void setFirst(String first) {
-        this.first = first;
-    }
-
-    public String getSecond() {
-        return second;
-    }
-
-    public void setSecond(String second) {
-        this.second = second;
-    }
+    private final String first;
+    private final String second;
 }
