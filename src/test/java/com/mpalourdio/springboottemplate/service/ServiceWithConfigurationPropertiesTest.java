@@ -10,11 +10,14 @@
 package com.mpalourdio.springboottemplate.service;
 
 import com.mpalourdio.springboottemplate.AbstractTestRunner;
+import com.mpalourdio.springboottemplate.properties.MyPropertyConfigHolder;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@EnableConfigurationProperties(MyPropertyConfigHolder.class)
 class ServiceWithConfigurationPropertiesTest extends AbstractTestRunner {
 
     @Autowired

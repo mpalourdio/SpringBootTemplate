@@ -11,11 +11,14 @@ package com.mpalourdio.springboottemplate.generics;
 
 import com.mpalourdio.springboottemplate.AbstractTestRunner;
 import com.mpalourdio.springboottemplate.model.entities.Task;
+import com.mpalourdio.springboottemplate.properties.MyPropertyConfigHolder;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@EnableConfigurationProperties(MyPropertyConfigHolder.class)
 class BeanFromConfigurationClassTest extends AbstractTestRunner {
 
     @Autowired
