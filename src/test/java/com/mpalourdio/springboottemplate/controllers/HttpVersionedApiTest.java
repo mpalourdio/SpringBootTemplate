@@ -20,7 +20,6 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 
 @WebMvcTest(HttpVersionedApiController.class)
 class HttpVersionedApiTest extends AbstractTestRunner {
@@ -34,7 +33,6 @@ class HttpVersionedApiTest extends AbstractTestRunner {
     private static final String HEADER_V1_LOW_QUALITY = HEADER_V1 + QUALITY_09;
     private static final String HEADER_V1_HIGH_QUALITY = HEADER_V1 + QUALITY_1;
     private static final String HEADER_V2_LOW_QUALITY = HEADER_V2 + QUALITY_09;
-    private static final String CHARSET_UTF_8 = ";charset=UTF-8";
 
     @Autowired
     private MockMvc mvc;
@@ -43,43 +41,43 @@ class HttpVersionedApiTest extends AbstractTestRunner {
     void testGetAndAcceptHeaderV1ReturnsV1Content() throws Exception {
         mvc.perform(get("/http/test")
                 .header("Accept", HEADER_V1))
-                .andExpect(content().string("v1"));
+                .andExpect(content().string("[\"v1\"]"));
     }
 
     @Test
     void testGetAndAcceptHeaderV2ReturnsV2Content() throws Exception {
         mvc.perform(get("/http/test")
                 .header("Accept", HEADER_V2))
-                .andExpect(content().string("v2"));
+                .andExpect(content().string("[\"v2\"]"));
     }
 
     @Test
     void testGetAndNoAcceptHeaderReturnsV2ContentAsAcceptHeaderIsImplicitlyApplicationJson() throws Exception {
         mvc.perform(get("/http/test"))
-                .andExpect(content().string("v2"))
-                .andExpect(header().string("Content-Type", MediaType.APPLICATION_JSON_VALUE + CHARSET_UTF_8));
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
     }
 
     @Test
     void testGetAndLowQualityAcceptHeaderV2ReturnsV2Content() throws Exception {
         mvc.perform(get("/http/test")
                 .header("Accept", HEADER_V2_LOW_QUALITY + ", " + MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(content().string("v2"));
+                .andExpect(content().string("[\"v2\"]"));
     }
 
     @Test
     void testGetAndLowQualityAcceptHeaderV1ReturnsV2ContentBecauseThePriorityIsLow() throws Exception {
         mvc.perform(get("/http/test")
                 .header("Accept", HEADER_V1_LOW_QUALITY + ", " + MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(content().string("v2"))
-                .andExpect(header().string("Content-Type", MediaType.APPLICATION_JSON_VALUE + CHARSET_UTF_8));
+                .andExpect(content().string("[\"v2\"]"))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
     }
 
     @Test
     void testGetAndHighQualityAcceptHeaderV1ReturnsV1ContentBecauseThePriorityIsHigh() throws Exception {
         mvc.perform(get("/http/test")
                 .header("Accept", HEADER_V1_HIGH_QUALITY + ", " + MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(content().string("v1"));
+                .andExpect(content().string("[\"v1\"]"));
     }
 
 
@@ -88,7 +86,7 @@ class HttpVersionedApiTest extends AbstractTestRunner {
         mvc.perform(post("/http/test")
                 .header("Content-Type", HEADER_V1)
                 .with(csrf()))
-                .andExpect(content().string("v1-post"));
+                .andExpect(content().string("[\"v1-post\"]"));
     }
 
     @Test
@@ -96,7 +94,7 @@ class HttpVersionedApiTest extends AbstractTestRunner {
         mvc.perform(post("/http/test")
                 .header("Content-Type", HEADER_V2)
                 .with(csrf()))
-                .andExpect(content().string("v2-post"));
+                .andExpect(content().string("[\"v2-post\"]"));
     }
 
     @Test
@@ -105,16 +103,16 @@ class HttpVersionedApiTest extends AbstractTestRunner {
                 .header("Content-Type", HEADER_V2)
                 .header("Accept", HEADER_V1_LOW_QUALITY + ", " + MediaType.APPLICATION_JSON_VALUE)
                 .with(csrf()))
-                .andExpect(content().string("v2-post"))
-                .andExpect(header().string("Content-Type", MediaType.APPLICATION_JSON_VALUE + CHARSET_UTF_8));
+                .andExpect(content().string("[\"v2-post\"]"))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
     }
 
     @Test
     void testPostAndNoAcceptHeaderReturnsV2ContentAsAcceptHeaderIsImplicitlyApplicationJson() throws Exception {
         mvc.perform(post("/http/test")
                 .with(csrf()))
-                .andExpect(content().string("v2-post-consumes-all"))
-                .andExpect(header().string("Content-Type", MediaType.APPLICATION_JSON_VALUE + CHARSET_UTF_8));
+                .andExpect(content().string("[\"v2-post-consumes-all\"]"))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
     }
 
     @Test
@@ -123,7 +121,7 @@ class HttpVersionedApiTest extends AbstractTestRunner {
                 .header("Content-Type", MediaType.ALL_VALUE)
                 .header("Accept", HEADER_V2_LOW_QUALITY + ", " + MediaType.APPLICATION_JSON_VALUE)
                 .with(csrf()))
-                .andExpect(content().string("v2-post-consumes-all"));
+                .andExpect(content().string("[\"v2-post-consumes-all\"]"));
     }
 
     @Test
@@ -132,8 +130,8 @@ class HttpVersionedApiTest extends AbstractTestRunner {
                 .header("Content-Type", MediaType.ALL_VALUE)
                 .header("Accept", HEADER_V1_LOW_QUALITY + ", " + MediaType.APPLICATION_JSON_VALUE)
                 .with(csrf()))
-                .andExpect(content().string("v2-post-consumes-all"))
-                .andExpect(header().string("Content-Type", MediaType.APPLICATION_JSON + CHARSET_UTF_8));
+                .andExpect(content().string("[\"v2-post-consumes-all\"]"))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
     }
 
     @Test
@@ -142,7 +140,7 @@ class HttpVersionedApiTest extends AbstractTestRunner {
                 .header("Content-Type", MediaType.ALL_VALUE)
                 .header("Accept", HEADER_V1_HIGH_QUALITY + ", " + MediaType.APPLICATION_JSON_VALUE)
                 .with(csrf()))
-                .andExpect(content().string("v1-post-consumes-all"));
+                .andExpect(content().string("[\"v1-post-consumes-all\"]"));
     }
 
     @Test
@@ -151,7 +149,7 @@ class HttpVersionedApiTest extends AbstractTestRunner {
                 .header("Content-Type", MediaType.ALL_VALUE)
                 .header("Accept", HEADER_V1_HIGH_QUALITY + ", " + MediaType.APPLICATION_JSON_VALUE)
                 .with(csrf()))
-                .andExpect(header().string("Content-Type", "application/vnd.api.v1+json" + CHARSET_UTF_8));
+                .andExpect(content().contentType(MediaType.APPLICATION_VND_API_V1));
     }
 
     @Test
@@ -160,7 +158,7 @@ class HttpVersionedApiTest extends AbstractTestRunner {
                 .header("Content-Type", MediaType.ALL_VALUE)
                 .header("Accept", HEADER_V1_LOW_QUALITY + ", " + MediaType.APPLICATION_JSON_VALUE)
                 .with(csrf()))
-                .andExpect(header().string("Content-Type", MediaType.APPLICATION_JSON_VALUE + CHARSET_UTF_8));
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
     }
 
     @Test
@@ -168,7 +166,7 @@ class HttpVersionedApiTest extends AbstractTestRunner {
         mvc.perform(get("/http/test")
                 .header("Content-Type", MediaType.ALL_VALUE)
                 .header("Accept", HEADER_V1_HIGH_QUALITY + ", " + MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(header().string("Content-Type", "application/vnd.api.v1+json" + CHARSET_UTF_8));
+                .andExpect(content().contentType(MediaType.APPLICATION_VND_API_V1));
     }
 
     @Test
@@ -176,7 +174,7 @@ class HttpVersionedApiTest extends AbstractTestRunner {
         mvc.perform(get("/http/test")
                 .header("Content-Type", MediaType.ALL_VALUE)
                 .header("Accept", HEADER_V1_LOW_QUALITY + ", " + MediaType.APPLICATION_JSON_VALUE))
-                .andExpect(header().string("Content-Type", MediaType.APPLICATION_JSON_VALUE + CHARSET_UTF_8));
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
     }
 }
 

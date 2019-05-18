@@ -52,6 +52,7 @@ class MiscControllerTest extends AbstractTestRunner {
                 .with(csrf())
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(input))
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().json(serializeToJson(output), true));
     }
 
