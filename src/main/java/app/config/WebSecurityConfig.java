@@ -10,10 +10,7 @@
 package app.config;
 
 import com.mpalourdio.springboottemplate.properties.CredentialsProperties;
-import org.springframework.boot.actuate.autoconfigure.endpoint.web.WebEndpointProperties;
 import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
-import org.springframework.boot.actuate.autoconfigure.web.server.ManagementServerProperties;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -28,11 +25,6 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-@EnableConfigurationProperties({
-        CredentialsProperties.class,
-        ManagementServerProperties.class,
-        WebEndpointProperties.class,
-})
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     private static final String BASIC_AUTH_ENDPOINT = "/basicauth";
