@@ -194,6 +194,7 @@
     </dependencyManagement>
 
     <build>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -203,7 +204,6 @@
                         <id>repackage</id>
                         <configuration>
                             <executable>true</executable>
-                            <finalName>${project.artifactId}</finalName>
                         </configuration>
                     </execution>
                 </executions>
