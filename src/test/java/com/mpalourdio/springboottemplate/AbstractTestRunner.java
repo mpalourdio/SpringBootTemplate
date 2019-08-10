@@ -14,6 +14,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mpalourdio.springboottemplate.model.entities.People;
 import com.mpalourdio.springboottemplate.model.entities.Task;
+import com.mpalourdio.springboottemplate.properties.CredentialsProperties;
+import com.mpalourdio.springboottemplate.properties.MarvelProperties;
+import com.mpalourdio.springboottemplate.properties.MyPropertyConfigHolder;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.TestPropertySource;
@@ -21,7 +24,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
 @TestPropertySource(locations = "classpath:test.properties")
-@Import({BeansFactory.class})
+@Import({BeansFactory.class, MyPropertyConfigHolder.class, MarvelProperties.class, CredentialsProperties.class,})
 public abstract class AbstractTestRunner {
 
     protected Task task;
