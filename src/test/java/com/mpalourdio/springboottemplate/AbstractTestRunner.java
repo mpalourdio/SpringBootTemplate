@@ -18,13 +18,15 @@ import com.mpalourdio.springboottemplate.properties.CredentialsProperties;
 import com.mpalourdio.springboottemplate.properties.MarvelProperties;
 import com.mpalourdio.springboottemplate.properties.MyPropertyConfigHolder;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
 @TestPropertySource(locations = "classpath:test.properties")
-@Import({BeansFactory.class, MyPropertyConfigHolder.class, MarvelProperties.class, CredentialsProperties.class,})
+@Import({BeansFactory.class})
+@EnableConfigurationProperties({MyPropertyConfigHolder.class, MarvelProperties.class, CredentialsProperties.class})
 public abstract class AbstractTestRunner {
 
     protected Task task;
