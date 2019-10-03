@@ -11,11 +11,11 @@ package com.mpalourdio.springboottemplate.properties;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.ImmutableConfigurationProperties;
 
 @Getter
 @AllArgsConstructor
-@ConfigurationProperties("admin")
+@ImmutableConfigurationProperties("admin")
 public class CredentialsProperties {
 
     private final String username;
