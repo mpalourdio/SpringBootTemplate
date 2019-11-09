@@ -13,6 +13,7 @@ import com.mpalourdio.springboottemplate.mediatype.MediaType;
 import com.mpalourdio.springboottemplate.properties.MarvelProperties;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,6 +25,7 @@ import java.util.Arrays;
 
 @RestController
 @RequestMapping("/marvel")
+@EnableConfigurationProperties(MarvelProperties.class)
 public class MarvelController {
 
     private final MarvelProperties marvelProperties;
