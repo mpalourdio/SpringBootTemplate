@@ -31,7 +31,7 @@ public class EventController {
         logger = asyncLogger;
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(produces = MediaType.TEXT_PLAIN_VALUE)
     public String publishAction() {
         AsyncEvent asyncEvent = new AsyncEvent();
         eventPublisher.publishEvent(asyncEvent);
