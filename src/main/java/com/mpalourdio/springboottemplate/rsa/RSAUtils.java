@@ -39,7 +39,11 @@ public class RSAUtils {
             cipher.init(Cipher.ENCRYPT_MODE, getPublicKey());
 
             return Base64.getEncoder().encodeToString(cipher.doFinal(toEncrypt.getBytes(StandardCharsets.UTF_8)));
-        } catch (BadPaddingException | IllegalBlockSizeException | NoSuchPaddingException | NoSuchAlgorithmException | InvalidKeyException e) {
+        } catch (BadPaddingException
+                | IllegalBlockSizeException
+                | NoSuchPaddingException
+                | NoSuchAlgorithmException
+                | InvalidKeyException e) {
             log.error("getBase64EncodedEncryptedString error: {}", e.getMessage());
             throw new EncryptException(toEncrypt);
         }
@@ -51,7 +55,11 @@ public class RSAUtils {
             cipher.init(Cipher.DECRYPT_MODE, getPrivateKey());
 
             return new String(cipher.doFinal(Base64.getDecoder().decode(base64EncodedToDecrypt.getBytes(StandardCharsets.UTF_8))));
-        } catch (NoSuchPaddingException | NoSuchAlgorithmException | InvalidKeyException | BadPaddingException | IllegalBlockSizeException e) {
+        } catch (NoSuchPaddingException
+                | NoSuchAlgorithmException
+                | InvalidKeyException
+                | BadPaddingException
+                | IllegalBlockSizeException e) {
             log.error("decryptBase64EncodedString error: {}", e.getMessage());
             throw new DecryptException();
         }
@@ -72,7 +80,10 @@ public class RSAUtils {
     private static PrivateKey getPrivateKey() {
         try {
             KeyStore keyStore = loadKeyStore(); //TODO execute once at class instance to avoid overhead at runtime
-            KeyStore.PrivateKeyEntry privateK = (KeyStore.PrivateKeyEntry) keyStore.getEntry(ALIAS, new KeyStore.PasswordProtection(JAVAX_NET_SSL_KEY_STORE_PASSWORD.toCharArray()));
+            KeyStore.PrivateKeyEntry privateK = (KeyStore.PrivateKeyEntry) keyStore.getEntry(
+                    ALIAS,
+                    new KeyStore.PasswordProtection(JAVAX_NET_SSL_KEY_STORE_PASSWORD.toCharArray())
+            );
             return privateK.getPrivateKey();
         } catch (NoSuchAlgorithmException | KeyStoreException | UnrecoverableEntryException e) {
             log.error(e.getMessage());
