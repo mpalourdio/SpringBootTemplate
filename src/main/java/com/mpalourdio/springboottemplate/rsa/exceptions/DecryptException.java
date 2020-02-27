@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(value = HttpStatus.BAD_REQUEST)
 public class DecryptException extends RuntimeException {
 
-    public DecryptException() {
-        super("Unable to decrypt");
+    public DecryptException(String message) {
+        super(message);
     }
 }

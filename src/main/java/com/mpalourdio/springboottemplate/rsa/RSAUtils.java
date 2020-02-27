@@ -32,73 +32,71 @@ public class RSAUtils {
     private static final String ALIAS = "mpalourdio";
     private static final String JAVAX_NET_SSL_KEY_STORE_PASSWORD = ALIAS;
     private static final String JAVAX_NET_SSL_KEY_STORE = "keystore/" + ALIAS + ".p12";
+    public static final String KEYSTORE_TYPE = "PKCS12";
+    private final Cipher cipher;
+    private final KeyStore keyStore;
 
-    public static String getBase64EncodedEncryptedString(String toEncrypt) {
+    public RSAUtils() {
         try {
-            Cipher cipher = Cipher.getInstance(TRANSFORMATION);
+            cipher = Cipher.getInstance(TRANSFORMATION);
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
+            throw new CipherInitException(e.getMessage());
+        }
+        keyStore = loadKeyStore();
+    }
+
+    public String getBase64EncodedEncryptedString(String toEncrypt) {
+        try {
             cipher.init(Cipher.ENCRYPT_MODE, getPublicKey());
-
             return Base64.getEncoder().encodeToString(cipher.doFinal(toEncrypt.getBytes(StandardCharsets.UTF_8)));
-        } catch (BadPaddingException
-                | IllegalBlockSizeException
-                | NoSuchPaddingException
-                | NoSuchAlgorithmException
-                | InvalidKeyException e) {
-            log.error("getBase64EncodedEncryptedString error: {}", e.getMessage());
-            throw new EncryptException(toEncrypt);
+        } catch (BadPaddingException | IllegalBlockSizeException | InvalidKeyException e) {
+            log.error("Unable to encrypt '{}'", toEncrypt);
+            throw new EncryptException(e.getMessage());
         }
     }
 
-    public static String decryptBase64EncodedString(String base64EncodedToDecrypt) {
+    public String decryptBase64EncodedString(String base64EncodedToDecrypt) {
         try {
-            Cipher cipher = Cipher.getInstance(TRANSFORMATION);
             cipher.init(Cipher.DECRYPT_MODE, getPrivateKey());
-
             return new String(cipher.doFinal(Base64.getDecoder().decode(base64EncodedToDecrypt.getBytes(StandardCharsets.UTF_8))));
-        } catch (NoSuchPaddingException
-                | NoSuchAlgorithmException
-                | InvalidKeyException
-                | BadPaddingException
-                | IllegalBlockSizeException e) {
-            log.error("decryptBase64EncodedString error: {}", e.getMessage());
-            throw new DecryptException();
+        } catch (InvalidKeyException | BadPaddingException | IllegalBlockSizeException e) {
+            log.error("Unable to decrypt");
+            throw new DecryptException(e.getMessage());
         }
     }
 
-    private static KeyStore loadKeyStore() {
+    private KeyStore loadKeyStore() {
         try {
-            KeyStore keyStore = KeyStore.getInstance("PKCS12");
+            KeyStore keyStore = KeyStore.getInstance(KEYSTORE_TYPE);
             FileInputStream keystoreFile = new FileInputStream(new File(JAVAX_NET_SSL_KEY_STORE));
             keyStore.load(keystoreFile, JAVAX_NET_SSL_KEY_STORE_PASSWORD.toCharArray());
             return keyStore;
         } catch (CertificateException | NoSuchAlgorithmException | KeyStoreException | IOException e) {
-            log.error(e.getMessage());
-            throw new KeyStoreLoadException();
+            log.error("Unable to load the Keystore");
+            throw new KeyStoreLoadException(e.getMessage());
         }
     }
 
-    private static PrivateKey getPrivateKey() {
+    private PrivateKey getPrivateKey() {
         try {
-            KeyStore keyStore = loadKeyStore(); //TODO execute once at class instance to avoid overhead at runtime
             KeyStore.PrivateKeyEntry privateK = (KeyStore.PrivateKeyEntry) keyStore.getEntry(
                     ALIAS,
                     new KeyStore.PasswordProtection(JAVAX_NET_SSL_KEY_STORE_PASSWORD.toCharArray())
             );
             return privateK.getPrivateKey();
         } catch (NoSuchAlgorithmException | KeyStoreException | UnrecoverableEntryException e) {
-            log.error(e.getMessage());
-            throw new PrivateKeyException();
+            log.error("Unable to get the private key");
+            throw new PrivateKeyException(e.getMessage());
         }
     }
 
-    private static PublicKey getPublicKey() {
+    private PublicKey getPublicKey() {
         try {
-            KeyStore keyStore = loadKeyStore(); //TODO execute once at class instance to avoid overhead at runtime
             Certificate cert = keyStore.getCertificate(ALIAS);
             return cert.getPublicKey();
         } catch (KeyStoreException e) {
-            log.error(e.getMessage());
-            throw new PublicKeyException();
+            log.error("Unable to get the public key");
+            throw new PublicKeyException(e.getMessage());
         }
     }
 }

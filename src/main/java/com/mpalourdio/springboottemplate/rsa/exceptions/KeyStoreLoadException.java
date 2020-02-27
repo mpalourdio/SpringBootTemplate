@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(value = HttpStatus.BAD_REQUEST)
 public class KeyStoreLoadException extends RuntimeException {
 
-    public KeyStoreLoadException() {
-        super("Unable to load the keystore");
+    public KeyStoreLoadException(String message) {
+        super(message);
     }
 }

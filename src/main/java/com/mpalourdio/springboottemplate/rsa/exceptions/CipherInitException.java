@@ -4,9 +4,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(value = HttpStatus.BAD_REQUEST)
-public class PrivateKeyException extends RuntimeException {
+public class CipherInitException extends RuntimeException {
 
-    public PrivateKeyException(String message) {
+    public CipherInitException(String message) {
         super(message);
     }
 }
