@@ -30,8 +30,8 @@ public class RSAUtils {
 
     private static final String TRANSFORMATION = "RSA/ECB/PKCS1Padding";
     private static final String ALIAS = "mpalourdio";
-    private static final String JAVAX_NET_SSL_KEY_STORE_PASSWORD = ALIAS;
-    private static final String JAVAX_NET_SSL_KEY_STORE = "keystore/" + ALIAS + ".p12";
+    private static final String KEY_STORE = "keystore/" + ALIAS + ".p12";
+    private static final String KEY_STORE_PASSWORD = ALIAS;
     public static final String KEYSTORE_TYPE = "PKCS12";
     private final Cipher cipher;
     private final KeyStore keyStore;
@@ -68,8 +68,8 @@ public class RSAUtils {
     private KeyStore loadKeyStore() {
         try {
             KeyStore keyStore = KeyStore.getInstance(KEYSTORE_TYPE);
-            FileInputStream keystoreFile = new FileInputStream(new File(JAVAX_NET_SSL_KEY_STORE));
-            keyStore.load(keystoreFile, JAVAX_NET_SSL_KEY_STORE_PASSWORD.toCharArray());
+            FileInputStream keystoreFile = new FileInputStream(new File(KEY_STORE));
+            keyStore.load(keystoreFile, KEY_STORE_PASSWORD.toCharArray());
             return keyStore;
         } catch (CertificateException | NoSuchAlgorithmException | KeyStoreException | IOException e) {
             log.error("Unable to load the Keystore");
@@ -81,7 +81,7 @@ public class RSAUtils {
         try {
             KeyStore.PrivateKeyEntry privateK = (KeyStore.PrivateKeyEntry) keyStore.getEntry(
                     ALIAS,
-                    new KeyStore.PasswordProtection(JAVAX_NET_SSL_KEY_STORE_PASSWORD.toCharArray())
+                    new KeyStore.PasswordProtection(KEY_STORE_PASSWORD.toCharArray())
             );
             return privateK.getPrivateKey();
         } catch (NoSuchAlgorithmException | KeyStoreException | UnrecoverableEntryException e) {
