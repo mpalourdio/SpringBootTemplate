@@ -26,7 +26,7 @@ import java.security.cert.CertificateException;
 import java.util.Base64;
 
 @Slf4j
-public class RSAUtils {
+public final class RSAEncryptor implements Encryptor {
 
     private static final String TRANSFORMATION = "RSA/ECB/PKCS1Padding";
     private static final String ALIAS = "mpalourdio";
@@ -36,7 +36,7 @@ public class RSAUtils {
     private final Cipher cipher;
     private final KeyStore keyStore;
 
-    public RSAUtils() {
+    public RSAEncryptor() {
         try {
             cipher = Cipher.getInstance(TRANSFORMATION);
         } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
@@ -45,20 +45,32 @@ public class RSAUtils {
         keyStore = loadKeyStore();
     }
 
-    public String encrypt(String toEncrypt) {
+    /**
+     * @param text the string to encrypt
+     *
+     * @return the encoded string
+     */
+    @Override
+    public String encrypt(String text) {
         try {
             cipher.init(Cipher.ENCRYPT_MODE, getPublicKey());
-            return Base64.getEncoder().encodeToString(cipher.doFinal(toEncrypt.getBytes(StandardCharsets.UTF_8)));
+            return Base64.getEncoder().encodeToString(cipher.doFinal(text.getBytes(StandardCharsets.UTF_8)));
         } catch (BadPaddingException | IllegalBlockSizeException | InvalidKeyException e) {
-            log.error("Unable to encrypt '{}'", toEncrypt);
+            log.error("Unable to encrypt '{}'", text);
             throw new EncryptException(e.getMessage());
         }
     }
 
-    public String decrypt(String base64Encoded) {
+    /**
+     * @param base64EncodedText the input string, base64 encoded, to decrypt
+     *
+     * @return the decrypted string
+     */
+    @Override
+    public String decrypt(String base64EncodedText) {
         try {
             cipher.init(Cipher.DECRYPT_MODE, getPrivateKey());
-            return new String(cipher.doFinal(Base64.getDecoder().decode(base64Encoded.getBytes(StandardCharsets.UTF_8))));
+            return new String(cipher.doFinal(Base64.getDecoder().decode(base64EncodedText.getBytes(StandardCharsets.UTF_8))));
         } catch (InvalidKeyException | BadPaddingException | IllegalBlockSizeException e) {
             log.error("Unable to decrypt");
             throw new DecryptException(e.getMessage());
