@@ -45,7 +45,7 @@ public class RSAUtils {
         keyStore = loadKeyStore();
     }
 
-    public String getBase64EncodedEncryptedString(String toEncrypt) {
+    public String encrypt(String toEncrypt) {
         try {
             cipher.init(Cipher.ENCRYPT_MODE, getPublicKey());
             return Base64.getEncoder().encodeToString(cipher.doFinal(toEncrypt.getBytes(StandardCharsets.UTF_8)));
@@ -55,10 +55,10 @@ public class RSAUtils {
         }
     }
 
-    public String decryptBase64EncodedString(String base64EncodedToDecrypt) {
+    public String decrypt(String base64Encoded) {
         try {
             cipher.init(Cipher.DECRYPT_MODE, getPrivateKey());
-            return new String(cipher.doFinal(Base64.getDecoder().decode(base64EncodedToDecrypt.getBytes(StandardCharsets.UTF_8))));
+            return new String(cipher.doFinal(Base64.getDecoder().decode(base64Encoded.getBytes(StandardCharsets.UTF_8))));
         } catch (InvalidKeyException | BadPaddingException | IllegalBlockSizeException e) {
             log.error("Unable to decrypt");
             throw new DecryptException(e.getMessage());

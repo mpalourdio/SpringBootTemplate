@@ -24,15 +24,15 @@ class RSAUtilsTest {
                 + "tyhdfcbvluohkutfiuifgyksryusryufdsgfhhliyjhfgdsxbcnvb,;njythdxb nbnjo_iètrgfxbcv bhyèu-"
                 + "tyhdfcbvluohkutfiuijlkjfhdgfjlkmkjhgfdghoiukgfhgfdsgfhhliyjhfgdsxbcnvb,;njythdxb nbnjo_iètrgfxbcv bhyèu-"
                 + "tyhdfcbvluohkutfiuijlkjfhdgfjlkmkjhgfdghoiukgfhgfdsgfhhliyjhfgdsxbcnggggggggggggggggg";
-        String encrypted = rsaUtils.getBase64EncodedEncryptedString(toEncrypt);
-        String decrypted = rsaUtils.decryptBase64EncodedString(encrypted);
+        String encrypted = rsaUtils.encrypt(toEncrypt);
+        String decrypted = rsaUtils.decrypt(encrypted);
 
         assertEquals(toEncrypt, decrypted);
     }
 
     @Test
     void testDecryptThrowsException() {
-        assertThrows(DecryptException.class, () -> rsaUtils.decryptBase64EncodedString("toto"));
+        assertThrows(DecryptException.class, () -> rsaUtils.decrypt("toto"));
     }
 
     /**
@@ -42,7 +42,7 @@ class RSAUtilsTest {
      */
     @Test
     void testEncryptThrowsException() {
-        assertThrows(EncryptException.class, () -> rsaUtils.getBase64EncodedEncryptedString(
+        assertThrows(EncryptException.class, () -> rsaUtils.encrypt(
                 "luohkufiuidfjlkkjfhdgfjlkmkjhgfdghoiukgfhgfdsgfhhliyjhfgdsxbcnvb,;njythdxb nbnjo_iètrgfxbcv bhyèu"
                         + "-tyhdfcbvluohkutfiuijlkjfhdgfjlkmkjhgfdghoiukgfhgfdsgfhhldfiyjhfgdsxbcnvb,;njythdxb nbnjo_iètrgfxbcv bhyèu-"
                         + "tyhdfcbvluohkutfiuifgyksryusryufdsgfhhliyjhfgdsxbdfcnvb,;njythdxb nbnjo_iètrgfxbcvnbnjo_iètrgfxbcvnbnjo_iètrgfxbcvnbn"
