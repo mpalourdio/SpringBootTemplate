@@ -9,7 +9,7 @@
 
 package com.mpalourdio.springboottemplate.rsa;
 
-public interface Encryptor {
+public interface TextEncryptor {
 
     /**
      * @param text the string to encrypt

@@ -17,13 +17,13 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class RSAEncryptorTest {
+class RSATextEncryptorTest {
 
-    private Encryptor encryptor;
+    private TextEncryptor encryptor;
 
     @BeforeEach
     void setUp() {
-        encryptor = new RSAEncryptor();
+        encryptor = new RSATextEncryptor();
     }
 
     @Test

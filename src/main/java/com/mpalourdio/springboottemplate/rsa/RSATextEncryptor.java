@@ -26,7 +26,7 @@ import java.security.cert.CertificateException;
 import java.util.Base64;
 
 @Slf4j
-public final class RSAEncryptor implements Encryptor {
+public final class RSATextEncryptor implements TextEncryptor {
 
     private static final String TRANSFORMATION = "RSA/ECB/PKCS1Padding";
     private static final String ALIAS = "mpalourdio";
@@ -36,7 +36,7 @@ public final class RSAEncryptor implements Encryptor {
     private final Cipher cipher;
     private final KeyStore keyStore;
 
-    public RSAEncryptor() {
+    public RSATextEncryptor() {
         try {
             cipher = Cipher.getInstance(TRANSFORMATION);
         } catch (NoSuchAlgorithmException | NoSuchPaddingException e) {
