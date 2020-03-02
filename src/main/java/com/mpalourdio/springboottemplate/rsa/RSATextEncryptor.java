@@ -71,7 +71,7 @@ public final class RSATextEncryptor implements TextEncryptor {
         try {
             cipher.init(Cipher.DECRYPT_MODE, getPrivateKey());
             return new String(cipher.doFinal(Base64.getDecoder().decode(base64EncodedText.getBytes(StandardCharsets.UTF_8))));
-        } catch (InvalidKeyException | BadPaddingException | IllegalBlockSizeException e) {
+        } catch (InvalidKeyException | BadPaddingException | IllegalBlockSizeException | IllegalArgumentException e) {
             log.error("Unable to decrypt");
             throw new DecryptException(e.getMessage());
         }
