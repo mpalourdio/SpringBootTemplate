@@ -36,15 +36,15 @@ public class PoiController {
 
     @GetMapping(value = "/download", produces = "application/vnd.ms-excel")
     public ResponseEntity<byte[]> donwloadExcel() throws IOException {
-        HSSFWorkbook workbook = generateExcelFile();
+        var workbook = generateExcelFile();
 
-        HttpHeaders responseHeaders = new HttpHeaders();
+        var responseHeaders = new HttpHeaders();
         responseHeaders.setContentDispositionFormData("attachment", FILENAME);
 
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        var outputStream = new ByteArrayOutputStream();
         workbook.write(outputStream);
 
-        byte[] responseBody = outputStream.toByteArray();
+        var responseBody = outputStream.toByteArray();
         responseHeaders.setContentLength(responseBody.length); // useful ?
 
         return new ResponseEntity<>(responseBody, responseHeaders, HttpStatus.OK);
@@ -52,7 +52,7 @@ public class PoiController {
 
     @GetMapping(value = "/download2")
     public void donwloadExcelFile(HttpServletResponse response) throws IOException {
-        HSSFWorkbook workbook = generateExcelFile();
+        var workbook = generateExcelFile();
 
         response.setHeader("Content-Disposition", "attachement; filename=\"" + FILENAME + "\"");
 
@@ -62,10 +62,10 @@ public class PoiController {
     }
 
     private HSSFWorkbook generateExcelFile() {
-        HSSFWorkbook workbook = new HSSFWorkbook();
-        HSSFSheet worksheet = workbook.createSheet("POI Worksheet");
-        HSSFRow row = worksheet.createRow(0);
-        HSSFCell cell = row.createCell(0);
+        var workbook = new HSSFWorkbook();
+        var worksheet = workbook.createSheet("POI Worksheet");
+        var row = worksheet.createRow(0);
+        var cell = row.createCell(0);
         cell.setCellValue("cell value");
 
         return workbook;

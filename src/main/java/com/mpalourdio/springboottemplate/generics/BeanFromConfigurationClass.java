@@ -23,7 +23,7 @@ public class BeanFromConfigurationClass<T extends Task> implements GenericInterf
 
     @Override
     public T getInstance() {
-        ParametrizedClass<T> taskParametrizedClass = new ParametrizedClass<>(taskInstance);
+        var taskParametrizedClass = new ParametrizedClass<T>(taskInstance);
 
         return taskParametrizedClass.getProperty();
     }

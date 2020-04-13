@@ -58,7 +58,7 @@ public class HomeController {
     @GetMapping("/")
     public String indexAction(Model model) {
         List task = taskRepository.findByTaskStatus(TASK_STATUS_ACTIVE);
-        Task activity = taskRepository.findById(1).orElse(null);
+        var activity = taskRepository.findById(1).orElse(null);
         model.addAttribute(IWANTTHISINMYVIEW, uselessBean.getTestPro());
         model.addAttribute(IWANTTHISINMYVIEWFROMHIBERNATE, activity.getTaskName());
 
@@ -69,7 +69,7 @@ public class HomeController {
     public String otherAction(Model model) {
         uselessBean.setTestPro("imsetinthecontrolleronthefly");
         List task = taskRepository.findByTaskStatus(TASK_STATUS_ACTIVE);
-        Task activity = taskRepository.findById(1).orElse(null);
+        var activity = taskRepository.findById(1).orElse(null);
         model.addAttribute(IWANTTHISINMYVIEW, uselessBean.getTestPro());
         model.addAttribute(IWANTTHISINMYVIEWFROMHIBERNATE, activity.getTaskName());
         model.addAttribute("iwantthisinmyviewfromproperties", myProperty);
@@ -80,7 +80,7 @@ public class HomeController {
     @GetMapping("/custorepo")
     public String customRepoAction(Model model) {
         //use a custom method repository
-        List<Task> mediumTasks = taskRepository.customFindByPriority(TASK_PRIORITY_MEDIUM);
+        var mediumTasks = taskRepository.customFindByPriority(TASK_PRIORITY_MEDIUM);
         //print only those who have 'Implementation' as task_name
         mediumTasks.stream()
                 .filter(s -> s.getTaskName().equals("Implementation"))
@@ -92,7 +92,7 @@ public class HomeController {
     @GetMapping("/invalidpath")
     @ResponseBody
     public String testInvalidPath() {
-        List<Task> tasks = taskRepository.testInvalidPath();
+        var tasks = taskRepository.testInvalidPath();
         if (tasks.size() > 0) {
             return tasks.get(0).getTaskName();
         }
@@ -108,15 +108,15 @@ public class HomeController {
     @GetMapping("patchwithrestemplate")
     @ResponseBody
     public JsonPlaceHolder testPatchWithRestTemplate() {
-        RestTemplate restTemplateforGet = new RestTemplate();
-        JsonPlaceHolder jsonPlaceHolder = restTemplateforGet.getForObject(
+        var restTemplateforGet = new RestTemplate();
+        var jsonPlaceHolder = restTemplateforGet.getForObject(
                 HTTPS_JSONPLACEHOLDER_TYPICODE_COM_POSTS_1,
                 JsonPlaceHolder.class
         );
 
         jsonPlaceHolder.body = NEW_BODY;
 
-        RestTemplate restTemplateForPatch = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
+        var restTemplateForPatch = new RestTemplate(new HttpComponentsClientHttpRequestFactory());
         return restTemplateForPatch.patchForObject(
                 HTTPS_JSONPLACEHOLDER_TYPICODE_COM_POSTS_1,
                 jsonPlaceHolder,
@@ -127,8 +127,8 @@ public class HomeController {
     @GetMapping("patchwithrestemplatebuilder")
     @ResponseBody
     public JsonPlaceHolder testPatchWithRestTemplateBuilder() {
-        RestTemplate restTemplate = new RestTemplateBuilder().build();
-        JsonPlaceHolder jsonPlaceHolder = restTemplate.getForObject(
+        var restTemplate = new RestTemplateBuilder().build();
+        var jsonPlaceHolder = restTemplate.getForObject(
                 HTTPS_JSONPLACEHOLDER_TYPICODE_COM_POSTS_1,
                 JsonPlaceHolder.class
         );

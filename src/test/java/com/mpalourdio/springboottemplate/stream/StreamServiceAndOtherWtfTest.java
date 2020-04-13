@@ -21,7 +21,7 @@ class StreamServiceAndOtherWtfTest {
 
     @Test
     void tetsCollectorAndMap() {
-        List<Application> applications = streamServiceAndOtherWtf.getApplications();
+        var applications = streamServiceAndOtherWtf.getApplications();
 
         assertEquals("modified", applications.get(0).getName());
         assertEquals("modified", applications.get(1).getName());
@@ -29,8 +29,8 @@ class StreamServiceAndOtherWtfTest {
 
     @Test
     void testStreamDoesNotModifyValuesIfNotCollected() {
-        Stream<Application> stream = streamServiceAndOtherWtf.stream;
-        String newName = "modified and not collected";
+        var stream = streamServiceAndOtherWtf.stream;
+        var newName = "modified and not collected";
         stream.map(a -> {
             a.setName(newName);
             return a;
@@ -41,8 +41,8 @@ class StreamServiceAndOtherWtfTest {
 
     @Test
     void testStreamModifiesValuesIfCollected() {
-        Stream<Application> stream = streamServiceAndOtherWtf.stream;
-        String newName = "modified and not collected";
+        var stream = streamServiceAndOtherWtf.stream;
+        var newName = "modified and not collected";
         stream.map(a -> {
             a.setName(newName);
             return a;
@@ -53,20 +53,20 @@ class StreamServiceAndOtherWtfTest {
 
     @Test()
     void testCollectedObjectsAreTheSameInstance() {
-        List<Application> applications = streamServiceAndOtherWtf.getApplications();
-        List<Application> collect = applications.stream().collect(Collectors.toList());
+        var applications = streamServiceAndOtherWtf.getApplications();
+        var collect = applications.stream().collect(Collectors.toList());
         assertEquals(collect.get(0), applications.get(0));
     }
 
     @Test
     void iHaveNoIdeaWhatIAmDoing() {
-        List<Application> applicationsList = streamServiceAndOtherWtf.applicationsList;
-        List<Preferences> preferences = streamServiceAndOtherWtf.preferencesList;
+        var applicationsList = streamServiceAndOtherWtf.applicationsList;
+        var preferences = streamServiceAndOtherWtf.preferencesList;
         List<Aggregate> aggregates = new ArrayList<>();
 
         applicationsList.stream()
                 .map(a -> {
-                    Aggregate aggregate = new Aggregate();
+                    var aggregate = new Aggregate();
                     preferences.forEach(p -> {
                         if (p.getAppId() == a.getId()) {
                             aggregate.setApplication(a);

@@ -21,11 +21,11 @@ public class StreamServiceAndOtherWtf {
     public Stream<Application> stream;
 
     public StreamServiceAndOtherWtf() {
-        Application app1 = new Application();
+        var app1 = new Application();
         app1.setId(1L);
         app1.setName("name1");
 
-        Application app2 = new Application();
+        var app2 = new Application();
         app2.setId(2L);
         app2.setName("name2");
 
@@ -34,12 +34,12 @@ public class StreamServiceAndOtherWtf {
         stream = applicationsList.stream();
 
 
-        Preferences preferences1 = new Preferences();
+        var preferences1 = new Preferences();
         preferences1.setId(1L);
         preferences1.setAppId(2);
         preferences1.setIsFavorite(true);
 
-        Preferences preferences2 = new Preferences();
+        var preferences2 = new Preferences();
         preferences2.setId(2L);
         preferences2.setAppId(1);
         preferences2.setIsFavorite(false);

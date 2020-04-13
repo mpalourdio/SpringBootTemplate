@@ -42,18 +42,18 @@ class HomeControllerTest extends AbstractTestRunner {
 
     @Test
     void testPatchWithRestTemplate() throws Exception {
-        MvcResult mvcResult = mvc.perform(get("/patchwithrestemplate")).andReturn();
-        Gson gson = new Gson();
-        HomeController.JsonPlaceHolder jsonPlaceHolder = gson.fromJson(mvcResult.getResponse().getContentAsString(), HomeController.JsonPlaceHolder.class);
+        var mvcResult = mvc.perform(get("/patchwithrestemplate")).andReturn();
+        var gson = new Gson();
+        var jsonPlaceHolder = gson.fromJson(mvcResult.getResponse().getContentAsString(), HomeController.JsonPlaceHolder.class);
 
         assertEquals("new body", jsonPlaceHolder.body);
     }
 
     @Test
     void testPatchWithRestTemplateBuilder() throws Exception {
-        MvcResult mvcResult = mvc.perform(get("/patchwithrestemplatebuilder")).andReturn();
-        Gson gson = new Gson();
-        HomeController.JsonPlaceHolder jsonPlaceHolder = gson.fromJson(mvcResult.getResponse().getContentAsString(), HomeController.JsonPlaceHolder.class);
+        var mvcResult = mvc.perform(get("/patchwithrestemplatebuilder")).andReturn();
+        var gson = new Gson();
+        var jsonPlaceHolder = gson.fromJson(mvcResult.getResponse().getContentAsString(), HomeController.JsonPlaceHolder.class);
 
         assertEquals("new body", jsonPlaceHolder.body);
     }

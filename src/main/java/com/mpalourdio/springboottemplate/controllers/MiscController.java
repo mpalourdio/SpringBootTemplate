@@ -52,7 +52,7 @@ public class MiscController {
 
     @GetMapping("/basicauth")
     public String restTemplateWithBasicAuth() {
-        RestTemplate rt = new RestTemplateBuilder()
+        var rt = new RestTemplateBuilder()
                 .basicAuthentication(credentialsProperties.getUsername(), credentialsProperties.getPassword()).build();
         return rt.getForObject("http://localhost:" + serverPort + "/basicauth", String.class);
     }
@@ -67,8 +67,8 @@ public class MiscController {
     @PostMapping(value = "/jsonunwrapped", produces = MediaType.APPLICATION_JSON_VALUE)
     public AccountInterface jsonUnwrapped(@RequestBody Account account) {
 
-        AccountDecorator accountDecorator = new AccountDecorator(account);
-        Context context = new Context();
+        var accountDecorator = new AccountDecorator(account);
+        var context = new Context();
         context.ref = "ref";
         accountDecorator.context = context;
 
@@ -83,14 +83,14 @@ public class MiscController {
 
     @GetMapping(value = "/jsonunwrappedget", produces = MediaType.APPLICATION_JSON_VALUE)
     public AccountInterface jsonUnwrappedGet() {
-        RestTemplate restTemplate = new RestTemplate();
+        var restTemplate = new RestTemplate();
 
-        Account account = new Account();
+        var account = new Account();
         account.firstName = "firstName";
         account.lastName = "lastname";
 
         HttpEntity httpEntity = new HttpEntity<>(account);
-        ResponseEntity<AccountDecorator> exchange = restTemplate.exchange(
+        var exchange = restTemplate.exchange(
                 "http://localhost:8080/misc/jsonunwrapped/",
                 HttpMethod.POST,
                 httpEntity,

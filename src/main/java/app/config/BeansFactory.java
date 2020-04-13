@@ -28,7 +28,7 @@ public class BeansFactory {
 
     @Bean
     public BeanFromConfigurationClass<Task> beanFromConfigurationClass() {
-        Task task = new Task();
+        var task = new Task();
         task.setTaskName("fromBeanConfiguration");
         return new BeanFromConfigurationClass<>(Task.class, task);
     }

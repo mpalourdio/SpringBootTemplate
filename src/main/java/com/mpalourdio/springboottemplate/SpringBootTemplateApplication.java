@@ -34,7 +34,7 @@ public class SpringBootTemplateApplication {
 
     public static void main(String... args) {
         ApplicationContext ctx = SpringApplication.run(SpringBootTemplateApplication.class, args);
-        String[] beanNames = ctx.getBeanDefinitionNames();
+        var beanNames = ctx.getBeanDefinitionNames();
 
         Arrays.stream(beanNames)
                 .sorted()

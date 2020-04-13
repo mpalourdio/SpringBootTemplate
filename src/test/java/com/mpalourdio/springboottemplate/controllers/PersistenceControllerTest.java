@@ -53,10 +53,10 @@ class PersistenceControllerTest extends AbstractTestRunner {
         entityManager.persist(task);
         entityManager.persist(people);
 
-        MvcResult mvcResult = mvc.perform(get("/hydrate")).andReturn();
+        var mvcResult = mvc.perform(get("/hydrate")).andReturn();
 
-        Gson gson = new Gson();
-        Type unserializationType = new TypeToken<List<Dummy>>() {
+        var gson = new Gson();
+        var unserializationType = new TypeToken<List<Dummy>>() {
         }.getType();
         List<Dummy> dummyList = gson.fromJson(mvcResult.getResponse().getContentAsString(), unserializationType);
 

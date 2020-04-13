@@ -31,7 +31,7 @@ class BasicAuthControllerTest extends AbstractTestRunner {
 
     @Test
     void testBasicAuthWhenCredentialsAreOk() throws Exception {
-        String basicDigestHeaderValue =
+        var basicDigestHeaderValue =
                 "Basic " + new String(Base64.encodeBase64((credentialsProperties.getUsername() + ":" + credentialsProperties.getPassword()).getBytes()));
         mvc.perform(get("/basicauth")
                 .header("Authorization", basicDigestHeaderValue))
@@ -40,7 +40,7 @@ class BasicAuthControllerTest extends AbstractTestRunner {
 
     @Test
     void testWrongCredentialsReturnsUnauthorized() throws Exception {
-        String basicDigestHeaderValue =
+        var basicDigestHeaderValue =
                 "Basic " + new String(Base64.encodeBase64(("fuck:you").getBytes()));
 
         mvc.perform(get("/basicauth")

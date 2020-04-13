@@ -29,22 +29,22 @@ class ComparatorServiceTest {
     @BeforeEach
     void setUp() {
         //should come last
-        Application application1 = new Application();
+        var application1 = new Application();
         application1.setLabel(LAST_LABEL);
         application1.setIsFavorite(false);
 
         //should come third
-        Application application2 = new Application();
+        var application2 = new Application();
         application2.setLabel(THIRD_LABEL);
         application2.setIsFavorite(false);
 
         //should come second
-        Application application3 = new Application();
+        var application3 = new Application();
         application3.setLabel(SECOND_LABEL);
         application3.setIsFavorite(true);
 
         //should come first
-        Application application4 = new Application();
+        var application4 = new Application();
         application4.setLabel(FIRST_LABEL);
         application4.setIsFavorite(true);
 
@@ -58,7 +58,7 @@ class ComparatorServiceTest {
 
     @Test
     void testCanOrderApplicationsByMultipleComparators() {
-        List<Application> sortedApps =
+        var sortedApps =
                 comparatorService.sortApplicationsByFavoriteThenLabel(applicationList);
 
         assertEquals(FIRST_LABEL, sortedApps.get(0).getLabel());

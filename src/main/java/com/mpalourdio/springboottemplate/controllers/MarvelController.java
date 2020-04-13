@@ -37,11 +37,11 @@ public class MarvelController {
     }
 
     private void buildAddonsHeaders(MarvelProperties marvelProperties) {
-        String unkownProperty = marvelProperties.getUnknownProperty();
+        var unkownProperty = marvelProperties.getUnknownProperty();
 
         if (StringUtils.isNotBlank(unkownProperty)) {
             Arrays.asList(unkownProperty.split(",")).forEach(h -> {
-                String[] split = h.split("=");
+                var split = h.split("=");
                 addonHeaders.add(split[0], split[1]);
             });
         }
@@ -49,10 +49,10 @@ public class MarvelController {
 
     @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> allCharacters() {
-        RestTemplate restTemplate = new RestTemplate();
-        String timestamp = String.valueOf(System.currentTimeMillis() / 1000);
-        String hash = DigestUtils.md5Hex(timestamp + marvelProperties.getPrivatekey() + marvelProperties.getPublickey());
-        String uri = "http://gateway.marvel.com/v1/public/characters/1009220?apikey="
+        var restTemplate = new RestTemplate();
+        var timestamp = String.valueOf(System.currentTimeMillis() / 1000);
+        var hash = DigestUtils.md5Hex(timestamp + marvelProperties.getPrivatekey() + marvelProperties.getPublickey());
+        var uri = "http://gateway.marvel.com/v1/public/characters/1009220?apikey="
                 + marvelProperties.getPublickey()
                 + "&ts="
                 + timestamp

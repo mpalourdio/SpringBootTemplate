@@ -19,32 +19,32 @@ class PasswordServiceTest {
     @Test
     void testCanMakeMatchAGeneratedPassword() {
 
-        PasswordService passwordService = new PasswordService();
-        String myawesomepassword = "myawesomepassword";
-        String generatedPassword = passwordService.generateEncryptedPasword(myawesomepassword);
+        var passwordService = new PasswordService();
+        var myawesomepassword = "myawesomepassword";
+        var generatedPassword = passwordService.generateEncryptedPasword(myawesomepassword);
 
         assertTrue(passwordService.isPasswordValid(myawesomepassword, generatedPassword));
     }
 
     @Test
     void testCanEncodeToBase64() {
-        PasswordService passwordService = new PasswordService();
-        String base64EncodedString = "dG9FbmNvZGU=";
+        var passwordService = new PasswordService();
+        var base64EncodedString = "dG9FbmNvZGU=";
         assertEquals(base64EncodedString, passwordService.encodeStringToBase64("toEncode"));
     }
 
     @Test
     void testCanDecodeBase64() {
-        PasswordService passwordService = new PasswordService();
-        String base64EncodedString = "dG9FbmNvZGU=";
+        var passwordService = new PasswordService();
+        var base64EncodedString = "dG9FbmNvZGU=";
         assertEquals("toEncode", passwordService.decodeBase64String(base64EncodedString));
     }
 
     @Test
     void testCanGeneratedAPasswordOfPredefinedLength() {
-        PasswordService passwordService = new PasswordService();
-        int passwordLength = 20;
-        String generatedPassword = passwordService.generatedRandomPassword(passwordLength);
+        var passwordService = new PasswordService();
+        var passwordLength = 20;
+        var generatedPassword = passwordService.generatedRandomPassword(passwordLength);
 
         assertEquals(generatedPassword.length(), passwordLength);
     }

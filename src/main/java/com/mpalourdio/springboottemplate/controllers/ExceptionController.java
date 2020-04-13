@@ -25,7 +25,7 @@ public class ExceptionController {
     @GetMapping(value = "ok", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseObject ok() {
 
-        ResponseObject responseObject = new ResponseObject();
+        var responseObject = new ResponseObject();
         responseObject.property = "toto";
 
         return responseObject;
@@ -33,10 +33,10 @@ public class ExceptionController {
 
 
     private ResponseEntity callException(String param) {
-        RestTemplate restTemplate = new RestTemplate();
+        var restTemplate = new RestTemplate();
         ResponseEntity<ResponseObject> exchange;
 
-        HttpHeaders httpHeaders = new HttpHeaders();
+        var httpHeaders = new HttpHeaders();
         HttpEntity httpEntity = new HttpEntity<>(httpHeaders);
         try {
             exchange = restTemplate.exchange(
@@ -54,10 +54,10 @@ public class ExceptionController {
 
     @GetMapping(value = "/callok")
     public ResponseEntity getCallOk() {
-        ResponseEntity call = callException("ok");
+        var call = callException("ok");
 
         if (call.getStatusCode() != HttpStatus.OK) {
-            ResponseObject responseObject = (ResponseObject) call.getBody();
+            var responseObject = (ResponseObject) call.getBody();
             //do things here
         }
 

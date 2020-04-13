@@ -31,10 +31,10 @@ public final class DbIpDotComService implements IpGeolocationInterface {
 
     @Override
     public GeoLocationApiResponse geoLocateIp(String ipAddress) {
-        GeoLocationApiResponse finalResponse = new GeoLocationApiResponse();
+        var finalResponse = new GeoLocationApiResponse();
 
         try {
-            GeoLocationApiResponse response = restTemplate.getForObject(SERVICE_URL, GeoLocationApiResponse.class, ipAddress);
+            var response = restTemplate.getForObject(SERVICE_URL, GeoLocationApiResponse.class, ipAddress);
 
             if (response != null) {
                 finalResponse = handleResponse(response);
@@ -61,8 +61,8 @@ public final class DbIpDotComService implements IpGeolocationInterface {
     }
 
     private GeoLocationApiResponse enrichResponseWithFrenchCountryName(GeoLocationApiResponse response) {
-        Locale locale = new Locale.Builder().setRegion(response.getCountryCode()).build();
-        String displayCountry = locale.getDisplayCountry(Locale.FRENCH);
+        var locale = new Locale.Builder().setRegion(response.getCountryCode()).build();
+        var displayCountry = locale.getDisplayCountry(Locale.FRENCH);
         response.setCountryName(displayCountry);
 
         return response;

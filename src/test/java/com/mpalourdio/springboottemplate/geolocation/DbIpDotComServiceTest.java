@@ -22,8 +22,8 @@ class DbIpDotComServiceTest {
     @Test
     void testCanGeolocalizeSwissIp() {
         IpGeolocationInterface ipGeolocationService = new DbIpDotComService(new RestTemplateBuilder().build());
-        String ipAddress = "145.232.192.197";
-        GeoLocationApiResponse geoLocationApiResponse = ipGeolocationService.geoLocateIp(ipAddress);
+        var ipAddress = "145.232.192.197";
+        var geoLocationApiResponse = ipGeolocationService.geoLocateIp(ipAddress);
 
         assertEquals("Suisse", geoLocationApiResponse.getCountryName());
         assertEquals("Renens", geoLocationApiResponse.getCity());
@@ -34,8 +34,8 @@ class DbIpDotComServiceTest {
     @Test
     void testFailsGracefullyIfIpIsFuckedUp() {
         IpGeolocationInterface ipGeolocationService = new DbIpDotComService(new RestTemplateBuilder().build());
-        String ipAddress = "666.666.666.666";
-        GeoLocationApiResponse geoLocationApiResponse = ipGeolocationService.geoLocateIp(ipAddress);
+        var ipAddress = "666.666.666.666";
+        var geoLocationApiResponse = ipGeolocationService.geoLocateIp(ipAddress);
 
         assertTrue(geoLocationApiResponse.isHasErrored());
         assertEquals(ipAddress, geoLocationApiResponse.getIp());
@@ -44,12 +44,12 @@ class DbIpDotComServiceTest {
 
     @Test
     void testFailsGracefullyIfHttpException() {
-        String ipAddress = "666.666.666.666";
-        RestTemplate restTemplate = mock(RestTemplate.class);
+        var ipAddress = "666.666.666.666";
+        var restTemplate = mock(RestTemplate.class);
         when(restTemplate.getForObject(anyString(), any(), eq(ipAddress))).thenThrow(HttpClientErrorException.class);
 
         IpGeolocationInterface ipGeolocationService = new DbIpDotComService(restTemplate);
-        GeoLocationApiResponse geoLocationApiResponse = ipGeolocationService.geoLocateIp(ipAddress);
+        var geoLocationApiResponse = ipGeolocationService.geoLocateIp(ipAddress);
 
         assertTrue(geoLocationApiResponse.isHasErrored());
         assertEquals(ipAddress, geoLocationApiResponse.getIp());

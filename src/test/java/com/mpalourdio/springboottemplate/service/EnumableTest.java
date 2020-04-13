@@ -22,7 +22,7 @@ class EnumableTest {
 
     @Test
     void testCanSerializeWithEnums() throws JsonProcessingException {
-        Enumable enumable = new Enumable();
+        var enumable = new Enumable();
         enumable.myEnum = MyEnum.TOTO;
 
         assertEquals(
@@ -33,7 +33,7 @@ class EnumableTest {
 
     @Test
     void testCanUnserializeWithEnums() throws IOException {
-        Enumable enumable = new ObjectMapper().readValue("{\"myEnum\":\"tata\"}", Enumable.class);
+        var enumable = new ObjectMapper().readValue("{\"myEnum\":\"tata\"}", Enumable.class);
 
         assertEquals(MyEnum.TOTO, enumable.myEnum);
     }

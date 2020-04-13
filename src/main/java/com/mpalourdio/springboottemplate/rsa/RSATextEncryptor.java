@@ -79,8 +79,8 @@ public final class RSATextEncryptor implements TextEncryptor {
 
     private KeyStore loadKeyStore() {
         try {
-            KeyStore keyStore = KeyStore.getInstance(KEYSTORE_TYPE);
-            FileInputStream keystoreFile = new FileInputStream(new File(KEY_STORE));
+            var keyStore = KeyStore.getInstance(KEYSTORE_TYPE);
+            var keystoreFile = new FileInputStream(new File(KEY_STORE));
             keyStore.load(keystoreFile, KEY_STORE_PASSWORD.toCharArray());
             return keyStore;
         } catch (CertificateException | NoSuchAlgorithmException | KeyStoreException | IOException e) {
@@ -91,7 +91,7 @@ public final class RSATextEncryptor implements TextEncryptor {
 
     private PrivateKey getPrivateKey() {
         try {
-            KeyStore.PrivateKeyEntry privateK = (KeyStore.PrivateKeyEntry) keyStore.getEntry(
+            var privateK = (KeyStore.PrivateKeyEntry) keyStore.getEntry(
                     ALIAS,
                     new KeyStore.PasswordProtection(KEY_STORE_PASSWORD.toCharArray())
             );
@@ -104,7 +104,7 @@ public final class RSATextEncryptor implements TextEncryptor {
 
     private PublicKey getPublicKey() {
         try {
-            Certificate cert = keyStore.getCertificate(ALIAS);
+            var cert = keyStore.getCertificate(ALIAS);
             return cert.getPublicKey();
         } catch (KeyStoreException e) {
             log.error("Unable to get the public key");

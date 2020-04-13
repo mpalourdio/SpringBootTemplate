@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class ComparatorService {
 
     public List<Application> sortApplicationsByFavoriteThenLabel(List<Application> applicationList) {
-        Comparator<Application> combinedAppComparator = Comparator
+        var combinedAppComparator = Comparator
                 .comparing(Application::getIsFavorite).reversed()
                 .thenComparing(Application::getLabel, String.CASE_INSENSITIVE_ORDER);
 

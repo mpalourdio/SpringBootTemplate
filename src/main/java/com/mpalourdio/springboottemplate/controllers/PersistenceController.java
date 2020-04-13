@@ -41,9 +41,9 @@ public class PersistenceController {
 
     @GetMapping(value = "/testinsert", produces = MediaType.APPLICATION_JSON_VALUE)
     public Task testInsert() {
-        String aspecificstatusfordate = "ASPECIFICSTATUSFORDATE";
+        var aspecificstatusfordate = "ASPECIFICSTATUSFORDATE";
 
-        Task task = new Task();
+        var task = new Task();
         task.setTaskName("name");
         task.setTaskDescription("desc");
         task.setTaskStatus(aspecificstatusfordate);
@@ -51,7 +51,7 @@ public class PersistenceController {
 
         taskRepository.save(task);
 
-        List<Task> allTasksByStatus = taskRepository.findByTaskStatus(aspecificstatusfordate);
+        var allTasksByStatus = taskRepository.findByTaskStatus(aspecificstatusfordate);
 
         allTasksByStatus.forEach(t -> log.debug(t.getStartDate().toString()));
 
@@ -65,7 +65,7 @@ public class PersistenceController {
 
     @GetMapping(value = "/annotated", consumes = MediaType.ALL_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public int annotated() {
-        List<Task> allTasksByArchichedValue = taskRepository.getAllTasksByArchivedValue(false);
+        var allTasksByArchichedValue = taskRepository.getAllTasksByArchivedValue(false);
 
         return allTasksByArchichedValue.size();
     }

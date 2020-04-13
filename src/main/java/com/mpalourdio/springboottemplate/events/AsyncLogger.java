@@ -10,7 +10,6 @@
 package com.mpalourdio.springboottemplate.events;
 
 import ch.qos.logback.classic.Level;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationEventPublisher;
 
@@ -27,7 +26,7 @@ public class AsyncLogger {
     }
 
     public static void log(Class ownerClass, Level logLevel, String logMessage) {
-        Logger logger = LoggerFactory.getLogger(ownerClass);
+        var logger = LoggerFactory.getLogger(ownerClass);
 
         switch (logLevel.levelInt) {
             case Level.TRACE_INT:

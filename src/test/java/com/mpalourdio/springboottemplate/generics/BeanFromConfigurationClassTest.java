@@ -26,7 +26,7 @@ class BeanFromConfigurationClassTest extends AbstractTestRunner {
 
     @Test
     void testImportBeanConfigurationFile() {
-        Task task = beanFromConfigurationClass.getInstance();
+        var task = beanFromConfigurationClass.getInstance();
         assertEquals("fromBeanConfiguration", task.getTaskName());
     }
 }

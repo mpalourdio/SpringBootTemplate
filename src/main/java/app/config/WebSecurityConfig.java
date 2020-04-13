@@ -73,8 +73,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     private LogoutSuccessHandler logoutHandler() {
-        SimpleUrlLogoutSuccessHandler logoutSuccessHandler = new SimpleUrlLogoutSuccessHandler();
-        DefaultRedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
+        var logoutSuccessHandler = new SimpleUrlLogoutSuccessHandler();
+        var redirectStrategy = new DefaultRedirectStrategy();
 
         redirectStrategy.setContextRelative(false);
         logoutSuccessHandler.setRedirectStrategy(redirectStrategy);

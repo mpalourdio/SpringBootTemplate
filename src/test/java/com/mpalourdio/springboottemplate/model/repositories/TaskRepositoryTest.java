@@ -39,13 +39,13 @@ class TaskRepositoryTest extends AbstractTestRunner {
 
     @Test
     void testTableIsEmpty() {
-        List<Task> taskList = taskRepository.findAll();
+        var taskList = taskRepository.findAll();
         assertEquals(0, taskList.size());
     }
 
     @Test
     void testAndPlayWithTheFakeentityManager() {
-        Task persistedTask = entityManager.persistFlushFind(task);
+        var persistedTask = entityManager.persistFlushFind(task);
         assertEquals("description", persistedTask.getTaskDescription());
     }
 
@@ -53,7 +53,7 @@ class TaskRepositoryTest extends AbstractTestRunner {
     void testResultsAreDummyObjects() {
         entityManager.persist(task);
         entityManager.persist(people);
-        List<Dummy> dummyList = taskRepository.hydrateDummyObject();
+        var dummyList = taskRepository.hydrateDummyObject();
 
         assertEquals(1, dummyList.size());
         assertNotNull(dummyList.get(0));
@@ -63,7 +63,7 @@ class TaskRepositoryTest extends AbstractTestRunner {
     void testAnnotatedQuery() {
         entityManager.persist(task);
         entityManager.persist(people);
-        List<Task> allTasksByArchivedValue = taskRepository.getAllTasksByArchivedValue(true);
+        var allTasksByArchivedValue = taskRepository.getAllTasksByArchivedValue(true);
 
         assertEquals(1, allTasksByArchivedValue.size());
     }
@@ -74,7 +74,7 @@ class TaskRepositoryTest extends AbstractTestRunner {
         entityManager.persist(people);
         TestTransaction.end();
 
-        List<Task> allTasksByArchichedValue = taskRepository.getAllTasksByArchivedValue(true);
+        var allTasksByArchichedValue = taskRepository.getAllTasksByArchivedValue(true);
         assertFalse(TestTransaction.isActive());
         assertEquals(0, allTasksByArchichedValue.size());
     }

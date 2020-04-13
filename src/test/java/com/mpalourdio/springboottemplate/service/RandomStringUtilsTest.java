@@ -19,19 +19,19 @@ class RandomStringUtilsTest {
 
     @Test
     void randomAlphaNumeric() {
-        String generated = RandomStringUtils.randomAlphaNumeric(LENGTH);
+        var generated = RandomStringUtils.randomAlphaNumeric(LENGTH);
         assertTrue(generated.matches("^[a-z\\d]{" + LENGTH + "}$"));
     }
 
     @Test
     void randomAlphabetic() {
-        String generated = RandomStringUtils.randomAlphabetic(LENGTH);
+        var generated = RandomStringUtils.randomAlphabetic(LENGTH);
         assertTrue(generated.matches("^[a-z]{" + LENGTH + "}$"));
     }
 
     @Test
     void randomNumeric() {
-        String generated = RandomStringUtils.randomNumeric(LENGTH);
+        var generated = RandomStringUtils.randomNumeric(LENGTH);
         assertTrue(generated.matches("^\\d{" + LENGTH + "}$"));
     }
 }

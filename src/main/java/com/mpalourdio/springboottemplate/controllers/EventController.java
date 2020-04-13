@@ -33,10 +33,10 @@ public class EventController {
 
     @GetMapping(produces = MediaType.TEXT_PLAIN_VALUE)
     public String publishAction() {
-        AsyncEvent asyncEvent = new AsyncEvent();
+        var asyncEvent = new AsyncEvent();
         eventPublisher.publishEvent(asyncEvent);
 
-        MyEvent event = new MyEvent("\uD83D\uDE0A");
+        var event = new MyEvent("\uD83D\uDE0A");
         eventPublisher.publishEvent(event);
 
         return event.getMessage();

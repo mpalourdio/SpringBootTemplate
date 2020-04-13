@@ -19,13 +19,13 @@ class ServiceWithPropertiesTest {
 
     @Test
     void testClassPropertyIsRead() {
-        ServiceWithProperties serviceWithProperties = new ServiceWithProperties("hey");
+        var serviceWithProperties = new ServiceWithProperties("hey");
         assertEquals("hey", serviceWithProperties.getValueFromConfig());
     }
 
     @Test()
     void throwExceptionTest() {
-        ServiceWithProperties serviceWithProperties = new ServiceWithProperties("hey");
+        var serviceWithProperties = new ServiceWithProperties("hey");
         assertThrows(AnotherCustomException.class, serviceWithProperties::throwException);
     }
 }
