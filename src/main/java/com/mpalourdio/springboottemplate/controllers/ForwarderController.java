@@ -31,7 +31,7 @@ public class ForwarderController {
 
     @GetMapping(value = "/second", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
-    public Map forwardedPoint() {
+    public Map<String, Boolean> forwardedPoint() {
         Map<String, Boolean> map = new HashMap<>();
         map.put("forwarded", true);
 

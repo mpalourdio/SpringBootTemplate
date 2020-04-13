@@ -9,7 +9,6 @@
 
 package com.mpalourdio.springboottemplate.controllers;
 
-import com.mpalourdio.springboottemplate.model.entities.Task;
 import com.mpalourdio.springboottemplate.model.repositories.TaskRepository;
 import com.mpalourdio.springboottemplate.service.ServiceWithProperties;
 import com.mpalourdio.springboottemplate.service.UselessBean;
@@ -22,8 +21,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.List;
 
 @Controller
 public class HomeController {
@@ -57,7 +54,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String indexAction(Model model) {
-        List task = taskRepository.findByTaskStatus(TASK_STATUS_ACTIVE);
+        var task = taskRepository.findByTaskStatus(TASK_STATUS_ACTIVE);
         var activity = taskRepository.findById(1).orElse(null);
         model.addAttribute(IWANTTHISINMYVIEW, uselessBean.getTestPro());
         model.addAttribute(IWANTTHISINMYVIEWFROMHIBERNATE, activity.getTaskName());
@@ -68,7 +65,7 @@ public class HomeController {
     @GetMapping("/other")
     public String otherAction(Model model) {
         uselessBean.setTestPro("imsetinthecontrolleronthefly");
-        List task = taskRepository.findByTaskStatus(TASK_STATUS_ACTIVE);
+        var task = taskRepository.findByTaskStatus(TASK_STATUS_ACTIVE);
         var activity = taskRepository.findById(1).orElse(null);
         model.addAttribute(IWANTTHISINMYVIEW, uselessBean.getTestPro());
         model.addAttribute(IWANTTHISINMYVIEWFROMHIBERNATE, activity.getTaskName());

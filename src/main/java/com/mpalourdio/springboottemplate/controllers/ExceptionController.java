@@ -32,12 +32,12 @@ public class ExceptionController {
     }
 
 
-    private ResponseEntity callException(String param) {
+    private ResponseEntity<?> callException(String param) {
         var restTemplate = new RestTemplate();
         ResponseEntity<ResponseObject> exchange;
 
         var httpHeaders = new HttpHeaders();
-        HttpEntity httpEntity = new HttpEntity<>(httpHeaders);
+        var httpEntity = new HttpEntity<>(httpHeaders);
         try {
             exchange = restTemplate.exchange(
                     "http://localhost:8080/exception/" + param,
@@ -53,7 +53,7 @@ public class ExceptionController {
     }
 
     @GetMapping(value = "/callok")
-    public ResponseEntity getCallOk() {
+    public ResponseEntity<?> getCallOk() {
         var call = callException("ok");
 
         if (call.getStatusCode() != HttpStatus.OK) {
@@ -65,7 +65,7 @@ public class ExceptionController {
     }
 
     @GetMapping(value = "/callnok")
-    public ResponseEntity getCallNok() {
+    public ResponseEntity<?> getCallNok() {
         return callException("nok");
     }
 }

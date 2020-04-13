@@ -21,7 +21,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -89,7 +88,7 @@ public class MiscController {
         account.firstName = "firstName";
         account.lastName = "lastname";
 
-        HttpEntity httpEntity = new HttpEntity<>(account);
+        var httpEntity = new HttpEntity<>(account);
         var exchange = restTemplate.exchange(
                 "http://localhost:8080/misc/jsonunwrapped/",
                 HttpMethod.POST,
