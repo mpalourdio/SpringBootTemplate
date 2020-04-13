@@ -12,6 +12,7 @@ matrix:
       env: _JAVA_OPTIONS=-Djdk.tls.client.protocols=TLSv1.2
     - jdk: openjdk12
     - jdk: openjdk13
+    - jdk: openjdk14
     - jdk: openjdk-ea
 
   allow_failures:
@@ -19,4 +20,5 @@ matrix:
     - jdk: openjdk10
     - jdk: openjdk12
     - jdk: openjdk13
+    - jdk: openjdk14
     - jdk: openjdk-ea
