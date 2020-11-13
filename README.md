@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/mpalourdio/SpringBootTemplate.svg?branch=master)](https://travis-ci.org/mpalourdio/SpringBootTemplate)
+[![Build Status](https://github.com/mpalourdio/SpringBootTemplate/workflows/CI/badge.svg?branch=master)](https://github.com/mpalourdio/SpringBootTemplate/actions)
 
 Spring Boot 2.x example application.
 =======================================
