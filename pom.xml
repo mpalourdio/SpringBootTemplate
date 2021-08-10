@@ -215,6 +215,8 @@
                 <configuration>
                     <pushChanges>false</pushChanges>
                     <arguments>-Dmaven.javadoc.skip=true</arguments>
+                    <localCheckout>true</localCheckout>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
                 </configuration>
             </plugin>
             <plugin>
