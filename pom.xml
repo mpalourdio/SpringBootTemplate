@@ -32,7 +32,7 @@
 
         <common-text.version>1.9</common-text.version>
         <poi.version>4.1.0</poi.version>
-        <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
+        <maven-release-plugin.version>3.0.0-M4</maven-release-plugin.version>
 
         <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
         <checkstyle.version>8.43</checkstyle.version>
