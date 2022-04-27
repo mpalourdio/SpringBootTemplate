@@ -16,10 +16,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.DefaultRedirectStrategy;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -27,7 +27,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 @EnableConfigurationProperties(CredentialsProperties.class)
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig {
 
     private static final String BASIC_AUTH_ENDPOINT = "/basicauth";
     private static final String ADMIN_ROLE = "ADMIN";
@@ -39,26 +39,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         this.credentialsProperties = credentialsProperties;
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        //We disable csrf protection for actuator endpoints so we can post with curl
-        //ex : the refresh endpoint
-        http.csrf().ignoringRequestMatchers(EndpointRequest.toAnyEndpoint());
-
-        http.logout()
-                .logoutSuccessUrl("/")
-                .invalidateHttpSession(true)
-                .clearAuthentication(true)
-                .logoutSuccessHandler(logoutHandler())
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
-
-        http.authorizeRequests()
-                .antMatchers(BASIC_AUTH_ENDPOINT)
-                .hasRole(ADMIN_ROLE)
-                .requestMatchers(EndpointRequest.toAnyEndpoint())
-                .hasRole(ACTUATOR_ROLE)
-                .and()
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http.csrf(csrf -> csrf.ignoringRequestMatchers(EndpointRequest.toAnyEndpoint()))
+                .logout(logout -> logout
+                        .logoutSuccessUrl("/")
+                        .invalidateHttpSession(true)
+                        .clearAuthentication(true)
+                        .logoutSuccessHandler(logoutHandler())
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                )
+                .authorizeRequests(authorizeRequests -> authorizeRequests
+                        .antMatchers(BASIC_AUTH_ENDPOINT)
+                        .hasRole(ADMIN_ROLE)
+                        .requestMatchers(EndpointRequest.toAnyEndpoint())
+                        .hasRole(ACTUATOR_ROLE)
+                )
                 .httpBasic();
+
+        return http.build();
     }
 
     @Bean
