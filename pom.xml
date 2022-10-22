@@ -30,7 +30,7 @@
         <java.version>11</java.version>
         <spring-cloud.version>2021.0.4</spring-cloud.version>
 
-        <common-text.version>1.9</common-text.version>
+        <common-text.version>1.10.0</common-text.version>
         <poi.version>4.1.1</poi.version>
         <maven-release-plugin.version>3.0.0-M5</maven-release-plugin.version>
 
