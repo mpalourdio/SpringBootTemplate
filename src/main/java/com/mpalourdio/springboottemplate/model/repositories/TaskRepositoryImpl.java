@@ -11,9 +11,9 @@ package com.mpalourdio.springboottemplate.model.repositories;
 
 import com.mpalourdio.springboottemplate.model.Dummy;
 import com.mpalourdio.springboottemplate.model.entities.Task;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 
 /**

@@ -20,19 +20,19 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.7</version>
+        <version>3.0.1</version>
         <relativePath/>
     </parent>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>11</java.version>
-        <spring-cloud.version>2021.0.5</spring-cloud.version>
+        <java.version>17</java.version>
+        <spring-cloud.version>2022.0.0</spring-cloud.version>
 
         <common-text.version>1.10.0</common-text.version>
         <poi.version>4.1.1</poi.version>
-        <maven-release-plugin.version>3.0.0-M5</maven-release-plugin.version>
+        <maven-release-plugin.version>3.0.0-M6</maven-release-plugin.version>
 
         <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
         <checkstyle.version>9.2</checkstyle.version>
@@ -73,6 +73,11 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-properties-migrator</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
@@ -110,10 +115,6 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-sleuth</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
         </dependency>
         <dependency>
@@ -146,10 +147,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-activemq</artifactId>
         </dependency>
 
         <!-- tests dependencies -->

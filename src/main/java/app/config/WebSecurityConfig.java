@@ -11,6 +11,7 @@ package app.config;
 
 import com.mpalourdio.springboottemplate.properties.CredentialsProperties;
 import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnWebApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,6 +28,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 @EnableConfigurationProperties(CredentialsProperties.class)
+@ConditionalOnWebApplication
 public class WebSecurityConfig {
 
     private static final String BASIC_AUTH_ENDPOINT = "/basicauth";
@@ -49,11 +51,12 @@ public class WebSecurityConfig {
                         .logoutSuccessHandler(logoutHandler())
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 )
-                .authorizeRequests(authorizeRequests -> authorizeRequests
-                        .antMatchers(BASIC_AUTH_ENDPOINT)
+                .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers(BASIC_AUTH_ENDPOINT)
                         .hasRole(ADMIN_ROLE)
                         .requestMatchers(EndpointRequest.toAnyEndpoint())
                         .hasRole(ACTUATOR_ROLE)
+                        .anyRequest().permitAll()
                 )
                 .httpBasic();
 

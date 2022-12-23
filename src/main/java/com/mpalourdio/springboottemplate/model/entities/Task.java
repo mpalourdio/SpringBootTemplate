@@ -9,10 +9,9 @@
 
 package com.mpalourdio.springboottemplate.model.entities;
 
+import jakarta.persistence.*;
 import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.query.criteria.internal.expression.function.CurrentTimestampFunction;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +41,7 @@ public class Task {
     @Column(name = "task_archived", nullable = false)
     private Boolean taskArchived = false;
 
-    @ColumnDefault(CurrentTimestampFunction.NAME)
+    @ColumnDefault("current_timestamp")
     @Column(name = "start_date", nullable = false)
     private LocalDateTime startDate = LocalDateTime.now();
 
