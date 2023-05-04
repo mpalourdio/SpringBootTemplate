@@ -31,11 +31,11 @@
         <spring-cloud.version>2022.0.1</spring-cloud.version>
 
         <common-text.version>1.10.0</common-text.version>
-        <poi.version>4.1.1</poi.version>
-        <maven-release-plugin.version>3.0.0-M6</maven-release-plugin.version>
+        <poi.version>4.1.2</poi.version>
+        <maven-release-plugin.version>3.0.0</maven-release-plugin.version>
 
-        <maven-checkstyle-plugin.version>3.1.2</maven-checkstyle-plugin.version>
-        <checkstyle.version>9.2</checkstyle.version>
+        <maven-checkstyle-plugin.version>3.2.2</maven-checkstyle-plugin.version>
+        <checkstyle.version>10.10.0</checkstyle.version>
         <maven-checkstyle-plugin.configLocation>https://raw.githubusercontent.com/mpalourdio/configuration/master/checkstyle.xml</maven-checkstyle-plugin.configLocation>
     </properties>
 
