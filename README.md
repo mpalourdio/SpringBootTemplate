@@ -1,6 +1,6 @@
 [![Build Status](https://github.com/mpalourdio/SpringBootTemplate/workflows/CI/badge.svg?branch=master)](https://github.com/mpalourdio/SpringBootTemplate/actions)
 
-Spring Boot 2.x example application.
+Spring Boot 3.x example application.
 =======================================
 
 More a reminder for some dirty tricks than anything else...
