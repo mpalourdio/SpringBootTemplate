@@ -39,7 +39,7 @@ public class Task {
 
     @ColumnDefault("false")
     @Column(name = "task_archived", nullable = false)
-    private Boolean taskArchived = false;
+    private boolean taskArchived = false;
 
     @ColumnDefault("current_timestamp")
     @Column(name = "start_date", nullable = false)

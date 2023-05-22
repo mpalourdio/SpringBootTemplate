@@ -20,7 +20,7 @@ import java.util.List;
 @Repository
 public interface TaskRepository extends CrudRepository<Task, Integer>, CustomRepository<Task> {
 
-    List<Task> findByTaskArchived(int taskArchivedFalse);
+    List<Task> findByTaskArchived(boolean taskArchivedFalse);
 
     List<Task> findByTaskStatus(String taskStatus);
 
