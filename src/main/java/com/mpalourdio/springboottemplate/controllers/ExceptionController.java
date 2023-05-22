@@ -46,7 +46,7 @@ public class ExceptionController {
                     ResponseObject.class
             );
         } catch (HttpClientErrorException e) {
-            return ResponseEntity.status(e.getRawStatusCode()).body(e.getResponseBodyAsString());
+            return ResponseEntity.status(e.getStatusCode()).body(e.getResponseBodyAsString());
         }
 
         return exchange;
