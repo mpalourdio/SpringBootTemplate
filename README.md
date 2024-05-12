@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/mpalourdio/SpringBootTemplate/workflows/CI/badge.svg?branch=master)](https://github.com/mpalourdio/SpringBootTemplate/actions)
+[![CI](https://github.com/mpalourdio/SpringBootTemplate/actions/workflows/main.yml/badge.svg)](https://github.com/mpalourdio/SpringBootTemplate/actions/workflows/main.yml)
 
 Spring Boot 3.x example application.
 =======================================
