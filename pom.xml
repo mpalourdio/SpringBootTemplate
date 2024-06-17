@@ -32,7 +32,7 @@
 
         <common-text.version>1.11.0</common-text.version>
         <poi.version>4.1.2</poi.version>
-        <maven-release-plugin.version>3.0.1</maven-release-plugin.version>
+        <maven-release-plugin.version>3.1.0</maven-release-plugin.version>
 
         <maven-checkstyle-plugin.version>3.2.2</maven-checkstyle-plugin.version>
         <checkstyle.version>10.10.0</checkstyle.version>
