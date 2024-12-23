@@ -14,8 +14,8 @@ import com.mpalourdio.springboottemplate.rsa.exceptions.EncryptException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class RSATextEncryptorTest {
 
@@ -36,12 +36,12 @@ class RSATextEncryptorTest {
         var encrypted = encryptor.encrypt(toEncrypt);
         var decrypted = encryptor.decrypt(encrypted);
 
-        assertEquals(toEncrypt, decrypted);
+        assertThat(decrypted).isEqualTo(toEncrypt);
     }
 
     @Test
     void testDecryptThrowsException() {
-        assertThrows(DecryptException.class, () -> encryptor.decrypt("toto"));
+        assertThatThrownBy(() -> encryptor.decrypt("toto")).isInstanceOf(DecryptException.class);
     }
 
     /**
@@ -51,12 +51,12 @@ class RSATextEncryptorTest {
      */
     @Test
     void testEncryptThrowsException() {
-        assertThrows(EncryptException.class, () -> encryptor.encrypt(
+        assertThatThrownBy(() -> encryptor.encrypt(
                 "luohkufiuidfjlkkjfhdgfjlkmkjhgfdghoiukgfhgfdsgfhhliyjhfgdsxbcnvb,;njythdxb nbnjo_iètrgfxbcv bhyèu"
                         + "-tyhdfcbvluohkutfiuijlkjfhdgfjlkmkjhgfdghoiukgfhgfdsgfhhldfiyjhfgdsxbcnvb,;njythdxb nbnjo_iètrgfxbcv bhyèu-"
                         + "tyhdfcbvluohkutfiuifgyksryusryufdsgfhhliyjhfgdsxbdfcnvb,;njythdxb nbnjo_iètrgfxbcvnbnjo_iètrgfxbcvnbnjo_iètrgfxbcvnbn"
                         + "jo_iètrgfxbcvnbnjo_iètrgfxbcv bhyèu-tyhdfcbvluohkutfiuijlkjfhdgfjlkmkjhgfdghoiukgfhdfgfdsgfhhliyjhfgdsxbcnvb,;"
                         + "njythdxb nbnjo_iètrgfxbcv bhyèu-tyhdfcbvluohkutfiuijlkjfhdgfjlkmkjhgfdghoiukgfhdfgfdsgfhhliyjhfgdsxbcnggggggggggggggggg"
-        ));
+        )).isInstanceOf(EncryptException.class);
     }
 }

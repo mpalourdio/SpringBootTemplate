@@ -6,9 +6,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class StreamServiceAndOtherWtfTest {
 
@@ -23,8 +22,8 @@ class StreamServiceAndOtherWtfTest {
     void tetsCollectorAndMap() {
         var applications = streamServiceAndOtherWtf.getApplications();
 
-        assertEquals("modified", applications.get(0).getName());
-        assertEquals("modified", applications.get(1).getName());
+        assertThat(applications.get(0).getName()).isEqualTo("modified");
+        assertThat(applications.get(1).getName()).isEqualTo("modified");
     }
 
     @Test
@@ -36,7 +35,7 @@ class StreamServiceAndOtherWtfTest {
             return a;
         });
 
-        assertNotEquals(newName, streamServiceAndOtherWtf.applicationsList.get(0).getName());
+        assertThat(streamServiceAndOtherWtf.applicationsList.get(0).getName()).isNotEqualTo(newName);
     }
 
     @Test
@@ -48,14 +47,14 @@ class StreamServiceAndOtherWtfTest {
             return a;
         }).collect(Collectors.toList());
 
-        assertEquals(newName, streamServiceAndOtherWtf.applicationsList.get(0).getName());
+        assertThat(streamServiceAndOtherWtf.applicationsList.get(0).getName()).isEqualTo(newName);
     }
 
     @Test()
     void testCollectedObjectsAreTheSameInstance() {
         var applications = streamServiceAndOtherWtf.getApplications();
         var collect = applications.stream().collect(Collectors.toList());
-        assertEquals(collect.get(0), applications.get(0));
+        assertThat(collect.get(0)).isEqualTo(applications.get(0));
     }
 
     @Test
@@ -78,8 +77,8 @@ class StreamServiceAndOtherWtfTest {
                 .filter(ag -> ag.getApplication() != null)
                 .collect(Collectors.toCollection(() -> aggregates));
 
-        assertEquals(2, aggregates.size());
-        assertEquals("name1", aggregates.get(0).getApplication().getName());
-        assertFalse(aggregates.get(0).getIsFavorite());
+        assertThat(aggregates).hasSize(2);
+        assertThat(aggregates.get(0).getApplication().getName()).isEqualTo("name1");
+        assertThat(aggregates.get(0).getIsFavorite()).isFalse();
     }
 }

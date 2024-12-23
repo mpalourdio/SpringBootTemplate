@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @EnableConfigurationProperties(MyPropertyConfigHolder.class)
 class BeanFromConfigurationClassTest extends AbstractTestRunner {
@@ -27,7 +27,7 @@ class BeanFromConfigurationClassTest extends AbstractTestRunner {
     @Test
     void testImportBeanConfigurationFile() {
         var task = beanFromConfigurationClass.getInstance();
-        assertEquals("fromBeanConfiguration", task.getTaskName());
+        assertThat("fromBeanConfiguration").isEqualTo(task.getTaskName());
     }
 }
 

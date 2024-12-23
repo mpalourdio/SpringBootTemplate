@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class EnumableTest {
 
@@ -25,16 +25,14 @@ class EnumableTest {
         var enumable = new Enumable();
         enumable.myEnum = MyEnum.TOTO;
 
-        assertEquals(
-                "{\"myEnum\":\"tata\"}",
-                new ObjectMapper().writeValueAsString(enumable)
-        );
+        assertThat(new ObjectMapper().writeValueAsString(enumable))
+                .isEqualTo("{\"myEnum\":\"tata\"}");
     }
 
     @Test
     void testCanUnserializeWithEnums() throws IOException {
         var enumable = new ObjectMapper().readValue("{\"myEnum\":\"tata\"}", Enumable.class);
 
-        assertEquals(MyEnum.TOTO, enumable.myEnum);
+        assertThat(enumable.myEnum).isEqualTo(MyEnum.TOTO);
     }
 }

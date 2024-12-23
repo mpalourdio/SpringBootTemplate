@@ -17,9 +17,8 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -46,7 +45,7 @@ class HomeControllerTest extends AbstractTestRunner {
         var gson = new Gson();
         var jsonPlaceHolder = gson.fromJson(mvcResult.getResponse().getContentAsString(), HomeController.JsonPlaceHolder.class);
 
-        assertEquals("new body", jsonPlaceHolder.body);
+        assertThat("new body").isEqualTo(jsonPlaceHolder.body);
     }
 
     @Test
@@ -55,7 +54,7 @@ class HomeControllerTest extends AbstractTestRunner {
         var gson = new Gson();
         var jsonPlaceHolder = gson.fromJson(mvcResult.getResponse().getContentAsString(), HomeController.JsonPlaceHolder.class);
 
-        assertEquals("new body", jsonPlaceHolder.body);
+        assertThat("new body").isEqualTo(jsonPlaceHolder.body);
     }
 
     @Test

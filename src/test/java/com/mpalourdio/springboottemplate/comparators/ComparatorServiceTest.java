@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class ComparatorServiceTest {
 
@@ -61,9 +61,9 @@ class ComparatorServiceTest {
         var sortedApps =
                 comparatorService.sortApplicationsByFavoriteThenLabel(applicationList);
 
-        assertEquals(FIRST_LABEL, sortedApps.get(0).getLabel());
-        assertEquals(SECOND_LABEL, sortedApps.get(1).getLabel());
-        assertEquals(THIRD_LABEL, sortedApps.get(2).getLabel());
-        assertEquals(LAST_LABEL, sortedApps.get(3).getLabel());
+        assertThat(FIRST_LABEL).isEqualTo(sortedApps.get(0).getLabel());
+        assertThat(SECOND_LABEL).isEqualTo(sortedApps.get(1).getLabel());
+        assertThat(THIRD_LABEL).isEqualTo(sortedApps.get(2).getLabel());
+        assertThat(LAST_LABEL).isEqualTo(sortedApps.get(3).getLabel());
     }
 }

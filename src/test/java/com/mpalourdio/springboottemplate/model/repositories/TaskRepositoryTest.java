@@ -10,8 +10,6 @@
 package com.mpalourdio.springboottemplate.model.repositories;
 
 import com.mpalourdio.springboottemplate.AbstractTestRunner;
-import com.mpalourdio.springboottemplate.model.Dummy;
-import com.mpalourdio.springboottemplate.model.entities.Task;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +17,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.transaction.TestTransaction;
 
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 class TaskRepositoryTest extends AbstractTestRunner {
@@ -40,13 +36,13 @@ class TaskRepositoryTest extends AbstractTestRunner {
     @Test
     void testTableIsEmpty() {
         var taskList = taskRepository.findAll();
-        assertEquals(0, taskList.size());
+        assertThat(taskList).isEmpty();
     }
 
     @Test
     void testAndPlayWithTheFakeentityManager() {
         var persistedTask = entityManager.persistFlushFind(task);
-        assertEquals("description", persistedTask.getTaskDescription());
+        assertThat(persistedTask.getTaskDescription()).isEqualTo("description");
     }
 
     @Test
@@ -55,8 +51,8 @@ class TaskRepositoryTest extends AbstractTestRunner {
         entityManager.persist(people);
         var dummyList = taskRepository.hydrateDummyObject();
 
-        assertEquals(1, dummyList.size());
-        assertNotNull(dummyList.get(0));
+        assertThat(dummyList).hasSize(1);
+        assertThat(dummyList.get(0)).isNotNull();
     }
 
     @Test
@@ -65,7 +61,7 @@ class TaskRepositoryTest extends AbstractTestRunner {
         entityManager.persist(people);
         var allTasksByArchivedValue = taskRepository.getAllTasksByArchivedValue(true);
 
-        assertEquals(1, allTasksByArchivedValue.size());
+        assertThat(allTasksByArchivedValue).hasSize(1);
     }
 
     @Test
@@ -75,7 +71,7 @@ class TaskRepositoryTest extends AbstractTestRunner {
         TestTransaction.end();
 
         var allTasksByArchichedValue = taskRepository.getAllTasksByArchivedValue(true);
-        assertFalse(TestTransaction.isActive());
-        assertEquals(0, allTasksByArchichedValue.size());
+        assertThat(TestTransaction.isActive()).isFalse();
+        assertThat(allTasksByArchichedValue).isEmpty();
     }
 }

@@ -14,7 +14,7 @@ import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.*;
 
 class DbIpDotComServiceTest {
@@ -25,10 +25,10 @@ class DbIpDotComServiceTest {
         var ipAddress = "145.232.192.197";
         var geoLocationApiResponse = ipGeolocationService.geoLocateIp(ipAddress);
 
-        assertEquals("Suisse", geoLocationApiResponse.getCountryName());
-        assertEquals("Renens", geoLocationApiResponse.getCity());
-        assertEquals(ipAddress, geoLocationApiResponse.getIp());
-        assertFalse(geoLocationApiResponse.isHasErrored());
+        assertThat(geoLocationApiResponse.getCountryName()).isEqualTo("Suisse");
+        assertThat(geoLocationApiResponse.getCity()).isEqualTo("Renens");
+        assertThat(geoLocationApiResponse.getIp()).isEqualTo(ipAddress);
+        assertThat(geoLocationApiResponse.isHasErrored()).isFalse();
     }
 
     @Test
@@ -37,9 +37,9 @@ class DbIpDotComServiceTest {
         var ipAddress = "666.666.666.666";
         var geoLocationApiResponse = ipGeolocationService.geoLocateIp(ipAddress);
 
-        assertTrue(geoLocationApiResponse.isHasErrored());
-        assertEquals(ipAddress, geoLocationApiResponse.getIp());
-        assertNotNull(geoLocationApiResponse.getError());
+        assertThat(geoLocationApiResponse.isHasErrored()).isTrue();
+        assertThat(geoLocationApiResponse.getIp()).isEqualTo(ipAddress);
+        assertThat(geoLocationApiResponse.getError()).isNotNull();
     }
 
     @Test
@@ -51,7 +51,7 @@ class DbIpDotComServiceTest {
         IpGeolocationInterface ipGeolocationService = new DbIpDotComService(restTemplate);
         var geoLocationApiResponse = ipGeolocationService.geoLocateIp(ipAddress);
 
-        assertTrue(geoLocationApiResponse.isHasErrored());
-        assertEquals(ipAddress, geoLocationApiResponse.getIp());
+        assertThat(geoLocationApiResponse.isHasErrored()).isTrue();
+        assertThat(geoLocationApiResponse.getIp()).isEqualTo(ipAddress);
     }
 }

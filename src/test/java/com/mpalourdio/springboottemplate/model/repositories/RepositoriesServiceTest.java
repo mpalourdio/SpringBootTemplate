@@ -19,7 +19,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(MockitoExtension.class)
 class RepositoriesServiceTest {
@@ -50,6 +50,6 @@ class RepositoriesServiceTest {
         people.setId(expectedId);
 
         Mockito.when(entityManager.getReference(People.class, 1)).thenReturn(people);
-        assertEquals(expectedId, repositoriesService.useEntityManager().getId());
+        assertThat(repositoriesService.useEntityManager().getId()).isEqualTo(expectedId);
     }
 }

@@ -12,20 +12,20 @@ package com.mpalourdio.springboottemplate.service;
 import com.mpalourdio.springboottemplate.exception.AnotherCustomException;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class ServiceWithPropertiesTest {
 
     @Test
     void testClassPropertyIsRead() {
         var serviceWithProperties = new ServiceWithProperties("hey");
-        assertEquals("hey", serviceWithProperties.getValueFromConfig());
+        assertThat(serviceWithProperties.getValueFromConfig()).isEqualTo("hey");
     }
 
     @Test()
     void throwExceptionTest() {
         var serviceWithProperties = new ServiceWithProperties("hey");
-        assertThrows(AnotherCustomException.class, serviceWithProperties::throwException);
+        assertThatThrownBy(serviceWithProperties::throwException).isInstanceOf(AnotherCustomException.class);
     }
 }

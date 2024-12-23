@@ -16,7 +16,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(MockitoExtension.class)
 class UselessBeanTest {
@@ -34,6 +34,6 @@ class UselessBeanTest {
     @Test
     void testMyMockReturnFalseInTest() {
         Mockito.when(aBeanIWantToMock.iAlwaysReturnFalse()).thenReturn(true);
-        assertTrue(uselessBean.iWantToMockThisMethod());
+        assertThat(uselessBean.iWantToMockThisMethod()).isTrue();
     }
 }

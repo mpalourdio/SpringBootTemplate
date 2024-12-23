@@ -25,7 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.MOCK)
@@ -58,7 +58,6 @@ class PersistenceControllerTest extends AbstractTestRunner {
         }.getType();
         List<Dummy> dummyList = gson.fromJson(mvcResult.getResponse().getContentAsString(), unserializationType);
 
-
-        assertNull(dummyList.get(0).desc);
+        assertThat(dummyList.get(0).desc).isNull();
     }
 }

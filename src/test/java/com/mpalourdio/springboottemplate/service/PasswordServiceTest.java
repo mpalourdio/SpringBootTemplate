@@ -11,8 +11,7 @@ package com.mpalourdio.springboottemplate.service;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class PasswordServiceTest {
 
@@ -23,21 +22,21 @@ class PasswordServiceTest {
         var myawesomepassword = "myawesomepassword";
         var generatedPassword = passwordService.generateEncryptedPasword(myawesomepassword);
 
-        assertTrue(passwordService.isPasswordValid(myawesomepassword, generatedPassword));
+        assertThat(passwordService.isPasswordValid(myawesomepassword, generatedPassword)).isTrue();
     }
 
     @Test
     void testCanEncodeToBase64() {
         var passwordService = new PasswordService();
         var base64EncodedString = "dG9FbmNvZGU=";
-        assertEquals(base64EncodedString, passwordService.encodeStringToBase64("toEncode"));
+        assertThat(passwordService.encodeStringToBase64("toEncode")).isEqualTo(base64EncodedString);
     }
 
     @Test
     void testCanDecodeBase64() {
         var passwordService = new PasswordService();
         var base64EncodedString = "dG9FbmNvZGU=";
-        assertEquals("toEncode", passwordService.decodeBase64String(base64EncodedString));
+        assertThat(passwordService.decodeBase64String(base64EncodedString)).isEqualTo("toEncode");
     }
 
     @Test
@@ -46,6 +45,6 @@ class PasswordServiceTest {
         var passwordLength = 20;
         var generatedPassword = passwordService.generatedRandomPassword(passwordLength);
 
-        assertEquals(generatedPassword.length(), passwordLength);
+        assertThat(generatedPassword.length()).isEqualTo(passwordLength);
     }
 }

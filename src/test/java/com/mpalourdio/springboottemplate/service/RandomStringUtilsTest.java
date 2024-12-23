@@ -11,7 +11,7 @@ package com.mpalourdio.springboottemplate.service;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.assertj.core.api.Assertions.assertThat;
 
 class RandomStringUtilsTest {
 
@@ -20,18 +20,18 @@ class RandomStringUtilsTest {
     @Test
     void randomAlphaNumeric() {
         var generated = RandomStringUtils.randomAlphaNumeric(LENGTH);
-        assertTrue(generated.matches("^[a-z\\d]{" + LENGTH + "}$"));
+        assertThat(generated).matches("^[a-z\\d]{" + LENGTH + "}$");
     }
 
     @Test
     void randomAlphabetic() {
         var generated = RandomStringUtils.randomAlphabetic(LENGTH);
-        assertTrue(generated.matches("^[a-z]{" + LENGTH + "}$"));
+        assertThat(generated).matches("^[a-z]{" + LENGTH + "}$");
     }
 
     @Test
     void randomNumeric() {
         var generated = RandomStringUtils.randomNumeric(LENGTH);
-        assertTrue(generated.matches("^\\d{" + LENGTH + "}$"));
+        assertThat(generated).matches("^\\d{" + LENGTH + "}$");
     }
 }

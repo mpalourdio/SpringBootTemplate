@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @EnableConfigurationProperties(MyPropertyConfigHolder.class)
 class ServiceWithConfigurationPropertiesTest extends AbstractTestRunner {
@@ -25,6 +25,6 @@ class ServiceWithConfigurationPropertiesTest extends AbstractTestRunner {
 
     @Test
     void testPropertiesHaveBeenAutomaticallySet() {
-        assertEquals("first", serviceWithConfigurationProperties.getFirstProperty());
+        assertThat(serviceWithConfigurationProperties.getFirstProperty()).isEqualTo("first");
     }
 }
