@@ -15,14 +15,19 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mpalourdio.springboottemplate.model.entities.People;
 import com.mpalourdio.springboottemplate.model.entities.Task;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.testcontainers.containers.PostgreSQLContainer;
 
 @ExtendWith(SpringExtension.class)
 @TestPropertySource(locations = "classpath:test.properties")
 @Import({BeansFactory.class})
 public abstract class AbstractTestRunner {
+
+    @ServiceConnection
+    static PostgreSQLContainer<?> pgqsl = new PostgreSQLContainer<>("postgres:latest");;
 
     protected Task task;
     protected People people;
