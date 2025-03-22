@@ -34,7 +34,7 @@
         <poi.version>4.1.2</poi.version>
         <maven-release-plugin.version>3.1.1</maven-release-plugin.version>
 
-        <maven-checkstyle-plugin.version>3.2.2</maven-checkstyle-plugin.version>
+        <maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
         <checkstyle.version>10.21.4</checkstyle.version>
         <maven-checkstyle-plugin.configLocation>https://raw.githubusercontent.com/mpalourdio/configuration/main/checkstyle.xml</maven-checkstyle-plugin.configLocation>
     </properties>
