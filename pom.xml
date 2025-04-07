@@ -31,7 +31,7 @@
         <spring-cloud.version>2024.0.0</spring-cloud.version>
 
         <common-text.version>1.13.0</common-text.version>
-        <poi.version>4.1.2</poi.version>
+        <poi.version>5.4.1</poi.version>
         <maven-release-plugin.version>3.1.1</maven-release-plugin.version>
 
         <maven-checkstyle-plugin.version>3.6.0</maven-checkstyle-plugin.version>
