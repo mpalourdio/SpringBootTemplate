@@ -24,7 +24,7 @@ import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.authentication.logout.SimpleUrlLogoutSuccessHandler;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.servlet.util.matcher.PathPatternRequestMatcher;
 
 @Configuration(proxyBeanMethods = false)
 @EnableWebSecurity
@@ -50,7 +50,7 @@ public class WebSecurityConfig {
                         .invalidateHttpSession(true)
                         .clearAuthentication(true)
                         .logoutSuccessHandler(logoutHandler())
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                        .logoutRequestMatcher(PathPatternRequestMatcher.withDefaults().matcher("/logout"))
                 )
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(BASIC_AUTH_ENDPOINT)
