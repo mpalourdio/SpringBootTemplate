@@ -19,7 +19,7 @@ import org.springframework.boot.testcontainers.service.connection.ServiceConnect
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-import org.testcontainers.containers.PostgreSQLContainer;
+import org.testcontainers.postgresql.PostgreSQLContainer;
 
 @ExtendWith(SpringExtension.class)
 @TestPropertySource(locations = "classpath:test.properties")
@@ -27,7 +27,7 @@ import org.testcontainers.containers.PostgreSQLContainer;
 public abstract class AbstractTestRunner {
 
     @ServiceConnection
-    static PostgreSQLContainer<?> pgqsl = new PostgreSQLContainer<>("postgres:latest");;
+    static PostgreSQLContainer pgqsl = new PostgreSQLContainer("postgres:latest");;
 
     protected Task task;
     protected People people;

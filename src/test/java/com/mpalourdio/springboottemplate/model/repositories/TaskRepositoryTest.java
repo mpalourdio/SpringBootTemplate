@@ -52,7 +52,7 @@ class TaskRepositoryTest extends AbstractTestRunner {
         var dummyList = taskRepository.hydrateDummyObject();
 
         assertThat(dummyList).hasSize(1);
-        assertThat(dummyList.get(0)).isNotNull();
+        assertThat(dummyList.getFirst()).isNotNull();
     }
 
     @Test

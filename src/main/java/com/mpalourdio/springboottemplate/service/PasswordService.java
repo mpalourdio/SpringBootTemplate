@@ -39,7 +39,7 @@ public class PasswordService {
         return new RandomStringGenerator.Builder()
                 .withinRange('0', 'z')
                 .filteredBy(LETTERS, DIGITS)
-                .build()
+                .get()
                 .generate(length);
     }
 }

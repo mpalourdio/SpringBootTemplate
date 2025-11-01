@@ -30,9 +30,9 @@ import java.util.Arrays;
         BeansFactory.class,
 })
 @EnableDiscoveryClient
-public class SpringBootTemplateApplication {
+class SpringBootTemplateApplication {
 
-    public static void main(String... args) {
+    static void main(String... args) {
         ApplicationContext ctx = SpringApplication.run(SpringBootTemplateApplication.class, args);
         var beanNames = ctx.getBeanDefinitionNames();
 

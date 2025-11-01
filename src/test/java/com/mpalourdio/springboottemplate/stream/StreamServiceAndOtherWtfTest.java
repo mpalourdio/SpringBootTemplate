@@ -35,7 +35,7 @@ class StreamServiceAndOtherWtfTest {
             return a;
         });
 
-        assertThat(streamServiceAndOtherWtf.applicationsList.get(0).getName()).isNotEqualTo(newName);
+        assertThat(streamServiceAndOtherWtf.applicationsList.getFirst().getName()).isNotEqualTo(newName);
     }
 
     @Test
@@ -45,16 +45,16 @@ class StreamServiceAndOtherWtfTest {
         stream.map(a -> {
             a.setName(newName);
             return a;
-        }).collect(Collectors.toList());
+        }).toList();
 
-        assertThat(streamServiceAndOtherWtf.applicationsList.get(0).getName()).isEqualTo(newName);
+        assertThat(streamServiceAndOtherWtf.applicationsList.getFirst().getName()).isEqualTo(newName);
     }
 
     @Test()
     void testCollectedObjectsAreTheSameInstance() {
         var applications = streamServiceAndOtherWtf.getApplications();
-        var collect = applications.stream().collect(Collectors.toList());
-        assertThat(collect.get(0)).isEqualTo(applications.get(0));
+        var collect = applications.stream().toList();
+        assertThat(collect.getFirst()).isEqualTo(applications.getFirst());
     }
 
     @Test
@@ -78,7 +78,7 @@ class StreamServiceAndOtherWtfTest {
                 .collect(Collectors.toCollection(() -> aggregates));
 
         assertThat(aggregates).hasSize(2);
-        assertThat(aggregates.get(0).getApplication().getName()).isEqualTo("name1");
-        assertThat(aggregates.get(0).getIsFavorite()).isFalse();
+        assertThat(aggregates.getFirst().getApplication().getName()).isEqualTo("name1");
+        assertThat(aggregates.getFirst().getIsFavorite()).isFalse();
     }
 }
