@@ -56,6 +56,6 @@ class PersistenceControllerTest extends AbstractTestRunner {
         }.getType();
         List<Dummy> dummyList = gson.fromJson(mvcResult.getResponse().getContentAsString(), unserializationType);
 
-        assertThat(dummyList.get(0).desc).isNull();
+        assertThat(dummyList.getFirst().desc).isNull();
     }
 }

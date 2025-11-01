@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
+import org.springframework.test.json.JsonCompareMode;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
@@ -51,7 +52,7 @@ class MiscControllerTest extends AbstractTestRunner {
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(input))
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(content().json(serializeToJson(output), true));
+                .andExpect(content().json(serializeToJson(output), JsonCompareMode.STRICT));
     }
 
     @Test
@@ -72,7 +73,7 @@ class MiscControllerTest extends AbstractTestRunner {
                 .with(csrf())
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(input))
-                .andExpect(content().json(serializeToJson(accountDecorator), true));
+                .andExpect(content().json(serializeToJson(accountDecorator), JsonCompareMode.STRICT));
     }
 
     @Test
@@ -80,6 +81,6 @@ class MiscControllerTest extends AbstractTestRunner {
         List<Integer> list = new ArrayList<>(Arrays.asList(1, 2, 3, 4));
 
         mockMvc.perform(get("/misc/propertieslist"))
-                .andExpect(content().json(serializeToJson(list), true));
+                .andExpect(content().json(serializeToJson(list), JsonCompareMode.STRICT));
     }
 }

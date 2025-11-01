@@ -91,7 +91,7 @@ public class HomeController {
     public String testInvalidPath() {
         var tasks = taskRepository.testInvalidPath();
         if (tasks.size() > 0) {
-            return tasks.get(0).getTaskName();
+            return tasks.getFirst().getTaskName();
         }
         return "No matching results. Is the DB provisionned ?";
     }

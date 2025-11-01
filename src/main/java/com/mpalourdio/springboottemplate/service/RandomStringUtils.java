@@ -5,7 +5,7 @@ import org.apache.commons.text.RandomStringGenerator;
 import static org.apache.commons.text.CharacterPredicates.DIGITS;
 import static org.apache.commons.text.CharacterPredicates.LETTERS;
 
-public class RandomStringUtils {
+public final class RandomStringUtils {
 
     private RandomStringUtils() {
     }
@@ -14,7 +14,7 @@ public class RandomStringUtils {
         return new RandomStringGenerator.Builder()
                 .withinRange('0', 'z')
                 .filteredBy(LETTERS, DIGITS)
-                .build()
+                .get()
                 .generate(length)
                 .toLowerCase();
     }
@@ -22,14 +22,14 @@ public class RandomStringUtils {
     public static String randomAlphabetic(int length) {
         return new RandomStringGenerator.Builder()
                 .withinRange('a', 'z')
-                .build()
+                .get()
                 .generate(length);
     }
 
     public static String randomNumeric(int length) {
         return new RandomStringGenerator.Builder()
                 .withinRange('0', '9')
-                .build()
+                .get()
                 .generate(length);
     }
 }
