@@ -1,6 +1,6 @@
 [![CI](https://github.com/mpalourdio/SpringBootTemplate/actions/workflows/main.yml/badge.svg)](https://github.com/mpalourdio/SpringBootTemplate/actions/workflows/main.yml)
 
-Spring Boot 3.x example application.
+Spring Boot 4.x example application.
 =======================================
 
 More a reminder for some dirty tricks than anything else...
