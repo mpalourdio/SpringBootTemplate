@@ -13,7 +13,7 @@ import com.mpalourdio.springboottemplate.model.repositories.TaskRepository;
 import com.mpalourdio.springboottemplate.service.ServiceWithProperties;
 import com.mpalourdio.springboottemplate.service.UselessBean;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.boot.restclient.RestTemplateBuilder;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

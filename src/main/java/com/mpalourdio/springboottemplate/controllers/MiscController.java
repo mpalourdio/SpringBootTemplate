@@ -18,7 +18,7 @@ import com.mpalourdio.springboottemplate.properties.CredentialsProperties;
 import com.mpalourdio.springboottemplate.service.ToSerialize;
 import com.mpalourdio.springboottemplate.service.UselessBean;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.boot.restclient.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.web.bind.annotation.*;
