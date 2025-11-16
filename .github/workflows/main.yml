@@ -20,17 +20,17 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: ${{ matrix.java-version }}
-          cache: 'maven'
+          cache: 'gradle'
 
       - name: Run tests
-        run: ./mvnw clean test -B
+        run: ./gradlew test -x processTestAot
 
       - uses: graalvm/setup-graalvm@v1
         with:
           distribution: 'liberica'
           java-version: ${{ matrix.graalvm-version }}
-          cache: 'maven'
+          cache: 'gradle'
 
       - name: GraalVM Compile
-        run: ./mvnw clean -Pnative native:compile
+        run: ./gradlew nativeCompile
         continue-on-error: true
