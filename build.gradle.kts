@@ -1,7 +1,7 @@
 plugins {
     java
     checkstyle
-    id("org.springframework.boot") version "4.0.0-RC2"
+    id("org.springframework.boot") version "4.0.0"
     id("io.spring.dependency-management") version "1.1.7"
     id("org.graalvm.buildtools.native") version "0.11.3"
 }
@@ -31,9 +31,6 @@ extra["commonTextVersion"] = "1.14.0"
 extra["poiVersion"] = "4.1.2"
 extra["mavenCheckstylePluginConfigLocation"] =
     "https://raw.githubusercontent.com/mpalourdio/configuration/main/checkstyle.xml"
-//temp fix for https://github.com/testcontainers/testcontainers-java/issues/11212
-extra["testcontainers.version"] =
-    "2.0.2"
 
 checkstyle {
     config = resources.text.fromUri("${property("mavenCheckstylePluginConfigLocation")}")
