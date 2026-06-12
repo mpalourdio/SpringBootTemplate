@@ -1,7 +1,7 @@
 plugins {
     java
     checkstyle
-    id("org.springframework.boot") version "4.0.6"
+    id("org.springframework.boot") version "4.1.0"
     id("io.spring.dependency-management") version "1.1.7"
     id("org.graalvm.buildtools.native") version "1.1.1"
 }
@@ -26,7 +26,7 @@ configurations {
     }
 }
 
-extra["springCloudVersion"] = "2025.1.1"
+extra["springCloudVersion"] = "2025.1.2"
 extra["commonTextVersion"] = "1.14.0"
 extra["poiVersion"] = "4.1.2"
 extra["mavenCheckstylePluginConfigLocation"] =
