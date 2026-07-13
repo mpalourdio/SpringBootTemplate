@@ -3,7 +3,7 @@ plugins {
     checkstyle
     id("org.springframework.boot") version "4.1.0"
     id("io.spring.dependency-management") version "1.1.7"
-    id("org.graalvm.buildtools.native") version "1.1.3"
+    id("org.graalvm.buildtools.native") version "1.1.4"
 }
 
 group = "com.mpalourdio.projects"
