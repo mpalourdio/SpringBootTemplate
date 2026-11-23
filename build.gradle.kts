@@ -26,7 +26,7 @@ configurations {
     }
 }
 
-extra["springCloudVersion"] = "2025.1.4"
+extra["springCloudVersion"] = "2026.0.0"
 extra["commonTextVersion"] = "1.14.0"
 extra["poiVersion"] = "4.1.2"
 extra["mavenCheckstylePluginConfigLocation"] =
